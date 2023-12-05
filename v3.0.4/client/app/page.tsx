@@ -1,42 +1,44 @@
-"use client";
+// "use client";
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import SideNav from "./ui/sidenav";
+import Link from "next/link";
+// import Home from "./ui/home";
 
 export default function Home() {
-  const [loading, setLoading] = useState(false);
+  //^ This is for loading timeout
+  /* const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, []);
+  }, []); */
 
   return (
-    <>
-      {loading ? (
-        <div>
-          <div className="w-full h-screen flex items-center justify-center flex-col bg-slate-900">
-            <div className="mb-20px border-8 border-t-8 border-t-sky-700 rounded-full w-80px h-80px animate-[wiggle_.5s_linear_infinite]"></div>
-            <div className="text-white font-bold text-3xl">
-              Please wait is Loading... 😊
-            </div>
-          </div>
+    <div className="w-full h-screen bg-slate-500 flex items-center justify-evenly flex-col flex-nowrap">
+      <div className=" flex items-center justify-center flex-col flex-nowrap">
+        <div className=" flex items-center justify-evenly flex-col flex-nowrap">
+          <span className="text-white font-popp text-3xl font-medium mb-40px">
+            Welcome
+          </span>
+          <span className="text-white font-popp text-6xl font-semibold">
+            I&apos;m Full Stack Developer.
+          </span>
+          <span className="text-white font-popp text-xl font-thin mt-40px">
+            bases in IRAN , Kermanshah, Paveh.
+          </span>
+          <span className=""></span>
+          <Link
+            href={"/contact"}
+            className="text-sky-500 border-sky-500 p-20px border-2 bg-sky-900/20 px-40px hover:bg-sky-500 hover:text-white font-bold mt-50px rounded-full transition-all duration-400"
+          >
+            <button className="">Hire Me</button>
+          </Link>
         </div>
-      ) : (
-        <div className="lg:flex  lg:items-center lg:justify-center lg:bg-slate-400 transition-all duration-500">
-          <div className="lg:grid lg:grid-cols-5 flex flex-col-reverse w-full transition-all duration-600">
-            <div className="lg:col-start-1  lg:col-end-2 ">
-              <SideNav />
-            </div>
-            <div className="lg:col-start-2 lg:col-end-6 ">
-              {/* <Outlet /> */}
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
