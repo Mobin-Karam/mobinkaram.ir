@@ -1,22 +1,9 @@
 // "use client";
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import SideNav from "./ui/sidenav";
 import Link from "next/link";
-// import Home from "./ui/home";
+import Button from "./ui/button";
 
 export default function Home() {
-  //^ This is for loading timeout
-  /* const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-  }, []); */
-
   return (
     <div className="w-full h-screen bg-slate-500 flex items-center justify-evenly flex-col flex-nowrap">
       <div className=" flex items-center justify-center flex-col flex-nowrap">
@@ -31,11 +18,8 @@ export default function Home() {
             bases in IRAN , Kermanshah, Paveh.
           </span>
           <span className=""></span>
-          <Link
-            href={"/contact"}
-            className="text-sky-500 border-sky-500 p-20px border-2 bg-sky-900/20 px-40px hover:bg-sky-500 hover:text-white font-bold mt-50px rounded-full transition-all duration-400"
-          >
-            <button className="">Hire Me</button>
+          <Link href={"/contact"}>
+            <Button title="Hire Me" />
           </Link>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logo.png";
-import { useEffect, useState } from "react";
 import { FaBeer, FaLinkedin, FaHome } from "react-icons/fa";
 import { AiFillGithub } from "react-icons/ai";
 

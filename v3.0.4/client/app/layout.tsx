@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/ui/globals.css";
 import SideNav from "./ui/sidenav";
-import { useEffect, useState } from "react";
-import Home from "./page";
 
 const inter = Inter({ subsets: ["latin"] });
 
