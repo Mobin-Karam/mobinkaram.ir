@@ -7,7 +7,8 @@ import Button from "./button";
 
 export default function SideNav() {
   return (
-    <div className="w-full lg:min-h-screen px-4 pt-4 pb-2 fixed  bottom-0 lg:relative bg-slate-900 flex item-center justify-between lg:flex-col flex-nowrap">
+    <div className="w-full lg:min-h-screen lg:relative lg:flex-col lg:px-4 lg:pt-4 lg:pb-2 fixed top-0 bg-slate-900 flex item-center justify-between  flex-nowrap">
+      {/* // LoGo  */}
       <div className="">
         <div className="w-full flex item-center justify-center flex-row flex-nowrap">
           <Link href={"/"}>
@@ -24,29 +25,57 @@ export default function SideNav() {
           </span>
         </div>
       </div>
+      {/* // Buttons  */}
       <div className="w-full flex item-center justify-center lg:flex-col flex-row flex-nowrap">
+        {/* Mobile Button Menu  */}
+        <div className="lg:hidden relative">
+          
+        </div>
+        {/* All Devices Button Menu  */}
         <Link className="" href="/">
-          <Button title="Home" className={"w-full p-1 mt-3 m-0"} />
+          <Button
+            title="Home"
+            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+          />
         </Link>
         <Link className="" href="/aboutme">
-          <Button title="About Me" className={"w-full p-1 mt-3 m-0"} />
+          <Button
+            title="About Me"
+            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+          />
         </Link>
         <Link className="" href="/whatido">
-          <Button title="What I Do" className={"w-full p-1 mt-3 m-0"} />
+          <Button
+            title="What I Do"
+            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+          />
         </Link>
         <Link className="" href="/resume">
-          <Button title="Resume" className={"w-full p-1 mt-3 m-0"} />
+          <Button
+            title="Resume"
+            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+          />
         </Link>
         <Link className="" href="/portfolio">
-          <Button title="Portfolio" className={"w-full p-1 mt-3 m-0"} />
+          <Button
+            title="Portfolio"
+            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+          />
         </Link>
         <Link className="" href="/testimonial">
-          <Button title="Testimonial" className={"w-full p-1 mt-3 m-0"} />
+          <Button
+            title="Testimonial"
+            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+          />
         </Link>
         <Link className="" href="/contact">
-          <Button title="Contact" className={"w-full p-1 mt-3 m-0"} />
+          <Button
+            title="Contact"
+            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+          />
         </Link>
       </div>
+      {/* // Icons  */}
       <div className="hidden lg:flex w-full items-center justify-evenly flex-row flex-nowrap mb-5 ">
         <Link href={"https://www.buymeacoffee.com/mohammadmk"} target="_blank">
           <FaBeer className="text-white w-[30px] h-[30px]" />

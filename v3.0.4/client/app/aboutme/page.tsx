@@ -10,20 +10,20 @@ export default function Page() {
   return (
     <section
       id="aboutme"
-      className="section w-full h-screen flex items-center justify-center flex-col flex-nowrap py-[72px] bg-slate-300 "
+      className="section w-full h-screen flex items-center justify-center flex-col flex-nowrap lg:py-[72px] bg-slate-300 "
     >
       <div className="container relative w-full lg:px-12 mx-[120px]">
         {/* // Top  */}
         <div className="relative w-full flex items-center justify-center flex-row flex-nowrap">
-          <span className="text-9xl font-bold text-gray-900/5 font-popp">
+          <span className="sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900/5 font-popp">
             ABOUT ME
           </span>
-          <span className="border-b-2 text-4xl font-popp font-semibold border-sky-500 absolute top-100">
+          <span className="border-b-2 sm:text-xl md:text-2xl lg:text-4xl xl:text-4xl font-popp font-semibold border-sky-500 absolute top-100">
             Know Me More
-          </span>
+          </span> 
         </div>
         {/* // Center  */}
-        <div className="w-full flex items-start justify-between flex-row flex-nowrap p-[50px]">
+        <div className="w-full flex items-start justify-between flex-row flex-nowrap lg:p-[50px]">
           {/* // CenterLeft  */}
           <div className="h-full flex items-start justify-center flex-col flex-nowrap">
             <div className="font-popp flex items-start justify-center flex-col flex-nowrap mb-[20px]">

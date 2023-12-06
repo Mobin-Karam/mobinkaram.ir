@@ -18,8 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="max-w-screen-2xl lg:bg-slate-400 transition-all duration-500">
-          <div className="lg:grid lg:grid-cols-5 flex flex-col-reverse w-full transition-all duration-600">
+        <div className="w-full bg-slate-600">
+          <div className="max-w-[1440px] flex items-center justify-center flex-row m-auto w-full transition-all duration-600">
             <div className="lg:col-start-1  lg:col-end-2 ">
               <SideNav />
             </div>
