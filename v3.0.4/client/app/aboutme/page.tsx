@@ -1,43 +1,48 @@
 import Link from "next/link";
 import Button from "../ui/button";
 import { Metadata } from "next";
+import titles from "../lib/placeholder-data";
 
-export const metadate : Metadata = {
+type title = {
+  title: string;
+};
+
+export const metadate: Metadata = {
   title: "Mobin Karam | About Me",
-}
+};
 
 export default function Page() {
   return (
     <section
       id="aboutme"
-      className="section w-full h-screen flex items-center justify-center flex-col flex-nowrap lg:py-[72px] bg-slate-300 "
+      className="section w-full h-screen flex items-center justify-center flex-col flex-nowrap xl:py-[72px] bg-slate-300 overflow-auto "
     >
-      <div className="container relative w-full lg:px-12 mx-[120px]">
+      <div className="container relative w-full xl:px-12">
         {/* // Top  */}
         <div className="relative w-full flex items-center justify-center flex-row flex-nowrap">
           <span className="sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900/5 font-popp">
-            ABOUT ME
+            {titles.titles[0]}
           </span>
           <span className="border-b-2 sm:text-xl md:text-2xl lg:text-4xl xl:text-4xl font-popp font-semibold border-sky-500 absolute top-100">
             Know Me More
-          </span> 
+          </span>
         </div>
         {/* // Center  */}
-        <div className="w-full flex items-start justify-between flex-row flex-nowrap lg:p-[50px]">
+        <div className="w-full flex flex-col justify-around lg:items-start lg:justify-between lg:flex-row lg:flex-nowrap px-[50px] lg:p-[50px]">
           {/* // CenterLeft  */}
           <div className="h-full flex items-start justify-center flex-col flex-nowrap">
-            <div className="font-popp flex items-start justify-center flex-col flex-nowrap mb-[20px]">
-              <h2 className="text-3xl font-semibold">
+            <div className="font-popp flex items-start justify-center flex-col flex-nowrap mb-[5px] lg:mb-[20px]">
+              <h2 className="lg:text-3xl font-semibold">
                 I&apos;m
                 <span className="text-sky-500 font-popp"> Mobin Karam</span>, a
                 Full Stack Developer
               </h2>
             </div>
             <div className="">
-              <p className="font-popp mb-[20px]">
+              <p className="font-popp mb-[5px] lg:mb-[20px]">
                 I help you build brand for your business at an affordable price.
               </p>
-              <p className="font-popp mb-[20px]">
+              <p className="font-popp mb-[5px] lg:mb-[20px]">
                 {/* I Love writing clean code, and pushing my skills to the limit.
                 My interests include joining an exciting team of passionate
                 people, personal growth, and making silly faces. Some people
@@ -88,7 +93,10 @@ export default function Page() {
                 target="_blank"
                 className=""
               >
-                <Button title="Download" className={"py-3 px-20 bg-sky-400 text-white"} />
+                <Button
+                  title="Download"
+                  className={"py-3 px-20 bg-sky-400 text-white"}
+                />
               </Link>
             </div>
           </div>
@@ -96,22 +104,22 @@ export default function Page() {
         {/* // Bottom  */}
         <div className="w-full flex items-center justify-evenly flex-row flex-nowrap text-gray-500 font-semibold ">
           <div className="flex items-center font-popp justify-center flex-col flex-nowrap">
-            <div className="text-5xl ">1+</div>
+            <div className="sm:text-2xl xl:text-5xl ">1+</div>
             <div className="">Years Experiance</div>
           </div>
-          <div className="border-[1px] h-[100px] border-gray-400 h-120px"></div>
+          <span className="border-[1px] h-[100px] border-gray-400 h-120px"></span>
           <div className="flex items-center font-popp justify-center flex-col flex-nowrap">
-            <div className="text-5xl">0+</div>
+            <div className="sm:text-2xl xl:text-5xl">0+</div>
             <div className="">Happy Clients</div>
           </div>
-          <div className="border-[1px] h-[100px] border-gray-400 h-120px"></div>
+          <span className="border-[1px] h-[100px] border-gray-400 h-120px"></span>
           <div className="flex items-center font-popp justify-center flex-col flex-nowrap">
-            <div className="text-5xl">3+</div>
+            <div className="sm:text-2xl xl:text-5xl">3+</div>
             <div className="">Projects Done</div>
           </div>
-          <div className="border-[1px] h-[100px] border-gray-400 h-120px"></div>
+          <span className="border-[1px] h-[100px] border-gray-400 h-120px"></span>
           <div className="flex items-center font-popp justify-center flex-col flex-nowrap">
-            <div className="text-5xl">0</div>
+            <div className="sm:text-2xl xl:text-5xl">0</div>
             <div className="">Get Awards</div>
           </div>
         </div>
