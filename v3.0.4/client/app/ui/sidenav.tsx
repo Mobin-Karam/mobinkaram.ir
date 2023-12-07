@@ -29,65 +29,65 @@ export default function SideNav() {
       <div className="w-full flex item-center justify-center lg:flex-col flex-row flex-nowrap">
         {/* Mobile Button Menu  */}
         <div className="lg:hidden relative">
-          
+
         </div>
         {/* All Devices Button Menu  */}
         <Link className="" href="/">
           <Button
             title="Home"
-            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+            className={"w-full hidden lg:text-sm xl:text-md lg:inline-block lg:px-6 xl:px-12 py-1 mt-3 m-0"}
           />
         </Link>
         <Link className="" href="/aboutme">
           <Button
             title="About Me"
-            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+            className={"w-full hidden lg:text-sm xl:text-md lg:inline-block lg:px-6 xl:px-12 py-1 mt-3 m-0"}
           />
         </Link>
         <Link className="" href="/whatido">
           <Button
             title="What I Do"
-            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+            className={"w-full hidden lg:text-sm xl:text-md lg:inline-block lg:px-6 xl:px-12 py-1 mt-3 m-0"}
           />
         </Link>
         <Link className="" href="/resume">
           <Button
             title="Resume"
-            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+            className={"w-full hidden max-w-5xl:text-sm xl:text-md lg:inline-block lg:px-6 xl:px-12 py-1 mt-3 m-0"}
           />
         </Link>
         <Link className="" href="/portfolio">
           <Button
             title="Portfolio"
-            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+            className={"w-full hidden lg:text-sm xl:text-md lg:inline-block lg:px-6 xl:px-12 py-1 mt-3 m-0"}
           />
         </Link>
         <Link className="" href="/testimonial">
           <Button
             title="Testimonial"
-            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+            className={"w-full hidden lg:text-sm xl:text-md lg:inline-block lg:px-6 xl:px-12 py-1 mt-3 m-0"}
           />
         </Link>
         <Link className="" href="/contact">
           <Button
             title="Contact"
-            className={"w-full hidden lg:inline-block px-12 py-1 mt-3 m-0"}
+            className={"w-full hidden lg:text-sm xl:text-md lg:inline-block lg:px-6 xl:px-12 py-1 mt-3 m-0"}
           />
         </Link>
       </div>
       {/* // Icons  */}
       <div className="hidden lg:flex w-full items-center justify-evenly flex-row flex-nowrap mb-5 ">
         <Link href={"https://www.buymeacoffee.com/mohammadmk"} target="_blank">
-          <FaBeer className="text-white w-[30px] h-[30px]" />
+          <FaBeer className="text-white lg:w-5 lg:h-5  xl:w-7 xl:h-7" />
         </Link>
         <Link href={"https://github.com/Mobin-Karam"} target="_blank">
-          <AiFillGithub className="text-white w-[30px] h-[30px]" />
+          <AiFillGithub className="text-white lg:w-5 lg:h-5  xl:w-7 xl:h-7" />
         </Link>
         <Link
           href={"https://linkedin.com/in/mobin-karam-a54114242"}
           target="_blank"
         >
-          <FaLinkedin className="text-white w-[30px] h-[30px]" />
+          <FaLinkedin className="text-white lg:w-5 lg:h-5  xl:w-7 xl:h-7" />
         </Link>
       </div>
     </div>
