@@ -21,7 +21,7 @@ export default function Page() {
         {/* // Top  */}
         <div className="relative w-full flex items-center justify-center flex-row flex-nowrap">
           <span className="sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-gray-900/5 font-popp">
-            {titles.titles[0]}
+            About Me
           </span>
           <span className="border-b-2 sm:text-xl md:text-2xl lg:text-4xl xl:text-4xl font-popp font-semibold border-sky-500 absolute top-100">
             Know Me More
