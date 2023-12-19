@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobinKaram | Loading...!</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            color: whitesmoke;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column nowrap;
+            background-color: #1a3863;
+        }
+
+        .wrapper.eight {
+            width: 100%;
+            height: 100vh;
+            font-size: 2rem;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column nowrap;
+            background-color: #1a3863;
+            overflow: hidden;
+            color: transparent;
+        }
+
+        .smoke {}
+
+        .eight .smoke {
+            margin: 3rem auto;
+            display: inline-flex;
+        }
+
+        .eight span {
+            display: inline-flex;
+            text-shadow: 0 0 0 #f5f5f5;
+            font-family: 'Play', sans-serif;
+            animation: smoke 6s ease infinite;
+        }
+
+        @keyframes smoke {
+            60% {
+                text-shadow: 0 0 40px #f5f5f5;
+            }
+
+            to {
+                transform: translate3d(12rem, -10rem, 0) skewX(50deg);
+                text-shadow: 0 0 20px #f5f5f5;
+                opacity: 0;
+            }
+        }
+
+        .eight span:nth-of-type(1) {
+            animation-delay: 3.1s;
+        }
+
+        .eight span:nth-of-type(2) {
+            animation-delay: 3.2s;
+        }
+
+        .eight span:nth-of-type(3) {
+            animation-delay: 3.3s;
+        }
+
+        .eight span:nth-of-type(4) {
+            animation-delay: 3.4s;
+        }
+
+        .eight span:nth-of-type(5) {
+            animation-delay: 3.5s;
+        }
+
+        .eight span:nth-of-type(6) {
+            animation-delay: 3.6s;
+        }
+
+        .eight span:nth-of-type(7) {
+            animation-delay: 3.7s;
+        }
+
+        .eight span:nth-of-type(8) {
+            animation-delay: 3.8s;
+        }
+
+        .eight span:nth-of-type(9) {
+            animation-delay: 3.9s;
+        }
+
+        .eight span:nth-of-type(10) {
+            animation-delay: 4s;
+        }
+
+        .eight span:nth-of-type(11) {
+            animation-delay: 4.1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper eight">
+        <h3 class="smoke">
+            <span>L</span>
+            <span>o</span>
+            <span>a</span>
+            <span>d</span>
+            <span>i</span>
+            <span>n</span>
+            <span>g</span>
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+            <span>!</span>
+        </h3>
+    </div>
+</body>
+
+</html>
