@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobinKaram.ir | Coming Soon!</title>
+</head>
+
+<body>
+    <section class="">
+        <h1 class="">Coming Soon!</h1>
+        <div id="timer" class=""></div>
+    </section>
+
+    <script>
+
+        const timer = document.getElementById('timer');
+
+        setInterval(() => {
+            date = new Date("2017-01-26");
+            timer.textContent = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds() - 1}`
+        }, 1000)
+
+    </script>
+</body>
+
+</html>
