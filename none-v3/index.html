@@ -1,28 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MobinKaram.ir | Coming Soon!</title>
-</head>
+    <meta
+      name="description"
+      content="Hi, This is my Website and Portfolio for introduce my self to the world"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <!-- CSS Link  -->
+    <link rel="stylesheet" href="./dist/style.css" />
+  </head>
 
-<body>
-    <section class="">
-        <h1 class="">Coming Soon!</h1>
-        <div id="timer" class=""></div>
-    </section>
+  <body>
+    <div class="container">
+      <header class="header" id="header">
+        <p>Coming Soon...</p>
+      </header>
+      <main class="main" id="main">
+        <div class="main__content">
+          <div class="main__social-icons">
+            <a
+              href="https://linkedin.com/in/mobin-karam-a54114242"
+              target="_blank"
+            >
+              <div class="icon-bg">
+                <img
+                  src="./assets/img/linkedin.png"
+                  alt="linkedin.com/in/mobin-karam"
+                />
+                <h4>Linkedin</h4>
+              </div>
+            </a>
 
-    <script>
-
-        const timer = document.getElementById('timer');
-
-        setInterval(() => {
-            date = new Date("2017-01-26");
-            timer.textContent = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds() - 1}`
-        }, 1000)
-
-    </script>
-</body>
-
+            <a href="https://github.com/Mobin-Karam" target="_blank">
+              <div class="icon-bg">
+                <img
+                  src="./assets/img/github-logo.png"
+                  alt="github.com/Mobin-Karm"
+                />
+                <h4>Github</h4>
+              </div>
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script></script>
+  </body>
 </html>
