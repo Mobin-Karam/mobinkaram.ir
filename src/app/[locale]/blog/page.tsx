@@ -7,6 +7,7 @@ import { BlogHero } from "@/components/blog/blog-hero";
 import { BlogList } from "@/components/blog/blog-list";
 import { Rss } from "lucide-react";
 import { BlogStats } from "@/components/blog/blog-stats";
+import { CategoryPicker } from "@/components/blog/category-picker";
 
 export const revalidate = 1800;
 
@@ -58,6 +59,12 @@ export default async function BlogIndex({
       />
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>
         <div className="space-y-4">
+          <BlogStats stats={stats} />
+          <CategoryPicker
+            locale={locale}
+            engineeringCount={engineeringPosts.length}
+            islamCount={islamPosts.length}
+          />
           <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
             <Card className="p-5">
               <SectionHeading eyebrow="Category" title="Engineering" />
