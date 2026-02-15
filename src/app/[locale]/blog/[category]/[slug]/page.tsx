@@ -29,7 +29,7 @@ export default async function BlogPostPage({
   params: Promise<{ locale: Locale; slug: string; category: string }>;
 }) {
   const { locale, slug } = await params;
-  const result = await getPostBySlug(locale as "en" | "fa", slug);
+  const result = await getPostBySlug(locale as "en" | "fa", (await params).category, slug);
   if (!result) notFound();
   const { content, frontmatter } = result;
   const category = categorizePost(frontmatter);

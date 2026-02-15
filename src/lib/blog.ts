@@ -32,14 +32,14 @@ async function loadIndex(locale: "en" | "fa") {
   const posts: Post[] = [];
   for (const file of files) {
     const slug = file.name.replace(/\.mdx$/, "");
-    const source = await getPostFile(locale, slug);
+    const source = await getPostFile(locale, slug, file.category);
     if (!source) continue;
     try {
       const { frontmatter } = await compilePost(locale, source);
       if (frontmatter.published === false) continue;
-      posts.push(frontmatter);
+      posts.push({ ...frontmatter, category: frontmatter.category ?? file.category });
     } catch (err) {
-      console.warn(`[blog] failed to compile ${locale}/${slug}:`, err);
+      console.warn(`[blog] failed to compile ${locale}/${file.category}/${slug}:`, err);
     }
   }
   if (posts.length === 0) {
@@ -72,48 +72,37 @@ export const getRelatedPosts = cache(
 );
 
 export const getAllSlugs = cache(async () => {
-  const entries: { locale: "en" | "fa"; slug: string }[] = [];
-  for (const locale of locales) {
-    const files = await listPostFiles(locale);
-    files.forEach((f) => entries.push({ locale, slug: f.name.replace(/\.mdx$/, "") }));
-  }
-  return entries;
-});
-
-export const getAllSlugCategories = cache(async () => {
   const entries: { locale: "en" | "fa"; slug: string; category: BlogCategory }[] = [];
   for (const locale of locales) {
     const files = await listPostFiles(locale);
-    for (const f of files) {
-      const slug = f.name.replace(/\.mdx$/, "");
-      const source = await getPostFile(locale, slug);
-      if (!source) continue;
-      try {
-        const { frontmatter } = await compilePost(locale, source);
-        entries.push({ locale, slug, category: categorizePost(frontmatter) });
-      } catch (err) {
-        console.warn(`[blog] failed to categorize ${locale}/${slug}:`, err);
-      }
-    }
+    files.forEach((f) =>
+      entries.push({ locale, slug: f.name.replace(/\.mdx$/, ""), category: f.category as BlogCategory }),
+    );
   }
   return entries;
 });
 
-export const getPostBySlug = cache(async (locale: "en" | "fa", slug: string) => {
-  const source = await getPostFile(locale, slug);
-  if (source) {
-    try {
-      return await compilePost(locale, source);
-    } catch (err) {
-      console.warn(`[blog] failed to compile ${locale}/${slug}:`, err);
-      return null;
+export const getAllSlugCategories = getAllSlugs;
+
+export const getPostBySlug = cache(
+  async (locale: "en" | "fa", category: string, slug: string) => {
+    const source = await getPostFile(locale, slug, category);
+    if (source) {
+      try {
+        const compiled = await compilePost(locale, source);
+        compiled.frontmatter.category = compiled.frontmatter.category ?? category;
+        return compiled;
+      } catch (err) {
+        console.warn(`[blog] failed to compile ${locale}/${category}/${slug}:`, err);
+        return null;
+      }
     }
-  }
-  if (slug === fallbackSlug) {
-    return compilePost(locale, fallbackSource);
-  }
-  return null;
-});
+    if (slug === fallbackSlug) {
+      return compilePost(locale, fallbackSource);
+    }
+    return null;
+  },
+);
 
 export const getAuthor = cache(async (id = "mobin") => {
   return getAuthorFile(id);
@@ -125,12 +114,15 @@ const islamMatcher = (tag: string) =>
 export type BlogCategory = "engineering" | "islam";
 
 export function categorizePost(post: Post) {
+  if ((post as any).category) return (post as any).category as BlogCategory;
   const hasIslam = (post.tags ?? []).some(islamMatcher);
   return hasIslam ? "islam" : "engineering";
 }
 
 export function filterByCategory(posts: Post[], category: BlogCategory) {
-  return posts.filter((p) => categorizePost(p) === category);
+  return posts.filter((p) =>
+    (p as any).category ? (p as any).category === category : categorizePost(p) === category,
+  );
 }
 
 export const getUniqueBlogTags = cache(async (locale: "en" | "fa") => {

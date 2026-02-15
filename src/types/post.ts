@@ -3,6 +3,7 @@ export type PostFrontmatter = {
   description: string;
   date: string;
   slug: string;
+  category?: string;
   tags: string[];
   cover?: string;
   readingTime?: number;

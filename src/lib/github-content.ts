@@ -27,14 +27,31 @@ function decodeContent(encoded: string) {
   return Buffer.from(encoded, "base64").toString("utf8");
 }
 
-export async function listPostFiles(locale: string) {
+export type RemotePostFile = { name: string; category: string; path: string };
+
+export async function listPostFiles(locale: string): Promise<RemotePostFile[]> {
   const data = await githubFetch(`posts/${locale}`);
   if (!data || !Array.isArray(data)) return [];
-  return data.filter((item: any) => item.type === "file" && item.name.endsWith(".mdx"));
+  const categories = data.filter((item: any) => item.type === "dir");
+  const files: RemotePostFile[] = [];
+  for (const cat of categories) {
+    const catData = await githubFetch(`posts/${locale}/${cat.name}`);
+    if (!catData || !Array.isArray(catData)) continue;
+    catData
+      .filter((item: any) => item.type === "file" && item.name.endsWith(".mdx"))
+      .forEach((f: any) =>
+        files.push({
+          name: f.name,
+          category: cat.name,
+          path: `posts/${locale}/${cat.name}/${f.name}`,
+        }),
+      );
+  }
+  return files;
 }
 
-export async function getPostFile(locale: string, slug: string) {
-  const data = await githubFetch(`posts/${locale}/${slug}.mdx`);
+export async function getPostFile(locale: string, slug: string, category: string) {
+  const data = await githubFetch(`posts/${locale}/${category}/${slug}.mdx`);
   if (!data?.content) return null;
   return decodeContent(data.content as string);
 }
