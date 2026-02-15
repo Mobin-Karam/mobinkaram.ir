@@ -18,9 +18,6 @@ const items = [
   { key: "home", label: "Home", icon: Home, href: "" },
   { key: "engineer", label: "Engineer", icon: LayoutPanelLeft, href: "/build" },
   { key: "profile", label: "Profile", icon: UserRound, href: "/profile" },
-  { key: "now", label: "Now", icon: Cog, href: "/now" },
-  { key: "stack", label: "Stack", icon: Layers, href: "/stack" },
-  { key: "about", label: "About", icon: User, href: "/about" },
   { key: "tracker", label: "Tracker", icon: Flag, href: "/koonj-status" },
 ];
 
@@ -81,7 +78,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
             >
               <Icon size={18} />
             </span>
-            <span className="capitalize text-[10px]">{item.label}</span>
+            <span className="sr-only">{item.label}</span>
           </Link>
         );
       })}
