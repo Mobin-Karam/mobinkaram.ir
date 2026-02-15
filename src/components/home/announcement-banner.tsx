@@ -27,7 +27,7 @@ export function AnnouncementBanner({ slides }: { slides: Slide[] }) {
   const next = () => setIndex((i) => (i + 1) % slides.length);
 
   return (
-    <div className="mb-5 overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--glow)]">
+    <div className="mb-5 w-full overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--glow)]">
       <div className="relative flex items-center">
         <button
           className="hidden p-3 text-[color:var(--muted)] transition hover:text-[color:var(--foreground)] md:block"
@@ -41,7 +41,7 @@ export function AnnouncementBanner({ slides }: { slides: Slide[] }) {
             <div
               key={slide.id}
               className={clsx(
-                "transition-opacity duration-500",
+                "min-h-[120px] md:min-h-[160px] transition-opacity duration-500",
                 i === index ? "opacity-100" : "opacity-0 hidden",
               )}
             >
