@@ -35,12 +35,12 @@ export function MobileNav({ locale }: { locale: Locale }) {
     activeIndex >= 0 ? (activeIndex * 100) / items.length : 0;
   return (
     <nav
-      className="fixed left-1/2 z-30 flex w-[min(98%,1100px)] max-w-xl -translate-x-1/2 items-center justify-around overflow-hidden rounded-full border border-white/25 bg-gradient-to-r from-[color:var(--surface)]/92 via-white/30 to-[color:var(--surface)]/92 px-2.5 py-2 shadow-[0_18px_45px_-24px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150 ring-1 ring-black/5 md:hidden"
+      className="fixed left-1/2 z-30 flex w-[min(98%,1100px)] max-w-xl -translate-x-1/2 items-center justify-around overflow-hidden rounded-full border border-white/30 bg-white/10 px-2.5 py-2 shadow-[0_18px_45px_-24px_rgba(0,0,0,0.55)] backdrop-blur-2xl backdrop-saturate-200 ring-1 ring-white/20 md:hidden"
       style={{ bottom: `calc(14px + env(safe-area-inset-bottom))` }}
     >
       <span
         aria-hidden
-        className="absolute inset-y-1 left-0 z-0 rounded-full bg-white/12 blur-[2px] transition-[transform,width] duration-300 ease-out"
+        className="absolute inset-y-1 left-0 z-0 rounded-full bg-white/25 shadow-lg shadow-white/30 blur-[2px] transition-[transform,width] duration-400 ease-[cubic-bezier(0.22,0.61,0.36,1)]"
         style={{
           width: `${100 / items.length}%`,
           transform: `translateX(${indicatorX}%)`,
@@ -73,10 +73,10 @@ export function MobileNav({ locale }: { locale: Locale }) {
             />
             <span
               className={clsx(
-                "flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300",
+                "flex h-10 w-10 items-center justify-center rounded-full transition-all duration-400 ease-[cubic-bezier(0.22,0.61,0.36,1)]",
                 active
-                  ? "bg-[color:var(--accent)]/15 text-[color:var(--accent-strong)]"
-                  : "bg-transparent text-[color:var(--muted)]",
+                  ? "bg-white/20 text-[color:var(--accent-strong)] shadow-inner shadow-white/30"
+                  : "bg-white/5 text-[color:var(--muted)]",
               )}
             >
               <Icon size={18} />
