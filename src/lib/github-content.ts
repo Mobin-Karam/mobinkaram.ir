@@ -8,19 +8,20 @@ const token = process.env.GITHUB_CONTENT_TOKEN ?? process.env.GITHUB_TOKEN ?? pr
 const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents`;
 
 async function githubFetch(path: string): Promise<any | null> {
-  const res = await fetch(`${apiBase}/${path}?ref=${branch}`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-    cache: "force-cache",
-    next: { revalidate: 1800 },
-  });
-  if (res.status === 404) return null;
-  if (!res.ok) {
-    throw new Error(`GitHub fetch failed for ${path}: ${res.status}`);
+  try {
+    const res = await fetch(`${apiBase}/${path}?ref=${branch}`, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      cache: "force-cache",
+      next: { revalidate: 1800 },
+    });
+    if (!res.ok) return null;
+    return res.json();
+  } catch {
+    return null;
   }
-  return res.json();
 }
 
 function decodeContent(encoded: string) {
