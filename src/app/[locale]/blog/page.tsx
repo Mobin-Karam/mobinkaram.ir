@@ -59,6 +59,34 @@ export default async function BlogIndex({
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>
         <div className="space-y-4">
           <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
+            <Card className="p-5">
+              <SectionHeading eyebrow="Category" title="Engineering" />
+              <p className="text-sm text-[color:var(--muted)]">
+                Systems, product, and delivery writing. {engineeringPosts.length} posts.
+              </p>
+              <Link
+                href={`/${locale}/blog/engineering`}
+                className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
+              >
+                View engineering
+              </Link>
+            </Card>
+
+            <Card className="p-5">
+              <SectionHeading eyebrow="Category" title="Islam" />
+              <p className="text-sm text-[color:var(--muted)]">
+                Faith, practice, and reflections. {islamPosts.length} posts.
+              </p>
+              <Link
+                href={`/${locale}/blog/islam`}
+                className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
+              >
+                View Islam
+              </Link>
+            </Card>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
             <BlogHero
               locale={locale}
               post={featured as any}
@@ -92,34 +120,6 @@ export default async function BlogIndex({
                   ))}
                 </div>
               </div>
-            </Card>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <Card className="p-5">
-              <SectionHeading eyebrow="Category" title="Engineering" />
-              <p className="text-sm text-[color:var(--muted)]">
-                Systems, product, and delivery writing. {engineeringPosts.length} posts.
-              </p>
-              <Link
-                href={`/${locale}/blog/engineering`}
-                className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
-              >
-                View engineering
-              </Link>
-            </Card>
-
-            <Card className="p-5">
-              <SectionHeading eyebrow="Category" title="Islam" />
-              <p className="text-sm text-[color:var(--muted)]">
-                Faith, practice, and reflections. {islamPosts.length} posts.
-              </p>
-              <Link
-                href={`/${locale}/blog/islam`}
-                className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
-              >
-                View Islam
-              </Link>
             </Card>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { SectionHeading, LazySection, Skeleton } from "@/components/ui/primitive
 import { BlogList } from "@/components/blog/blog-list";
 import { getPostIndex, filterByCategory, type BlogCategory } from "@/lib/blog";
 import type { Locale } from "@/i18n/config";
+import { SectionBackLink } from "@/components/ui/section-back-link";
 
 export const revalidate = 1800;
 export const dynamicParams = false;
@@ -35,6 +36,7 @@ export default async function BlogCategoryPage({
 
   return (
     <div className="space-y-6">
+      <SectionBackLink href={`/${locale}/blog`} label="Back to blog" />
       <SectionHeading eyebrow="Blog" title={config.title} description={config.description} />
       <LazySection minHeight={260} skeleton={<Skeleton className="h-64" />}>
         <BlogList posts={filtered} tags={[]} locale={locale} category={category} />
