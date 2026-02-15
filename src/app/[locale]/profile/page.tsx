@@ -78,19 +78,19 @@ export default async function ProfilePage({
               <img
                 src={(gh.user as any)?.avatar_url ?? "https://github.com/Mobin-Karam.png"}
                 alt="GitHub avatar"
-                className="h-20 w-20 rounded-2xl border border-white/10 shadow-lg"
+                className="h-5 w-5 rounded-2xl border border-white/10 shadow-lg"
                 loading="lazy"
               />
               <div className="space-y-1">
-                <p className="text-sm uppercase tracking-wide text-slate-200">GitHub Profile</p>
-                <div className="flex items-center gap-2 text-2xl font-semibold">
+                <p className="text-sm uppercase tracking-wide text-slate-100">GitHub Profile</p>
+                <div className="flex items-center gap-2 text-2xl font-semibold text-slate-50">
                   <Github size={20} />
                   <span>{gh.user?.name ?? "Mobin Karam"}</span>
                 </div>
                 <Link
                   href={gh.user?.html_url ?? "https://github.com/Mobin-Karam"}
                   target="_blank"
-                  className="inline-flex items-center gap-2 text-sm text-slate-200 underline decoration-slate-400/60 decoration-dashed hover:text-white"
+                  className="inline-flex items-center gap-2 text-sm text-slate-100 underline decoration-slate-400/60 decoration-dashed hover:text-white"
                 >
                   {gh.user?.login ?? "Mobin-Karam"}
                   <ArrowRight size={14} />
@@ -100,20 +100,20 @@ export default async function ProfilePage({
             <div className="grid grid-cols-3 gap-3 text-center text-sm">
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
                 <Users className="mx-auto h-4 w-4 text-emerald-300" />
-                <p className="text-lg font-semibold">{gh.user?.followers ?? "—"}</p>
-                <p className="text-xs text-slate-200">Followers</p>
+                <p className="text-lg font-semibold text-slate-50">{gh.user?.followers ?? "—"}</p>
+                <p className="text-xs text-slate-100">Followers</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
                 <BookOpen className="mx-auto h-4 w-4 text-sky-300" />
-                <p className="text-lg font-semibold">{gh.user?.public_repos ?? "—"}</p>
-                <p className="text-xs text-slate-200">Repos</p>
+                <p className="text-lg font-semibold text-slate-50">{gh.user?.public_repos ?? "—"}</p>
+                <p className="text-xs text-slate-100">Repos</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
                 <Star className="mx-auto h-4 w-4 text-amber-300" />
-                <p className="text-lg font-semibold">
+                <p className="text-lg font-semibold text-slate-50">
                   {gh.repos.reduce((acc, r) => acc + (r.stars ?? 0), 0)}
                 </p>
-                <p className="text-xs text-slate-200">Stars (pinned)</p>
+                <p className="text-xs text-slate-100">Stars (pinned)</p>
               </div>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default async function ProfilePage({
                   key={repo.url}
                   href={repo.url}
                   target="_blank"
-                  className="group rounded-2xl border border-white/10 bg-white/5 p-3 text-sm text-white transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
+                  className="group rounded-2xl border border-white/10 bg-white/5 p-3 text-sm text-slate-50 transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
                 >
                   <div className="flex items-center justify-between text-xs text-slate-200">
                     <span>{repo.owner === "org" ? "Koonj Inc" : "Personal"}</span>
@@ -133,9 +133,9 @@ export default async function ProfilePage({
                       <GitFork size={14} /> {repo.forks}
                     </span>
                   </div>
-                  <p className="mt-1 text-base font-semibold">{repo.name}</p>
-                  <p className="text-[12px] text-slate-200 line-clamp-2">{repo.description}</p>
-                  <p className="mt-2 text-[11px] uppercase text-slate-300">
+                  <p className="mt-1 text-base font-semibold text-slate-50">{repo.name}</p>
+                  <p className="text-[12px] text-slate-100 line-clamp-2">{repo.description}</p>
+                  <p className="mt-2 text-[11px] uppercase text-slate-200">
                     {repo.lang ?? "TypeScript"}
                   </p>
                 </Link>
