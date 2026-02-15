@@ -35,7 +35,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
     activeIndex >= 0 ? (activeIndex * 100) / items.length : 0;
   return (
     <nav
-      className="fixed left-1/2 z-30 flex w-[min(96%,1100px)] -translate-x-1/2 items-center justify-around overflow-hidden rounded-full border border-white/25 bg-gradient-to-r from-[color:var(--surface)]/92 via-white/30 to-[color:var(--surface)]/92 px-3 py-2 shadow-[0_18px_45px_-24px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150 ring-1 ring-black/5 md:hidden"
+      className="fixed left-1/2 z-30 flex w-[min(98%,1100px)] max-w-xl -translate-x-1/2 items-center justify-around overflow-hidden rounded-full border border-white/25 bg-gradient-to-r from-[color:var(--surface)]/92 via-white/30 to-[color:var(--surface)]/92 px-2.5 py-2 shadow-[0_18px_45px_-24px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150 ring-1 ring-black/5 md:hidden"
       style={{ bottom: `calc(14px + env(safe-area-inset-bottom))` }}
     >
       <span
@@ -58,7 +58,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
             key={item.key}
             href={href}
             className={clsx(
-              "relative z-10 flex flex-1 flex-col items-center gap-1 px-2 py-1 text-[11px] transition-colors",
+              "relative z-10 flex flex-1 flex-col items-center gap-1 px-1.5 py-1 text-[10px] transition-colors",
               active
                 ? "text-[color:var(--accent-strong)]"
                 : "text-[color:var(--muted)]",
@@ -81,7 +81,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
             >
               <Icon size={18} />
             </span>
-            <span className="capitalize">{item.label}</span>
+            <span className="capitalize text-[10px]">{item.label}</span>
           </Link>
         );
       })}
