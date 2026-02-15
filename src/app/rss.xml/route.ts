@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getProjects } from "@/data/projects";
 import { getLabEntries } from "@/data/lab";
 import { getBuildLogs } from "@/data/logs";
+import { getPostIndex } from "@/lib/blog";
 import { defaultLocale } from "@/i18n/config";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://mobinkaram.ir";
@@ -15,7 +16,7 @@ type FeedItem = {
   author?: string;
 };
 
-function buildItems(): FeedItem[] {
+async function buildItems(): Promise<FeedItem[]> {
   const locale = defaultLocale;
   const projectItems = getProjects(locale).map((p) => ({
     title: p.meta.title,
@@ -44,7 +45,17 @@ function buildItems(): FeedItem[] {
     author: log.meta.author,
   }));
 
-  return [...projectItems, ...labItems, ...logItems].sort((a, b) => {
+  const posts = await getPostIndex(locale as "en" | "fa");
+  const postItems = posts.map((post) => ({
+    title: post.title,
+    link: `${SITE_URL}/${locale}/blog/${post.slug}`,
+    description: post.description,
+    pubDate: post.date,
+    guid: `post-${post.slug}`,
+    author: post.author ?? "Mobin Karam",
+  }));
+
+  return [...projectItems, ...labItems, ...logItems, ...postItems].sort((a, b) => {
     if (!a.pubDate || !b.pubDate) return 0;
     return Date.parse(b.pubDate) - Date.parse(a.pubDate);
   });
@@ -60,7 +71,7 @@ function escape(value: string) {
 }
 
 export async function GET() {
-  const items = buildItems();
+  const items = await buildItems();
   const lastBuild = items[0]?.pubDate || new Date().toISOString();
 
   const xmlItems = items
