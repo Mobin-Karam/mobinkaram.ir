@@ -11,6 +11,7 @@ import type { Locale } from "@/i18n/config";
 import Link from "next/link";
 
 export const revalidate = 1800;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   return getAllSlugs();
