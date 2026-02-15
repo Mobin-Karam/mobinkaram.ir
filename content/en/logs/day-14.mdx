@@ -1,15 +1,17 @@
-export const meta = {
-  slug: "day-14",
-  title: "Day 14 â€” fixing auth architecture",
-  summary: "Split session service from user service and added device binding.",
-  tags: ["Auth", "Security", "NestJS"],
-  date: "2026-01-28",
-  author: "Mobin Karam",
-  authorAvatar: "",
-  readingMinutes: 2,
-  cover: "/covers/day-14.svg",
-};
+---
+title: "Day 14 — telemetry and tracing"
+slug: "day-14"
+summary: "App start instrumentation and crash triage."
+date: "2026-02-03"
+tags: ["shipping", "observability"]
+author: "Mobin Karam"
+authorAvatar: "https://github.com/Mobin-Karam.png"
+readingMinutes: 2
+cover: "/assets/images/build-day-14.jpg"
+published: true
+---
 
-- Extracted session service so tokens rotate independently of user updates.
-- Added device fingerprint to session payload to make hijacking harder.
-- Load test 2,500 logins/min without drop (was 1,800).
+- Wired Sentry + custom breadcrumbs for navigation transitions.
+- Added cold-start span around asset prefetch; reduced blocking work by 120 ms.
+- Created a lightweight crash-playbook in Notion linking stack traces to owners.
+- Queued OTA with updated telemetry flags for 5% canary.

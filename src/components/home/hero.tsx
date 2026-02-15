@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, PlayCircle, Mail } from "lucide-react";
 import { StatusDot } from "@/components/ui/status-dot";
 import type { Locale } from "@/i18n/config";
-import { getFeaturedProject } from "@/data/projects";
+import type { Entry, ProjectMeta } from "@/lib/engineer-data";
 
 type Props = {
   locale: Locale;
@@ -11,6 +11,7 @@ type Props = {
   ctaProjects: string;
   ctaLab: string;
   contactLabel?: string;
+  featured?: Entry<ProjectMeta> | null;
 };
 
 export function Hero({
@@ -20,9 +21,8 @@ export function Hero({
   ctaProjects,
   ctaLab,
   contactLabel = "Contact",
+  featured,
 }: Props) {
-  const featured = getFeaturedProject(locale);
-
   return (
     <section className="mb-10 rounded-3xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6 shadow-[var(--shadow-glow)]">
       <div className="flex flex-col gap-4">

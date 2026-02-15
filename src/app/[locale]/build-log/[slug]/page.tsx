@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { SectionHeading, LazySection, Skeleton, Pill } from "@/components/ui/primitives";
-import { getBuildLogs, getLog } from "@/data/logs";
+import { getBuildLogs, getLog } from "@/lib/engineer-data";
 import { locales, type Locale } from "@/i18n/config";
 import { ArticleMeta } from "@/components/ui/article-meta";
 import { CoverImage } from "@/components/ui/cover-image";
@@ -10,12 +10,7 @@ import { SectionBackLink } from "@/components/ui/section-back-link";
 import { articleLd, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
-  return locales.flatMap((locale) =>
-    getBuildLogs(locale).map((log) => ({
-      locale,
-      slug: log.meta.slug,
-    })),
-  );
+  return [];
 }
 
 export default async function BuildLogDetail({
@@ -24,7 +19,7 @@ export default async function BuildLogDetail({
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const log = getLog(locale, slug);
+  const log = await getLog(locale, slug);
   if (!log) notFound();
   const Content = log.Component;
   const cover = log.meta.cover;
@@ -57,9 +52,9 @@ export default async function BuildLogDetail({
       />
       <PostActions title={log.meta.title} />
       <ArticleMeta
-        author={log.meta.author}
-        date={log.meta.date}
-        readingMinutes={log.meta.readingMinutes}
+        author={log.meta.author ?? "Mobin Karam"}
+        date={log.meta.date ?? ""}
+        readingMinutes={log.meta.readingMinutes ?? 3}
         avatarUrl={log.meta.authorAvatar}
       />
       <div className="flex flex-wrap gap-2">

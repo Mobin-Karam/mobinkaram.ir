@@ -1,14 +1,17 @@
-export const meta = {
-  slug: "day-21",
-  title: "Day 21 — redesigned navigation",
-  summary: "Reshaped navigation flow to cut confusion for first-time users.",
-  tags: ["UX", "Navigation"],
-  date: "2026-02-04",
-  author: "Mobin Karam",
-  authorAvatar: "",
-  readingMinutes: 2,
-};
+---
+title: "Day 21 � redesigned navigation"
+slug: "day-21"
+summary: "Tab state isolation, modal refactor, and cold start profiling."
+date: "2026-02-10"
+tags: ["shipping", "mobile"]
+author: "Mobin Karam"
+authorAvatar: "https://github.com/Mobin-Karam.png"
+readingMinutes: 2
+cover: "/assets/images/build-day-21.jpg"
+published: true
+---
 
-- Reduced onboarding from 5 steps to 3; primary CTA is now “Create your first community.”
-- Moved discovery into its own tab so home stays personal.
-- Onboarding completion climbed from 62% to 74%.
+- Split navigation into tab + modal stacks; avoided 3 duplicate stacks on deep links.
+- Added route-scoped stores so switching tabs preserves scroll position.
+- Instrumented cold starts with Perf Monitor; biggest win came from deferring font loading.
+- Shipped OTA patch to clean up lingering navigation listeners.

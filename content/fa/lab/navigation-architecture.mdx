@@ -1,22 +1,30 @@
-export const meta = {
-  slug: "navigation-architecture",
-  title: "Navigation architecture in React Native",
-  summary: "Hybrid tabs + modal stack to preserve state and deep-link safely.",
-  tags: ["React Native", "Navigation"],
-  area: "react-patterns",
-  date: "2026-01-12",
-  author: "Mobin Karam",
-  authorAvatar: "",
-  readingMinutes: 4,
-};
+---
+title: "Navigation architecture in React Native"
+slug: "navigation-architecture"
+summary: "Hybrid tabs + modal stack to preserve state and deep-link safely."
+date: "2026-01-12"
+tags: ["React Native", "Navigation"]
+area: "react-patterns"
+author: "Mobin Karam"
+authorAvatar: "https://github.com/Mobin-Karam.png"
+readingMinutes: 4
+cover: "/assets/images/navigation-architecture.svg"
+published: true
+---
 
-## Idea
-Use `expo-router` parallel routes with a modal stack so each tab keeps its own history while modals stay global.
+## Pattern
+Use a tab navigator for primary domains, each owning its own stack. Overlay a global modal stack for flows like checkout or profile edit so tab stacks keep their history intact.
 
-## Findings
-- Keeping tab state with `unstable_settings` in expo-router was simpler than custom navigators.
-- Deep links rely on `Linking.createURL` + a custom scheme that works inside Telegram.
-- Removing nested stacks reduced memory footprint by ~12%.
+## Why it works
+Tabs retain state (scroll, filters) while modals stay isolated and dismissible without resetting tabs. Deep links map to either tab roots or specific modal routes, avoiding nested stacks that bloat memory.
 
-## Result
-Tab switch time dropped from 280ms → 140ms and the “white flash” bug disappeared.
+## Implementation notes
+- Keep a single navigation container; expose a typed navigator helper so screens stay inferable.
+- Register modals in a dedicated navigator with `presentation: 'modal'` to reuse transitions across platforms.
+- Push analytics events from a nav listener that emits focus + blur per route to avoid double logging on re-mounts.
+
+## Edge cases
+Handle cold-start deep links by hydrating auth and tab state before rendering modals. Add a guard so an already-open modal replaces rather than stacking duplicates.
+
+## Testing
+Use Detox to assert tab state persistence after opening/closing modals. Snapshot test the navigation tree to prevent regressions when adding routes.

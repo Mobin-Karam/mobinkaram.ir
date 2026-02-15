@@ -6,7 +6,7 @@ import { locales, type Locale } from "@/i18n/config";
 const contacts = [
   {
     label: "Email",
-    href: "mailto:hello@mobinkaram.ir",
+    href: "mailto:mohammadmobinkaram@gmail.com",
     icon: Mail,
     note: "Fastest way to reach me for collaborations.",
   },

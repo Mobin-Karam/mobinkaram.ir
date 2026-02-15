@@ -1,32 +1,40 @@
-export const meta = {
-  slug: "fieldkit",
-  title: "FieldKit â€” field ops dashboard",
-  summary:
-    "Web console for rural internet support teams to track tickets, routes, and SLA health in real-time.",
-  tags: ["Next.js", "Mapbox", "Supabase", "Edge"],
-  stack: ["Next.js", "Supabase", "Mapbox", "Edge Functions"],
-  year: "2024-2025",
-  status: "In production",
-  featured: false,
-  date: "2025-08-15",
-  author: "Mobin Karam",
-  authorAvatar: "",
-  readingMinutes: 4,
-};
+---
+title: "FieldKit — environmental sensing platform"
+slug: "fieldkit"
+summary: "Open hardware + cloud stack for long-range environmental data collection."
+date: "2026-01-28"
+tags: ["IoT", "Edge", "Hardware", "Data"]
+stack: ["STM32", "LoRaWAN", "PostgreSQL", "TimescaleDB", "Grafana", "Next.js"]
+year: "2024-2026"
+status: "Pilot"
+featured: false
+author: "Mobin Karam"
+authorAvatar: "https://github.com/Mobin-Karam.png"
+readingMinutes: 5
+cover: "/assets/images/fieldkit-cover.jpg"
+published: true
+---
 
-# Problem
-Support teams sent field updates via WhatsApp; SLA breaches were invisible.
+## Problem
+Field researchers needed durable stations that could log climate data in remote areas, buffer measurements offline, and sync reliably when gateways came online. Existing commercial options were expensive and locked down.
 
-# Architecture
-- Next.js App Router + server actions for ticket ops
-- Supabase for auth + realtime presence
-- Mapbox for technician routing
-- Edge Functions for operator webhooks
+## Architecture
+Solar-powered STM32-based nodes collect sensor readings and push packets over LoRaWAN to regional gateways. A NestJS ingest API validates payloads and writes to TimescaleDB partitions. A Next.js dashboard overlays Grafana panels for real-time visualization and anomaly alerts.
 
-# Highlights
-- Technician location events every 30s; server actions used for atomic upserts.
-- Dynamic form schema per failure type, pulled from CMS so operators require zero training.
-- RTL/LTR aware map controls with offline fallback tiles.
+## Tech decisions
+LoRaWAN was chosen for low-power, long-range hops; STM32 keeps BOM costs low. TimescaleDB provides hypertables for fast time-range queries. OTA updates for firmware ride over the same gateway channel, signed and versioned to prevent downgrade attacks.
 
-# Learning
-Edge caching on the ticket list kept TTFB at 180ms without sacrificing freshness.
+## Challenges
+Intermittent connectivity meant we needed a double-buffer scheme on the MCU plus idempotent ingest endpoints. Clock drift on sensors initially skewed aggregates; we added GNSS pulse syncing during boot and periodic NTP corrections at the gateway.
+
+## Security considerations
+All firmware updates are signed; gateways validate signatures before flashing. Device-to-cloud traffic is AES-encrypted with keys rotated during provisioning. Dashboard access relies on role-based spaces so research teams can segregate deployments.
+
+## Deployment
+Gateways run on balenaOS with containers updated via balenaCloud. Cloud stack is containerized on AWS ECS with scheduled compression jobs for aged partitions. Monitoring hooks export device health to Prometheus and feed PagerDuty alerts.
+
+## Lessons learned
+Designing for observability at the edge (battery, RSSI, uptime) prevented most field trips. Keeping the data model narrow—timestamp, location, sensor type, value—made the ingest path resilient under varying firmware versions.
+
+## Next
+Scale to 200+ stations, add ML-based anomaly detection for early wildfire signals, and expose a public data slice with rate limits for citizen scientists.

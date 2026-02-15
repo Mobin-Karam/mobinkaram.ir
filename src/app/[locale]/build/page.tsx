@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/primitives";
-import { getProjects } from "@/data/projects";
-import { getLabEntries } from "@/data/lab";
-import { getBuildLogs } from "@/data/logs";
+import { getProjects, getLabEntries, getBuildLogs } from "@/lib/engineer-data";
 import { getPostIndex } from "@/lib/blog";
 import type { Locale } from "@/i18n/config";
 import { LazySection, Skeleton } from "@/components/ui/primitives";
@@ -14,9 +12,11 @@ export default async function BuildHubPage({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  const projects = getProjects(locale);
-  const lab = getLabEntries(locale);
-  const logs = getBuildLogs(locale);
+  const [projects, lab, logs] = await Promise.all([
+    getProjects(locale),
+    getLabEntries(locale),
+    getBuildLogs(locale),
+  ]);
   const posts = await getPostIndex(locale as "en" | "fa");
 
   const quickLinks = [

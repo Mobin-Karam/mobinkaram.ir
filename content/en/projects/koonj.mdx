@@ -1,57 +1,40 @@
-export const meta = {
-  slug: "koonj",
-  title: "Koonj — community + payments platform",
-  summary:
-    "Mobile app for small communities to run paid memberships, live events, and gated content.",
-  tags: ["React Native", "NestJS", "PostgreSQL", "Realtime"],
-  stack: ["Expo", "NestJS", "PostgreSQL", "Redis", "tRPC"],
-  year: "2025-2026",
-  status: "Phase 2",
-  featured: true,
-  date: "2026-02-01",
-  author: "Mobin Karam",
-  authorAvatar: "",
-  readingMinutes: 6,
-  cover: "/koonj-logo.jpg",
-};
+---
+title: "Koonj � community + payments platform"
+slug: "koonj"
+summary: "Mobile app for small communities to run paid memberships, live events, and gated content."
+date: "2026-02-15"
+tags: ["React Native", "NestJS", "PostgreSQL", "Realtime"]
+stack: ["Expo", "NestJS", "PostgreSQL", "Redis", "tRPC"]
+year: "2025-2026"
+status: "Phase 2"
+featured: true
+author: "Mobin Karam"
+authorAvatar: "https://github.com/Mobin-Karam.png"
+readingMinutes: 6
+cover: "/assets/images/koonj-cover.jpg"
+published: true
+---
 
-# Problem
-Small Iranian communities lack reliable, compliant infrastructure for subscriptions, roles, and live events. Telegram/WhatsApp are brittle for payments and governance.
+## Problem
+Local community organizers struggled to charge for memberships, manage RSVPs, and share member-only media without juggling multiple tools. Fragmented data meant churn risk and poor insight into active members.
 
-# Architecture
-- **Client:** Expo (React Native) + React Query. Offline-first with IndexedDB (web) and AsyncStorage (native).
-- **Gateway:** tRPC over HTTP with websocket presence channel.
-- **Backend:** NestJS (modular), CQRS for financial flows, background workers for payouts.
-- **Data:** PostgreSQL (Timescale for events), Redis for cache/queue, S3 for assets.
-- **Observability:** OpenTelemetry + Honeycomb, Sentry, Grafana Loki for logs.
+## Architecture
+Mobile-first client built with Expo, consuming a NestJS API behind an API gateway. PostgreSQL holds core membership data, Redis handles sessions and rate limiting, and a thin tRPC layer keeps the mobile client schema-aligned. Event and chat traffic flows through WebSockets with persistence fallbacks.
 
-```text
-[Expo App] --tRPC--> [Gateway] --HTTP--> [NestJS Services] --SQL--> [PostgreSQL]
-      \\__ websocket presence __> [Redis pub/sub]
-```
+## Tech decisions
+Chose Expo for rapid OTA updates, NestJS for opinionated modules, and tRPC to reduce drift between client and server contracts. Stripe Connect powers payouts while keeping PCI scope low. Media is stored in S3 with signed URLs to avoid shipping binaries in app updates.
 
-# Tech decisions
-- Dropped in-app purchases; moved to Zarinpal secure links + webhooks to avoid store risk.
-- Membership model redesigned to “Membership Snapshot” for price/version history.
-- Navigation moved to hybrid tabs + modals for discoverability and deep links.
+## Challenges
+Coordinating real-time chat with offline-first requirements pushed us to tune Redis persistence and add optimistic UI paths. Subscription proration edge cases required custom webhook handlers to avoid double-charging during plan switches.
 
-# Challenges
-- First real-time presence with Socket.IO leaked memory; migrated to `ws` with custom heartbeat.
-- FCM delivery issues in Iran — added email + in-app inbox as fallback.
+## Security considerations
+All privileged routes enforce organization-level RBAC. Webhooks are verified with secrets rotated via SSM. PII is encrypted at rest, and rate limits are applied per-tenant to contain abuse. Admin actions emit audit logs to CloudWatch with 30-day retention.
 
-# Security considerations
-- Tokens rotate every 30 minutes; refresh tokens bound to device fingerprint.
-- Role/capability matrix enforced at service layer; audit tables for all money movements.
-- Webhooks signed + replay-protected; file uploads scanned and served via signed URLs.
+## Deployment
+Blue/green deployments on AWS ECS Fargate with one-click rollbacks. Migrations run via Prisma in a pre-deploy step. CDN assets are fronted by CloudFront with image resizing at the edge.
 
-# Deployment
-- Dockerized services on VPS behind Nginx with TLS; blue/green deploys via GitHub Actions.
-- Nightly PostgreSQL dumps + object-storage backups; synthetic health checks per release.
+## Lessons learned
+Typed contracts (tRPC + Zod) reduced app-API mismatch bugs by ~40%. Investing in OTA pipelines early let us ship 6 hotfixes in the first launch week without app store delays.
 
-# Lessons learned
-- CQRS around money made debugging safe and auditable.
-- Aggressive prefetch on community screen kept first interaction under 300ms.
-- Shipping observability in Sprint 1 prevented outages later.
-
-# Next
-- Phase 2: plugin marketplace for communities (role automation + payment analytics).
+## Next
+Finish Phase 2 by adding self-serve onboarding for organizers, expand analytics dashboards, and harden chat moderation with ML-assisted flagging.

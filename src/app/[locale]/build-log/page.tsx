@@ -1,5 +1,5 @@
 import { SectionHeading } from "@/components/ui/primitives";
-import { getBuildLogs } from "@/data/logs";
+import { getBuildLogs } from "@/lib/engineer-data";
 import type { Locale } from "@/i18n/config";
 import Link from "next/link";
 import { LazySection, Skeleton } from "@/components/ui/primitives";
@@ -12,7 +12,7 @@ export default async function BuildLogPage({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  const logs = getBuildLogs(locale);
+  const logs = await getBuildLogs(locale);
 
   return (
     <div className="space-y-6">

@@ -1,12 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import { SectionHeading } from "@/components/ui/primitives";
 import { ProjectGrid } from "@/components/projects/project-grid";
-import { getProjects } from "@/data/projects";
+import { getProjects } from "@/lib/engineer-data";
 import type { Locale } from "@/i18n/config";
 import { LazySection, Skeleton } from "@/components/ui/primitives";
-import { BackButton } from "@/components/ui/back-button";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import { SectionBackLink } from "@/components/ui/section-back-link";
 
 export default async function ProjectsPage({
@@ -16,7 +13,7 @@ export default async function ProjectsPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale });
-  const projects = getProjects(locale).map((p) => ({ meta: p.meta }));
+  const projects = (await getProjects(locale)).map((p) => ({ meta: p.meta }));
 
   return (
     <div className="space-y-6">

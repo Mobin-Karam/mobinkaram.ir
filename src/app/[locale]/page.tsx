@@ -4,11 +4,9 @@ import { ArrowRight } from "lucide-react";
 import { Hero } from "@/components/home/hero";
 import { SectionHeading } from "@/components/ui/primitives";
 import { SearchBar } from "@/components/ui/search-bar";
-import { getFeaturedProject, getProjects } from "@/data/projects";
-import { getLabEntries } from "@/data/lab";
-import { getBuildLogs } from "@/data/logs";
+import { getFeaturedProject, getProjects, getLabEntries, getBuildLogs } from "@/lib/engineer-data";
+import { buildSearchIndex } from "@/lib/search-server";
 import { getNowBlocks } from "@/data/now";
-import { buildSearchIndex } from "@/lib/search";
 import { type Locale } from "@/i18n/config";
 import { readingList } from "@/data/reading";
 import { timeline } from "@/data/timeline";
@@ -26,14 +24,14 @@ export default async function LocaleHome({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale });
-  const featured = getFeaturedProject(locale);
-  const otherProjects = getProjects(locale).filter(
+  const featured = await getFeaturedProject(locale);
+  const otherProjects = (await getProjects(locale)).filter(
     (p) => p.meta.slug !== featured?.meta.slug,
   );
-  const lab = getLabEntries(locale).slice(0, 2);
-  const logs = getBuildLogs(locale).slice(0, 3);
+  const lab = (await getLabEntries(locale)).slice(0, 2);
+  const logs = (await getBuildLogs(locale)).slice(0, 3);
   const nowBlocks = getNowBlocks(locale) ?? [];
-  const searchIndex = buildSearchIndex(locale);
+  const searchIndex = await buildSearchIndex(locale);
   const github = await getGithubHighlights();
   const bannerSlides = [
     {
@@ -83,6 +81,7 @@ export default async function LocaleHome({
         ctaProjects="Case studies"
         ctaLab="Enter the lab"
         contactLabel="Contact"
+        featured={featured}
       />
 
       <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
@@ -102,9 +101,11 @@ export default async function LocaleHome({
                     </span>
                   ))}
                 </div>
-                <p className="text-sm text-muted">
-                  {featured.meta.stack.join(" • ")}
-                </p>
+                {featured.meta.stack ? (
+                  <p className="text-sm text-muted">
+                    {featured.meta.stack.join(" • ")}
+                  </p>
+                ) : null}
                 <p className="text-xs text-[color:var(--muted)]">
                   {featured.meta.readingMinutes} min read ·{" "}
                   {featured.meta.author}

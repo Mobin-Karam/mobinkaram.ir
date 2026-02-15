@@ -1,10 +1,9 @@
 import { SectionHeading } from "@/components/ui/primitives";
-import { getLabEntries } from "@/data/lab";
+import { getLabEntries } from "@/lib/engineer-data";
 import type { Locale } from "@/i18n/config";
 import Link from "next/link";
 import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { BackButton } from "@/components/ui/back-button";
-import { ArrowLeft } from "lucide-react";
 import { SectionBackLink } from "@/components/ui/section-back-link";
 
 export default async function LabPage({
@@ -13,7 +12,7 @@ export default async function LabPage({
   params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  const experiments = getLabEntries(locale);
+  const experiments = await getLabEntries(locale);
 
   return (
     <div className="space-y-6">

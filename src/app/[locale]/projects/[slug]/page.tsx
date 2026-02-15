@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { SectionHeading, LazySection, Skeleton, Pill } from "@/components/ui/primitives";
-import { getProject, getProjects } from "@/data/projects";
+import { getProject, getProjects } from "@/lib/engineer-data";
 import { locales, type Locale } from "@/i18n/config";
 import { ArticleMeta } from "@/components/ui/article-meta";
 import { CoverImage } from "@/components/ui/cover-image";
@@ -15,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const project = getProject(locale, slug);
+  const project = await getProject(locale, slug);
   if (!project) return {};
   const title = `${project.meta.title} | Case study`;
   const description = project.meta.summary;
@@ -41,12 +41,7 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
-  return locales.flatMap((locale) =>
-    getProjects(locale).map((project) => ({
-      locale,
-      slug: project.meta.slug,
-    })),
-  );
+  return [];
 }
 
 export default async function ProjectDetail({
@@ -55,7 +50,7 @@ export default async function ProjectDetail({
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const project = getProject(locale, slug);
+  const project = await getProject(locale, slug);
   if (!project) notFound();
   const Content = project.Component;
   const cover = project.meta.cover;
@@ -88,9 +83,9 @@ export default async function ProjectDetail({
       />
       <PostActions title={project.meta.title} />
       <ArticleMeta
-        author={project.meta.author}
-        date={project.meta.date}
-        readingMinutes={project.meta.readingMinutes}
+        author={project.meta.author ?? "Mobin Karam"}
+        date={project.meta.date ?? ""}
+        readingMinutes={project.meta.readingMinutes ?? 5}
         avatarUrl={project.meta.authorAvatar}
       />
       <div className="flex flex-wrap gap-2">

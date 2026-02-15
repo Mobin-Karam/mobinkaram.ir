@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import { SectionHeading, LazySection, Skeleton, Pill } from "@/components/ui/primitives";
-import { getLabEntries, getLabEntry } from "@/data/lab";
+import { getLabEntries, getLabEntry } from "@/lib/engineer-data";
 import { locales, type Locale } from "@/i18n/config";
 import { ArticleMeta } from "@/components/ui/article-meta";
 import { CoverImage } from "@/components/ui/cover-image";
@@ -10,12 +10,7 @@ import { SectionBackLink } from "@/components/ui/section-back-link";
 import { articleLd, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
-  return locales.flatMap((locale) =>
-    getLabEntries(locale).map((entry) => ({
-      locale,
-      slug: entry.meta.slug,
-    })),
-  );
+  return [];
 }
 
 export default async function LabDetail({
@@ -24,7 +19,7 @@ export default async function LabDetail({
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const experiment = getLabEntry(locale, slug);
+  const experiment = await getLabEntry(locale, slug);
   if (!experiment) notFound();
   const Content = experiment.Component;
   const cover = experiment.meta.cover;
@@ -54,9 +49,9 @@ export default async function LabDetail({
       />
       <PostActions title={experiment.meta.title} />
       <ArticleMeta
-        author={experiment.meta.author}
-        date={experiment.meta.date}
-        readingMinutes={experiment.meta.readingMinutes}
+        author={experiment.meta.author ?? "Mobin Karam"}
+        date={experiment.meta.date ?? ""}
+        readingMinutes={experiment.meta.readingMinutes ?? 3}
         avatarUrl={experiment.meta.authorAvatar}
       />
       <div className="flex flex-wrap gap-2">

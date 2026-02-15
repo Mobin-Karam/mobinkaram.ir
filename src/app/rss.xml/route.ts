@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { getProjects } from "@/data/projects";
-import { getLabEntries } from "@/data/lab";
-import { getBuildLogs } from "@/data/logs";
+import { getProjects, getLabEntries, getBuildLogs } from "@/lib/engineer-data";
 import { getPostIndex } from "@/lib/blog";
 import { defaultLocale } from "@/i18n/config";
 
@@ -18,7 +16,14 @@ type FeedItem = {
 
 async function buildItems(): Promise<FeedItem[]> {
   const locale = defaultLocale;
-  const projectItems = getProjects(locale).map((p) => ({
+  const [projects, labs, logs, posts] = await Promise.all([
+    getProjects(locale),
+    getLabEntries(locale),
+    getBuildLogs(locale),
+    getPostIndex(locale as "en" | "fa"),
+  ]);
+
+  const projectItems = projects.map((p) => ({
     title: p.meta.title,
     link: `${SITE_URL}/${locale}/projects/${p.meta.slug}`,
     description: p.meta.summary,
@@ -27,7 +32,7 @@ async function buildItems(): Promise<FeedItem[]> {
     author: p.meta.author,
   }));
 
-  const labItems = getLabEntries(locale).map((lab) => ({
+  const labItems = labs.map((lab) => ({
     title: lab.meta.title,
     link: `${SITE_URL}/${locale}/lab/${lab.meta.slug}`,
     description: lab.meta.summary,
@@ -36,7 +41,7 @@ async function buildItems(): Promise<FeedItem[]> {
     author: lab.meta.author,
   }));
 
-  const logItems = getBuildLogs(locale).map((log) => ({
+  const logItems = logs.map((log) => ({
     title: log.meta.title,
     link: `${SITE_URL}/${locale}/build-log/${log.meta.slug}`,
     description: log.meta.summary,
@@ -45,7 +50,6 @@ async function buildItems(): Promise<FeedItem[]> {
     author: log.meta.author,
   }));
 
-  const posts = await getPostIndex(locale as "en" | "fa");
   const postItems = posts.map((post) => ({
     title: post.title,
     link: `${SITE_URL}/${locale}/blog/${post.slug}`,

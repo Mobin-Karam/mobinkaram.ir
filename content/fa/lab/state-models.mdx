@@ -1,27 +1,33 @@
-export const meta = {
-  slug: "state-models",
-  title: "State models for huge forms",
-  summary: "Zustand vs React Hook Form on a 200-field installation form.",
-  tags: ["State", "Performance", "React"],
-  area: "ui-systems",
-  date: "2025-11-03",
-  author: "Mobin Karam",
-  authorAvatar: "",
-  readingMinutes: 3,
-};
+---
+title: "State models for async flows"
+slug: "state-models"
+summary: "Using explicit statecharts to manage network-heavy screens."
+date: "2025-12-18"
+tags: ["React Native", "State management"]
+area: "react-patterns"
+author: "Mobin Karam"
+authorAvatar: "https://github.com/Mobin-Karam.png"
+readingMinutes: 5
+cover: "/assets/images/state-models.svg"
+published: true
+---
 
-## Context
-Installation forms had 200 fields and struggled on low-end Android devices.
+## Motivation
+Async screens often drift into boolean soup: `isLoading`, `hasError`, `retrying`. An explicit state model collapses that into a single source of truth and makes UI permutations testable.
 
-## Experiment
-- Variant A: Zustand with precise selectors
-- Variant B: React Hook Form + `useFieldArray`
-- Tools: React Profiler + Web Vitals
+## Approach
+Define a finite set of states (idle, loading, loaded, refreshing, error) plus allowed transitions. Represent transitions as pure functions and drive effects from entry actions so side effects stay predictable.
 
-## Results
-- Variant A rendered ~6 times per change; Variant B ~14.
-- A used less memory but made deeply nested data awkward.
-- Final hybrid: React Hook Form for validation, Zustand for cross-form shared state.
+## Example outline
+- `idle` -> `loading` when screen mounts.
+- `loading` -> `loaded` on success with payload; -> `error` on failure.
+- `loaded` -> `refreshing` on pull-to-refresh; returns to `loaded` or `error`.
 
-## Takeaway
-Separating validation from display kept speed while taming complexity.
+## Tooling
+XState or a light reducer can both work; we favored a typed reducer to avoid runtime bundle weight. React Query remains the data source but delegates UI state to the reducer.
+
+## Testing
+Snapshot the reducer transitions with fixtures. Use Playwright/Detox to assert UI branches (loading skeleton, error card, data grid) map to the expected state node.
+
+## Takeaways
+Statecharts forced us to handle retries and cancellations explicitly, cutting flaky spinner bugs. Designers appreciated the clarity for mapping components to states.

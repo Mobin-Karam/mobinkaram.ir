@@ -1,44 +1,40 @@
-export const meta = {
-  slug: "fieldkit",
-  title: "FieldKit â€” offline-first ops toolkit",
-  summary: "Modular mobile toolkit for field teams: data capture, sync, and dashboards.",
-  tags: ["Expo", "SQLite", "Sync"],
-  stack: ["Expo", "SQLite", "NestJS"],
-  year: "2024",
-  status: "Shipped",
-  featured: false,
-  date: "2024-11-12",
-  author: "Mobin Karam",
-  authorAvatar: "",
-  readingMinutes: 4,
-  cover: "/fieldkit-cover.jpg",
-};
+---
+title: "FieldKit — environmental sensing platform"
+slug: "fieldkit"
+summary: "Open hardware + cloud stack for long-range environmental data collection."
+date: "2026-01-28"
+tags: ["IoT", "Edge", "Hardware", "Data"]
+stack: ["STM32", "LoRaWAN", "PostgreSQL", "TimescaleDB", "Grafana", "Next.js"]
+year: "2024-2026"
+status: "Pilot"
+featured: false
+author: "Mobin Karam"
+authorAvatar: "https://github.com/Mobin-Karam.png"
+readingMinutes: 5
+cover: "/assets/images/fieldkit-cover.jpg"
+published: true
+---
 
-# Problem
-Field teams had zero connectivity and mixed Android versions; needed reliable data collection that syncs when online.
+## Problem
+Field researchers needed durable stations that could log climate data in remote areas, buffer measurements offline, and sync reliably when gateways came online. Existing commercial options were expensive and locked down.
 
-# Architecture
-- **Client:** Expo + SQLite local store. Queue-based sync worker.
-- **Sync:** Delta-based pushes to NestJS; conflict resolution via server timestamps + user precedence.
-- **Backend:** NestJS + PostgreSQL. File uploads to S3-compatible storage.
+## Architecture
+Solar-powered STM32-based nodes collect sensor readings and push packets over LoRaWAN to regional gateways. A NestJS ingest API validates payloads and writes to TimescaleDB partitions. A Next.js dashboard overlays Grafana panels for real-time visualization and anomaly alerts.
 
-# Tech decisions
-- Expo for fast device compatibility; SQLite for durability offline.
-- Avoided WebSockets; used pull-based sync due to flaky networks.
-- Typed API contracts shared via `openapi-typescript`.
+## Tech decisions
+LoRaWAN was chosen for low-power, long-range hops; STM32 keeps BOM costs low. TimescaleDB provides hypertables for fast time-range queries. OTA updates for firmware ride over the same gateway channel, signed and versioned to prevent downgrade attacks.
 
-# Challenges
-- Timezone drift broke reports â€” added server-side canonical timestamps.
-- Device storage limits on cheap phones; pruned attachments after upload.
+## Challenges
+Intermittent connectivity meant we needed a double-buffer scheme on the MCU plus idempotent ingest endpoints. Clock drift on sensors initially skewed aggregates; we added GNSS pulse syncing during boot and periodic NTP corrections at the gateway.
 
-# Security considerations
-- Device storage encrypted at rest; sensitive fields masked in logs.
-- API keys rotated monthly; rate limits per device to block abuse.
+## Security considerations
+All firmware updates are signed; gateways validate signatures before flashing. Device-to-cloud traffic is AES-encrypted with keys rotated during provisioning. Dashboard access relies on role-based spaces so research teams can segregate deployments.
 
-# Deployment
-- Dockerized API on VPS behind Nginx; nightly backups + restore drills.
-- Health checks and error budgets tracked in a tiny status dashboard.
+## Deployment
+Gateways run on balenaOS with containers updated via balenaCloud. Cloud stack is containerized on AWS ECS with scheduled compression jobs for aged partitions. Monitoring hooks export device health to Prometheus and feed PagerDuty alerts.
 
-# Lessons
-- Deterministic queues beat retries in poor connectivity.
-- Ship a sync monitor screen for trust with field users.
+## Lessons learned
+Designing for observability at the edge (battery, RSSI, uptime) prevented most field trips. Keeping the data model narrow—timestamp, location, sensor type, value—made the ingest path resilient under varying firmware versions.
+
+## Next
+Scale to 200+ stations, add ML-based anomaly detection for early wildfire signals, and expose a public data slice with rate limits for citizen scientists.
