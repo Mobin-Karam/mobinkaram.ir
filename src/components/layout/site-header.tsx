@@ -14,12 +14,9 @@ import {
   Menu,
   X,
   Home,
-  PanelsTopLeft,
-  Beaker,
-  NotebookPen,
-  Activity,
   Layers,
-  User,
+  ShieldCheck,
+  Mail,
   Flag,
   Rss,
   Github,
@@ -27,14 +24,19 @@ import {
   Globe2,
   LayoutPanelLeft,
   UserRound,
+  PanelsTopLeft,
 } from "lucide-react";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 const navItems: { key: string; href: string; icon: LucideIcon }[] = [
   { key: "home", href: "", icon: Home },
+  { key: "projects", href: "/projects", icon: PanelsTopLeft },
   { key: "engineer", href: "/build", icon: LayoutPanelLeft },
+  { key: "architecture", href: "/architecture", icon: Layers },
+  { key: "security", href: "/security", icon: ShieldCheck },
   { key: "profile", href: "/profile", icon: UserRound },
   { key: "tracker", href: "/koonj-status", icon: Flag },
+  { key: "contact", href: "/contact", icon: Mail },
 ];
 
 export function SiteHeader({ locale }: { locale: Locale }) {

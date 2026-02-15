@@ -7,8 +7,9 @@ import {
   LayoutPanelLeft,
   UserRound,
   Layers,
-  Cog,
-  User,
+  ShieldCheck,
+  Mail,
+  PanelsTopLeft,
   Flag,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -16,8 +17,12 @@ import type { Locale } from "@/i18n/config";
 
 const items = [
   { key: "home", label: "Home", icon: Home, href: "" },
+  { key: "projects", label: "Projects", icon: PanelsTopLeft, href: "/projects" },
   { key: "engineer", label: "Engineer", icon: LayoutPanelLeft, href: "/build" },
+  { key: "architecture", label: "Architecture", icon: Layers, href: "/architecture" },
+  { key: "security", label: "Security", icon: ShieldCheck, href: "/security" },
   { key: "profile", label: "Profile", icon: UserRound, href: "/profile" },
+  { key: "contact", label: "Contact", icon: Mail, href: "/contact" },
   { key: "tracker", label: "Tracker", icon: Flag, href: "/koonj-status" },
 ];
 

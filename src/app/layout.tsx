@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { DirectionUpdater } from "@/components/layout/direction-updater";
 import { defaultLocale, rtlLocales, type Locale } from "@/i18n/config";
 import "./globals.css";
+import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -144,6 +145,35 @@ export default async function RootLayout({
           data-domain="mobinkaram.ir"
           src="https://plausible.io/js/script.js"
         />
+        <Script id="ld-json-person" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Mobin Karam",
+            url: "https://mobinkaram.ir",
+            jobTitle: "Software Engineer",
+            sameAs: [
+              "https://github.com/Mobin-Karam",
+              "https://github.com/Koonj-Inc",
+              "https://www.linkedin.com/in/mobin-karam/",
+              "https://quera.org/profile/mobinkaram",
+            ],
+          })}
+        </Script>
+        <Script id="ld-json-website" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Mobin Karam — Software Engineer",
+            url: "https://mobinkaram.ir",
+            inLanguage: locale,
+            potentialAction: {
+              "@type": "SearchAction",
+              target: "https://mobinkaram.ir/{search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          })}
+        </Script>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider
             attribute="data-theme"

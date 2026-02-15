@@ -1,12 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUp, Github, Linkedin, Rss, Globe2 } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ArrowUp, Github, Linkedin, Rss, Globe2, Mail } from "lucide-react";
 import { useClientDevice } from "@/hooks/use-client-device";
 import { Button, Pill } from "@/components/ui/primitives";
 
 export function SiteFooter() {
   const device = useClientDevice();
+  const pathname = usePathname();
+  const localeFromPath =
+    pathname?.split("/").filter(Boolean)?.[0] === "fa" ? "fa" : "en";
   const goTop = () => {
     if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -25,6 +29,12 @@ export function SiteFooter() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          <Button asChild variant="primary" size="sm" className="nav-btn">
+            <Link href={`/${localeFromPath}/contact`}>
+              <Mail size={14} />
+              Contact
+            </Link>
+          </Button>
           <Button asChild variant="ghost" size="sm" className="nav-btn">
             <Link
               href="https://github.com/Mobin-Karam"

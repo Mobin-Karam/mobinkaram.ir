@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { SectionHeading, LazySection, Skeleton, Pill } from "@/components/ui/primitives";
 import { getLabEntries, getLabEntry } from "@/data/lab";
 import { locales, type Locale } from "@/i18n/config";
@@ -6,6 +7,7 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { CoverImage } from "@/components/ui/cover-image";
 import { PostActions } from "@/components/ui/post-actions";
 import { SectionBackLink } from "@/components/ui/section-back-link";
+import { articleLd, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -26,9 +28,24 @@ export default async function LabDetail({
   if (!experiment) notFound();
   const Content = experiment.Component;
   const cover = experiment.meta.cover;
+  const ld = articleLd({
+    title: experiment.meta.title,
+    description: experiment.meta.summary,
+    url: `${siteUrl}/${locale}/lab/${slug}`,
+    datePublished: experiment.meta.date,
+    author: experiment.meta.author,
+    tags: experiment.meta.tags,
+    image: cover,
+  });
 
   return (
     <article className="space-y-6">
+      <Script
+        id={`ld-lab-${slug}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+      />
       <SectionBackLink href={`/${locale}/lab`} label="Back to lab" />
       <SectionHeading
         eyebrow="Experiment"

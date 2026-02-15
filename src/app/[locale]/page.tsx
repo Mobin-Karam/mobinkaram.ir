@@ -82,6 +82,7 @@ export default async function LocaleHome({
         sub={t("hero.sub")}
         ctaProjects="Case studies"
         ctaLab="Enter the lab"
+        contactLabel="Contact"
       />
 
       <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
@@ -155,6 +156,46 @@ export default async function LocaleHome({
                 </ul>
               </div>
             ))}
+          </div>
+        </div>
+      </LazySection>
+
+      <LazySection minHeight={200} skeleton={<Skeleton className="h-48" />}>
+        <div className="card p-5">
+          <SectionHeading
+            eyebrow="Systems"
+            title="Architecture & Security"
+            description="How the stack is assembled and secured in production."
+          />
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            <Link
+              href={`/${locale}/architecture`}
+              className="flex items-start gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--background)] p-4 transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <span className="pill text-[10px]">Architecture</span>
+              <div className="space-y-1">
+                <p className="text-sm font-semibold text-[color:var(--foreground)]">
+                  System design snapshots
+                </p>
+                <p className="text-xs text-[color:var(--muted)]">
+                  Layers, delivery, observability, and decision logs.
+                </p>
+              </div>
+            </Link>
+            <Link
+              href={`/${locale}/security`}
+              className="flex items-start gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--background)] p-4 transition hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <span className="pill text-[10px]">Security</span>
+              <div className="space-y-1">
+                <p className="text-sm font-semibold text-[color:var(--foreground)]">
+                  Secure-by-default habits
+                </p>
+                <p className="text-xs text-[color:var(--muted)]">
+                  Auth, data protection, infra hardening, and release gates.
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
       </LazySection>

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { SectionHeading, LazySection, Skeleton, Pill } from "@/components/ui/primitives";
 import { getBuildLogs, getLog } from "@/data/logs";
 import { locales, type Locale } from "@/i18n/config";
@@ -6,6 +7,7 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { CoverImage } from "@/components/ui/cover-image";
 import { PostActions } from "@/components/ui/post-actions";
 import { SectionBackLink } from "@/components/ui/section-back-link";
+import { articleLd, siteUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -26,9 +28,24 @@ export default async function BuildLogDetail({
   if (!log) notFound();
   const Content = log.Component;
   const cover = log.meta.cover;
+  const ld = articleLd({
+    title: log.meta.title,
+    description: log.meta.summary,
+    url: `${siteUrl}/${locale}/build-log/${slug}`,
+    datePublished: log.meta.date,
+    author: log.meta.author,
+    tags: log.meta.tags,
+    image: cover,
+  });
 
   return (
     <article className="space-y-6">
+      <Script
+        id={`ld-build-${slug}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+      />
       <SectionBackLink
         href={`/${locale}/build-log`}
         label="Back to build log"

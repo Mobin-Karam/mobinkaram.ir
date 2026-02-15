@@ -1,33 +1,44 @@
 export const meta = {
   slug: "fieldkit",
-  title: "FieldKit — field ops dashboard",
-  summary:
-    "Web console for rural internet support teams to track tickets, routes, and SLA health in real-time.",
-  tags: ["Next.js", "Mapbox", "Supabase", "Edge"],
-  stack: ["Next.js", "Supabase", "Mapbox", "Edge Functions"],
-  year: "2024-2025",
-  status: "In production",
+  title: "FieldKit — offline-first ops toolkit",
+  summary: "Modular mobile toolkit for field teams: data capture, sync, and dashboards.",
+  tags: ["Expo", "SQLite", "Sync"],
+  stack: ["Expo", "SQLite", "NestJS"],
+  year: "2024",
+  status: "Shipped",
   featured: false,
-  date: "2025-08-15",
+  date: "2024-11-12",
   author: "Mobin Karam",
   authorAvatar: "",
   readingMinutes: 4,
-  cover: "/covers/fieldkit.svg",
+  cover: "/fieldkit-cover.jpg",
 };
 
 # Problem
-Support teams sent field updates via WhatsApp; SLA breaches were invisible.
+Field teams had zero connectivity and mixed Android versions; needed reliable data collection that syncs when online.
 
 # Architecture
-- Next.js App Router + server actions for ticket ops
-- Supabase for auth + realtime presence
-- Mapbox for technician routing
-- Edge Functions for operator webhooks
+- **Client:** Expo + SQLite local store. Queue-based sync worker.
+- **Sync:** Delta-based pushes to NestJS; conflict resolution via server timestamps + user precedence.
+- **Backend:** NestJS + PostgreSQL. File uploads to S3-compatible storage.
 
-# Highlights
-- Technician location events every 30s; server actions used for atomic upserts.
-- Dynamic form schema per failure type, pulled from CMS so operators require zero training.
-- RTL/LTR aware map controls with offline fallback tiles.
+# Tech decisions
+- Expo for fast device compatibility; SQLite for durability offline.
+- Avoided WebSockets; used pull-based sync due to flaky networks.
+- Typed API contracts shared via `openapi-typescript`.
 
-# Learning
-Edge caching on the ticket list kept TTFB at 180ms without sacrificing freshness.
+# Challenges
+- Timezone drift broke reports — added server-side canonical timestamps.
+- Device storage limits on cheap phones; pruned attachments after upload.
+
+# Security considerations
+- Device storage encrypted at rest; sensitive fields masked in logs.
+- API keys rotated monthly; rate limits per device to block abuse.
+
+# Deployment
+- Dockerized API on VPS behind Nginx; nightly backups + restore drills.
+- Health checks and error budgets tracked in a tiny status dashboard.
+
+# Lessons
+- Deterministic queues beat retries in poor connectivity.
+- Ship a sync monitor screen for trust with field users.

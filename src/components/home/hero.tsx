@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, PlayCircle } from "lucide-react";
+import { ArrowUpRight, PlayCircle, Mail } from "lucide-react";
 import { StatusDot } from "@/components/ui/status-dot";
 import type { Locale } from "@/i18n/config";
 import { getFeaturedProject } from "@/data/projects";
@@ -10,6 +10,7 @@ type Props = {
   sub: string;
   ctaProjects: string;
   ctaLab: string;
+  contactLabel?: string;
 };
 
 export function Hero({
@@ -18,6 +19,7 @@ export function Hero({
   sub,
   ctaProjects,
   ctaLab,
+  contactLabel = "Contact",
 }: Props) {
   const featured = getFeaturedProject(locale);
 
@@ -49,6 +51,13 @@ export function Hero({
           >
             <ArrowUpRight size={16} />
             {ctaLab}
+          </Link>
+          <Link
+            href={`/${locale}/contact`}
+            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--surface-strong)] px-4 py-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:-translate-y-0.5 hover:border-[color:var(--accent-strong)]"
+          >
+            <Mail size={16} />
+            {contactLabel}
           </Link>
         </div>
       </div>

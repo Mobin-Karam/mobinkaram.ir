@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { SectionHeading, LazySection, Skeleton, Pill } from "@/components/ui/primitives";
 import { getProject, getProjects } from "@/data/projects";
 import { locales, type Locale } from "@/i18n/config";
@@ -6,6 +7,38 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { CoverImage } from "@/components/ui/cover-image";
 import { PostActions } from "@/components/ui/post-actions";
 import { SectionBackLink } from "@/components/ui/section-back-link";
+import { articleLd, siteUrl, absoluteUrl } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  const project = getProject(locale, slug);
+  if (!project) return {};
+  const title = `${project.meta.title} | Case study`;
+  const description = project.meta.summary;
+  const url = `${siteUrl}/${locale}/projects/${slug}`;
+  const image = absoluteUrl(project.meta.cover);
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: image ? [{ url: image }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : undefined,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -26,9 +59,24 @@ export default async function ProjectDetail({
   if (!project) notFound();
   const Content = project.Component;
   const cover = project.meta.cover;
+  const ld = articleLd({
+    title: project.meta.title,
+    description: project.meta.summary,
+    url: `${siteUrl}/${locale}/projects/${slug}`,
+    datePublished: project.meta.date,
+    author: project.meta.author,
+    tags: project.meta.tags,
+    image: cover,
+  });
 
   return (
     <article className="space-y-6">
+      <Script
+        id={`ld-project-${slug}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+      />
       <SectionBackLink
         href={`/${locale}/projects`}
         label="Back to case studies"

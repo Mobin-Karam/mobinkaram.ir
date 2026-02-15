@@ -1,11 +1,14 @@
 {
   "brand": {
-    "name": "Mobin Karam — Product Engineer",
-    "role": "Product Engineer / Founder at Koonj"
+    "name": "Mobin Karam — Software Engineer",
+    "role": "Full-Stack & Systems • Founder @ Koonj"
   },
   "nav": {
     "home": "Home",
     "engineer": "Engineering Hub",
+    "architecture": "Architecture",
+    "security": "Security",
+    "contact": "Contact",
     "profile": "Profile",
     "projects": "Case Studies",
     "lab": "Engineering Lab",
@@ -17,8 +20,8 @@
     "tracker": "Koonj Tracker"
   },
   "hero": {
-    "headline": "I build scalable apps, communities, and experimental digital products.",
-    "sub": "Public engineering workspace: how I think, architect, and ship what’s next.",
+    "headline": "Software Engineer — Full-Stack & Systems",
+    "sub": "Public workspace for how I architect, build, and ship.",
     "ctaProjects": "Case studies",
     "ctaLab": "Enter the lab"
   },
