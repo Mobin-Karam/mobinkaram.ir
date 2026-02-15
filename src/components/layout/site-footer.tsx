@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowUp, Github, Linkedin, Rss, Globe2 } from "lucide-react";
 import { useClientDevice } from "@/hooks/use-client-device";
+import { Button, Pill } from "@/components/ui/primitives";
 
 export function SiteFooter() {
   const device = useClientDevice();
@@ -24,50 +25,52 @@ export function SiteFooter() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <Link
-            href="https://github.com/Mobin-Karam"
-            target="_blank"
-            rel="noreferrer"
-            className="pill nav-btn hover:-translate-y-0.5 hover:shadow-md transition"
-          >
-            <Github size={14} />
-            GitHub
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/mobin-karam/"
-            target="_blank"
-            rel="noreferrer"
-            className="pill nav-btn hover:-translate-y-0.5 hover:shadow-md transition"
-          >
-            <Linkedin size={14} />
-            LinkedIn
-          </Link>
-          <Link
-            href="https://quera.org/profile/mobinkaram"
-            target="_blank"
-            rel="noreferrer"
-            className="pill nav-btn hover:-translate-y-0.5 hover:shadow-md transition"
-          >
-            <Globe2 size={14} />
-            Quera
-          </Link>
-          <Link
-            href="/rss.xml"
-            target="_blank"
-            rel="noreferrer"
-            className="pill nav-btn hover:-translate-y-0.5 hover:shadow-md transition"
-          >
-            <Rss size={14} />
-            RSS
-          </Link>
-          <button
+          <Button asChild variant="ghost" size="sm" className="nav-btn">
+            <Link
+              href="https://github.com/Mobin-Karam"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Github size={14} />
+              GitHub
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm" className="nav-btn">
+            <Link
+              href="https://www.linkedin.com/in/mobin-karam/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Linkedin size={14} />
+              LinkedIn
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm" className="nav-btn">
+            <Link
+              href="https://quera.org/profile/mobinkaram"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Globe2 size={14} />
+              Quera
+            </Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm" className="nav-btn">
+            <Link href="/rss.xml" target="_blank" rel="noreferrer">
+              <Rss size={14} />
+              RSS
+            </Link>
+          </Button>
+          <Button
             onClick={goTop}
-            className="pill nav-btn hover:-translate-y-0.5 hover:shadow-md transition"
+            variant="ghost"
+            size="sm"
+            className="nav-btn"
             aria-label="Back to top"
           >
             <ArrowUp size={14} />
             Top
-          </button>
+          </Button>
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-[color:var(--muted)]">
