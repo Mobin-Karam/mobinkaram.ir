@@ -10,6 +10,7 @@ type Props = {
   posts: PostFrontmatter[];
   tags: string[];
   locale: string;
+  category?: string;
 };
 
 function isNew(date?: string, days = 4) {
@@ -17,7 +18,7 @@ function isNew(date?: string, days = 4) {
   return Date.now() - Date.parse(date) <= days * 24 * 60 * 60 * 1000;
 }
 
-export function BlogList({ posts, tags, locale }: Props) {
+export function BlogList({ posts, tags, locale, category }: Props) {
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState<string>("all");
   const [onlyNew, setOnlyNew] = useState(false);
@@ -114,7 +115,7 @@ export function BlogList({ posts, tags, locale }: Props) {
         {filtered.slice(0, visibleCount).map((post) => (
           <Link
             key={post.slug}
-            href={`/${locale}/blog/${post.slug}`}
+            href={`/${locale}/blog/${category ?? "engineering"}/${post.slug}`}
             className="group relative overflow-hidden rounded-2xl border border-[color:var(--border)] bg-gradient-to-br from-[color:var(--surface)] via-[color:var(--background)] to-[color:var(--surface)] p-4 shadow-[var(--glow)] transition hover:-translate-y-0.5 hover:shadow-lg"
           >
             {post.cover ? (

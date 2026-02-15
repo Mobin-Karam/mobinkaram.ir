@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionHeading, Card } from "@/components/ui/primitives";
-import { getPostIndex, getUniqueBlogTags } from "@/lib/blog";
+import { getPostIndex, getUniqueBlogTags, categorizePost } from "@/lib/blog";
 import type { Locale } from "@/i18n/config";
 import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { BlogHero } from "@/components/blog/blog-hero";
@@ -33,9 +33,8 @@ export default async function BlogIndex({
     return diff <= 4 * 24 * 60 * 60 * 1000;
   }).length;
 
-  const islamPosts = posts.filter((p) =>
-    (p.tags ?? []).some((t) => t.toLowerCase() === "islam" || t.toLowerCase() === "اسلام"),
-  );
+  const islamPosts = posts.filter((p) => categorizePost(p) === "islam");
+  const engineeringPosts = posts.filter((p) => categorizePost(p) === "engineering");
 
   const now = Date.now();
   const daysAgo = (days: number) => now - days * 24 * 60 * 60 * 1000;
@@ -54,13 +53,17 @@ export default async function BlogIndex({
     <div className="space-y-6">
       <SectionHeading
         eyebrow="Blog"
-        title="Engineering articles"
-        description="Systems, performance, and product learnings."
+        title="Blog"
+        description="Choose a category to dive into the writing."
       />
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>
         <div className="space-y-4">
           <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
-            <BlogHero locale={locale} post={featured as any} />
+            <BlogHero
+              locale={locale}
+              post={featured as any}
+              category={categorizePost(featured as any)}
+            />
             <Card className="flex flex-col gap-4 p-5">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold text-[color:var(--foreground)]">Blog stats</p>
@@ -95,59 +98,30 @@ export default async function BlogIndex({
           <div className="grid gap-4 md:grid-cols-2">
             <Card className="p-5">
               <SectionHeading eyebrow="Category" title="Engineering" />
-              <div className="mt-3 grid gap-3">
-                {rest
-                  .filter((p) => !(p.tags ?? []).some((t) => t.toLowerCase() === "islam" || t.toLowerCase() === "اسلام"))
-                  .slice(0, 6)
-                  .map((post) => (
-                    <Link
-                      key={post.slug}
-                      href={`/${locale}/blog/${post.slug}`}
-                      className="rounded-xl border border-[color:var(--border)] bg-[color:var(--background)] p-3 hover:-translate-y-0.5 hover:shadow-md transition block"
-                    >
-                      <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
-                        <span>{post.date}</span>
-                        <span>{post.readingTime ?? 5} min</span>
-                      </div>
-                      <p className="mt-1 text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
-                        {post.title}
-                      </p>
-                      <p className="text-xs text-[color:var(--muted)] line-clamp-2">
-                        {post.description}
-                      </p>
-                    </Link>
-                  ))}
-              </div>
+              <p className="text-sm text-[color:var(--muted)]">
+                Systems, product, and delivery writing. {engineeringPosts.length} posts.
+              </p>
+              <Link
+                href={`/${locale}/blog/engineering`}
+                className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
+              >
+                View engineering
+              </Link>
             </Card>
 
-            {islamPosts.length ? (
-              <Card className="p-5">
-                <SectionHeading eyebrow="Category" title="Islam" />
-                <div className="mt-3 grid gap-3">
-                  {islamPosts.slice(0, 6).map((post) => (
-                    <Link
-                      key={post.slug}
-                      href={`/${locale}/blog/${post.slug}`}
-                      className="rounded-xl border border-[color:var(--border)] bg-[color:var(--background)] p-3 hover:-translate-y-0.5 hover:shadow-md transition block"
-                    >
-                      <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
-                        <span>{post.date}</span>
-                        <span>{post.readingTime ?? 5} min</span>
-                      </div>
-                      <p className="mt-1 text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
-                        {post.title}
-                      </p>
-                      <p className="text-xs text-[color:var(--muted)] line-clamp-2">
-                        {post.description}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-              </Card>
-            ) : null}
+            <Card className="p-5">
+              <SectionHeading eyebrow="Category" title="Islam" />
+              <p className="text-sm text-[color:var(--muted)]">
+                Faith, practice, and reflections. {islamPosts.length} posts.
+              </p>
+              <Link
+                href={`/${locale}/blog/islam`}
+                className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
+              >
+                View Islam
+              </Link>
+            </Card>
           </div>
-
-          <BlogList posts={rest} tags={tags} locale={locale} />
         </div>
       </LazySection>
     </div>

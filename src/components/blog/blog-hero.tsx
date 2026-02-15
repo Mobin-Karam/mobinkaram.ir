@@ -8,6 +8,7 @@ import type { Post } from "@/types/post";
 type Props = {
   locale: string;
   post: Post;
+  category?: string;
 };
 
 function isNew(date?: string, days = 4) {
@@ -15,12 +16,13 @@ function isNew(date?: string, days = 4) {
   return Date.now() - Date.parse(date) <= days * 24 * 60 * 60 * 1000;
 }
 
-export function BlogHero({ locale, post }: Props) {
+export function BlogHero({ locale, post, category }: Props) {
   const newBadge = isNew(post.date);
+  const href = `/${locale}/blog/${category ?? "engineering"}/${post.slug}`;
 
   return (
     <Link
-      href={`/${locale}/blog/${post.slug}`}
+      href={href}
       className="group relative block overflow-hidden rounded-3xl border border-[color:var(--border)] bg-gradient-to-r from-[color:var(--surface)] via-[color:var(--background)] to-[color:var(--surface)] shadow-[var(--glow)] transition hover:-translate-y-0.5 hover:shadow-xl"
     >
       {post.cover ? (

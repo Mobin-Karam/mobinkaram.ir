@@ -80,6 +80,25 @@ export const getAllSlugs = cache(async () => {
   return entries;
 });
 
+export const getAllSlugCategories = cache(async () => {
+  const entries: { locale: "en" | "fa"; slug: string; category: BlogCategory }[] = [];
+  for (const locale of locales) {
+    const files = await listPostFiles(locale);
+    for (const f of files) {
+      const slug = f.name.replace(/\.mdx$/, "");
+      const source = await getPostFile(locale, slug);
+      if (!source) continue;
+      try {
+        const { frontmatter } = await compilePost(locale, source);
+        entries.push({ locale, slug, category: categorizePost(frontmatter) });
+      } catch (err) {
+        console.warn(`[blog] failed to categorize ${locale}/${slug}:`, err);
+      }
+    }
+  }
+  return entries;
+});
+
 export const getPostBySlug = cache(async (locale: "en" | "fa", slug: string) => {
   const source = await getPostFile(locale, slug);
   if (source) {
@@ -99,6 +118,20 @@ export const getPostBySlug = cache(async (locale: "en" | "fa", slug: string) => 
 export const getAuthor = cache(async (id = "mobin") => {
   return getAuthorFile(id);
 });
+
+const islamMatcher = (tag: string) =>
+  tag.toLowerCase() === "islam" || tag.toLowerCase() === "اسلام";
+
+export type BlogCategory = "engineering" | "islam";
+
+export function categorizePost(post: Post) {
+  const hasIslam = (post.tags ?? []).some(islamMatcher);
+  return hasIslam ? "islam" : "engineering";
+}
+
+export function filterByCategory(posts: Post[], category: BlogCategory) {
+  return posts.filter((p) => categorizePost(p) === category);
+}
 
 export const getUniqueBlogTags = cache(async (locale: "en" | "fa") => {
   const posts = await loadIndex(locale);

@@ -5,7 +5,13 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { CoverImage } from "@/components/ui/cover-image";
 import { PostActions } from "@/components/ui/post-actions";
 import { SectionBackLink } from "@/components/ui/section-back-link";
-import { getAllSlugs, getPostBySlug, getRelatedPosts, isPostNew } from "@/lib/blog";
+import {
+  getAllSlugCategories,
+  getPostBySlug,
+  getRelatedPosts,
+  isPostNew,
+  categorizePost,
+} from "@/lib/blog";
 import { siteUrl, articleLd } from "@/lib/seo";
 import type { Locale } from "@/i18n/config";
 import Link from "next/link";
@@ -14,54 +20,25 @@ export const revalidate = 1800;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return getAllSlugs();
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: Locale; slug: string }>;
-}) {
-  const { locale, slug } = await params;
-  const post = await getPostBySlug(locale as "en" | "fa", slug);
-  if (!post) return {};
-  const fm = post.frontmatter;
-  const url = `${siteUrl}/${locale}/blog/${fm.slug}`;
-  const image = fm.cover;
-  return {
-    title: fm.title,
-    description: fm.description,
-    alternates: { canonical: url },
-    openGraph: {
-      title: fm.title,
-      description: fm.description,
-      url,
-      images: image ? [{ url: image }] : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fm.title,
-      description: fm.description,
-      images: image ? [image] : undefined,
-    },
-  };
+  return getAllSlugCategories();
 }
 
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: Locale; slug: string; category: string }>;
 }) {
   const { locale, slug } = await params;
   const result = await getPostBySlug(locale as "en" | "fa", slug);
   if (!result) notFound();
   const { content, frontmatter } = result;
+  const category = categorizePost(frontmatter);
   const related = await getRelatedPosts(
     locale as "en" | "fa",
     frontmatter.slug,
     frontmatter.tags ?? [],
   );
-  const postsInLocale = (await getAllSlugs()).filter((p) => p.locale === locale);
+  const postsInLocale = (await getAllSlugCategories()).filter((p) => p.locale === locale);
   const slugs = postsInLocale.map((p) => p.slug);
   const currentIndex = slugs.indexOf(frontmatter.slug);
   const prevSlug = currentIndex > 0 ? slugs[currentIndex - 1] : null;
@@ -69,7 +46,7 @@ export default async function BlogPostPage({
   const ld = articleLd({
     title: frontmatter.title,
     description: frontmatter.description,
-    url: `${siteUrl}/${locale}/blog/${frontmatter.slug}`,
+    url: `${siteUrl}/${locale}/blog/${category}/${frontmatter.slug}`,
     datePublished: frontmatter.date,
     author: frontmatter.author ?? "Mobin Karam",
     tags: frontmatter.tags,
@@ -84,7 +61,7 @@ export default async function BlogPostPage({
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
       />
-      <SectionBackLink href={`/${locale}/blog`} label="Back to blog" />
+      <SectionBackLink href={`/${locale}/blog/${category}`} label="Back to blog" />
       <SectionHeading
         eyebrow="Blog"
         title={frontmatter.title}
@@ -115,7 +92,7 @@ export default async function BlogPostPage({
 
       <div className="grid gap-3 md:grid-cols-2">
         <Link
-          href={`/${locale}/blog/${prevSlug ?? frontmatter.slug}`}
+          href={`/${locale}/blog/${category}/${prevSlug ?? frontmatter.slug}`}
           className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 hover:-translate-y-0.5 hover:shadow-md transition block text-left"
         >
           <p className="text-[10px] uppercase text-[color:var(--muted)]">Previous</p>
@@ -124,7 +101,7 @@ export default async function BlogPostPage({
           </p>
         </Link>
         <Link
-          href={`/${locale}/blog/${nextSlug ?? frontmatter.slug}`}
+          href={`/${locale}/blog/${category}/${nextSlug ?? frontmatter.slug}`}
           className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 hover:-translate-y-0.5 hover:shadow-md transition block text-right"
         >
           <p className="text-[10px] uppercase text-[color:var(--muted)]">Next</p>
@@ -138,29 +115,32 @@ export default async function BlogPostPage({
         <div className="card p-5">
           <SectionHeading eyebrow="Related" title="You might also like" />
           <div className="mt-3 grid gap-3 md:grid-cols-3">
-            {related.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/${locale}/blog/${post.slug}`}
-                className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-3 hover:-translate-y-0.5 hover:shadow-md transition block"
-              >
-                <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
-                  <span>{post.date}</span>
-                  <span>{post.readingTime ?? 5} min</span>
-                </div>
-                {isPostNew(post.date) ? (
-                  <span className="mt-1 inline-flex items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
-                    New
-                  </span>
-                ) : null}
-                <p className="text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
-                  {post.title}
-                </p>
-                <p className="text-xs text-[color:var(--muted)] line-clamp-2">
-                  {post.description}
-                </p>
-              </Link>
-            ))}
+            {related.map((post) => {
+              const cat = categorizePost(post as any);
+              return (
+                <Link
+                  key={post.slug}
+                  href={`/${locale}/blog/${cat}/${post.slug}`}
+                  className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-3 hover:-translate-y-0.5 hover:shadow-md transition block"
+                >
+                  <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
+                    <span>{post.date}</span>
+                    <span>{post.readingTime ?? 5} min</span>
+                  </div>
+                  {isPostNew(post.date) ? (
+                    <span className="mt-1 inline-flex items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
+                      New
+                    </span>
+                  ) : null}
+                  <p className="text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
+                    {post.title}
+                  </p>
+                  <p className="text-xs text-[color:var(--muted)] line-clamp-2">
+                    {post.description}
+                  </p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       ) : null}
