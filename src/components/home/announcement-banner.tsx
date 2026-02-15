@@ -73,9 +73,28 @@ export function AnnouncementBanner({
     }
   };
 
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      prev();
+    }
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      next();
+    }
+  };
+
   return (
     <div className="mb-5 w-full overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--glow)]">
-      <div className="relative overflow-hidden">
+      <div
+        className="relative overflow-hidden"
+        role="region"
+        aria-label="Announcements carousel"
+        tabIndex={0}
+        onKeyDown={onKeyDown}
+        onMouseEnter={() => setPlaying(false)}
+        onMouseLeave={() => setPlaying(true)}
+      >
         <div
           className="relative w-full"
           style={{
