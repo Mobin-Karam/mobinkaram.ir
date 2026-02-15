@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="28" fill="url(#g2)"/>
+  <path d="M90 230a15 15 0 1 0 0.01 0" fill="#fbbf24"/>
+  <path d="M80 170a80 80 0 0 1 80 80" stroke="#fbbf24" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <path d="M80 120a130 130 0 0 1 130 130" stroke="#fbbf24" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.75"/>
+  <text x="50" y="80" fill="#e0e7ff" font-family="Inter, 'Segoe UI', sans-serif" font-size="26" font-weight="700">RSS feed</text>
+  <text x="50" y="110" fill="#cbd5f5" font-family="Inter, 'Segoe UI', sans-serif" font-size="16" font-weight="500">Build logs • Lab drops • Case studies</text>
+</svg>

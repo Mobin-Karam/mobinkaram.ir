@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b132b"/>
+      <stop offset="1" stop-color="#0b7285"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="320" rx="28" fill="url(#g3)"/>
+  <circle cx="95" cy="110" r="42" fill="#38bdf8" opacity="0.25"/>
+  <circle cx="190" cy="170" r="56" fill="#a78bfa" opacity="0.18"/>
+  <rect x="110" y="120" width="90" height="90" rx="18" fill="#111827" stroke="#e0e7ff" stroke-width="6" opacity="0.85"/>
+  <path d="M140 150h60M140 175h40M140 200h25" stroke="#e0e7ff" stroke-width="6" stroke-linecap="round"/>
+  <text x="40" y="70" fill="#e0e7ff" font-family="Inter, 'Segoe UI', sans-serif" font-size="26" font-weight="700">Engineering Lab</text>
+  <text x="40" y="100" fill="#cbd5f5" font-family="Inter, 'Segoe UI', sans-serif" font-size="16" font-weight="500">Patterns • Experiments • Benchmarks</text>
+</svg>

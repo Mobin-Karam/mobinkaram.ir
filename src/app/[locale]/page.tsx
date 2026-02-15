@@ -39,33 +39,60 @@ export default async function LocaleHome({
     {
       id: "koonj",
       content: (
-        <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
-          <span className="pill text-[10px]">Koonj</span>
-          <p className="text-sm font-semibold text-[color:var(--foreground)]">
-            Koonj Phase 2 is live. Plugins and analytics are in progress.
-          </p>
+        <div className="flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/banners/koonj.svg"
+            alt="Koonj roadmap"
+            className="h-16 w-16 rounded-2xl border border-[color:var(--border)] object-cover md:h-20 md:w-20"
+            loading="lazy"
+          />
+          <div className="flex flex-col gap-1">
+            <span className="pill text-[10px]">Koonj</span>
+            <p className="text-sm font-semibold text-[color:var(--foreground)]">
+              Koonj Phase 2 is live. Plugins and analytics are in progress.
+            </p>
+          </div>
         </div>
       ),
     },
     {
       id: "rss",
       content: (
-        <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
-          <span className="pill text-[10px]">RSS</span>
-          <p className="text-sm text-[color:var(--foreground)]">
-            Get updates from /rss.xml for new logs, lab notes, and projects.
-          </p>
+        <div className="flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/banners/rss.svg"
+            alt="RSS feed"
+            className="h-16 w-16 rounded-2xl border border-[color:var(--border)] object-cover md:h-20 md:w-20"
+            loading="lazy"
+          />
+          <div className="flex flex-col gap-1">
+            <span className="pill text-[10px]">RSS</span>
+            <p className="text-sm text-[color:var(--foreground)]">
+              Get updates from /rss.xml for new logs, lab notes, and projects.
+            </p>
+          </div>
         </div>
       ),
     },
     {
       id: "lab",
       content: (
-        <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
-          <span className="pill text-[10px]">Lab</span>
-          <p className="text-sm text-[color:var(--foreground)]">
-            Fresh navigation and state-model experiments are in the Lab now.
-          </p>
+        <div className="flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/banners/lab.svg"
+            alt="Engineering Lab"
+            className="h-16 w-16 rounded-2xl border border-[color:var(--border)] object-cover md:h-20 md:w-20"
+            loading="lazy"
+          />
+          <div className="flex flex-col gap-1">
+            <span className="pill text-[10px]">Lab</span>
+            <p className="text-sm text-[color:var(--foreground)]">
+              Fresh navigation and state-model experiments are in the Lab now.
+            </p>
+          </div>
         </div>
       ),
     },
