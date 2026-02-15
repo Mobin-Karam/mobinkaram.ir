@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: liara
-      url: https://koonj.liara.run
+      url: https://mobinkaram.liara.run
     concurrency:
       group: liara-deploy
       cancel-in-progress: true
