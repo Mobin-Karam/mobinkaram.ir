@@ -7,6 +7,7 @@ import clsx from "clsx";
 export type Slide = {
   id: string;
   imageSrc: string;
+  mobileImageSrc?: string;
   imageAlt: string;
   href?: string;
 };
@@ -103,7 +104,9 @@ export function AnnouncementBanner({
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={slide.imageSrc}
+                src={slide.mobileImageSrc ?? slide.imageSrc}
+                srcSet={`${slide.mobileImageSrc ?? slide.imageSrc} 640w, ${slide.imageSrc} 1200w`}
+                sizes="100vw"
                 alt={slide.imageAlt}
                 className="h-full w-full rounded-2xl border border-[color:var(--border)] object-cover"
                 loading="lazy"

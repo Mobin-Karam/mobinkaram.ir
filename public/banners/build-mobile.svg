@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="240" viewBox="0 0 640 240">
+  <defs>
+    <linearGradient id="bgBuildM" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="240" rx="22" fill="url(#bgBuildM)"/>
+  <rect x="60" y="70" width="140" height="90" rx="14" fill="#111827" stroke="#4f46e5" stroke-width="6" opacity="0.8"/>
+  <rect x="240" y="90" width="140" height="90" rx="14" fill="#0b7285" opacity="0.25"/>
+  <rect x="420" y="80" width="180" height="110" rx="16" fill="#e0e7ff" opacity="0.12" />
+  <path d="M75 130h110M75 150h80" stroke="#cbd5f5" stroke-width="8" stroke-linecap="round"/>
+  <path d="M255 125h110M255 145h60" stroke="#a5b4fc" stroke-width="8" stroke-linecap="round"/>
+  <path d="M440 135h140M440 155h90" stroke="#7c93ff" stroke-width="10" stroke-linecap="round"/>
+  <text x="60" y="55" fill="#e0e7ff" font-family="Inter, 'Segoe UI', sans-serif" font-size="26" font-weight="800">Engineer Hub</text>
+  <text x="60" y="75" fill="#cbd5f5" font-family="Inter, 'Segoe UI', sans-serif" font-size="14" font-weight="600">Case studies • Lab • Build log</text>
+</svg>
