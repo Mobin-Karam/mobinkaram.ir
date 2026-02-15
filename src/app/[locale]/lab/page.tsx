@@ -5,6 +5,7 @@ import Link from "next/link";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BackButton } from "@/components/ui/back-button";
+import { ArrowLeft } from "lucide-react";
 
 export default async function LabPage({
   params,
@@ -16,6 +17,13 @@ export default async function LabPage({
 
   return (
     <div className="space-y-6">
+      <Link
+        href={`/${locale}/projects`}
+        className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
+      >
+        <ArrowLeft size={14} />
+        Back to Engineer Hub
+      </Link>
       <div className="flex items-center justify-between gap-3">
         <SectionHeading
           eyebrow="Lab"
@@ -51,7 +59,9 @@ export default async function LabPage({
               </div>
               <div className="mt-3 flex items-center justify-between text-[11px] text-[color:var(--muted)]">
                 <span>{item.meta.readingMinutes} min read</span>
-                <span className="text-[color:var(--accent-strong)]">Read →</span>
+                <span className="text-[color:var(--accent-strong)]">
+                  Read →
+                </span>
               </div>
             </Link>
           ))}

@@ -7,9 +7,9 @@
     "home": "Home",
     "engineer": "Engineering Hub",
     "profile": "Profile",
-    "projects": "Case Studies",
-    "lab": "Engineering Lab",
-    "log": "Build Log",
+    "projects": "Projects",
+    "lab": "Lab",
+    "log": "Build log",
     "now": "Now",
     "stack": "Stack",
     "work": "Work",
@@ -17,23 +17,23 @@
     "tracker": "Koonj Tracker"
   },
   "hero": {
-    "headline": "I build scalable apps, communities, and experimental digital products.",
-    "sub": "This site is my developer operating system: how I think, architect, and ship what’s next.",
+    "headline": "I build apps and tools for people and teams.",
+    "sub": "See how I plan, code, and ship products — explained step by step.",
     "ctaProjects": "Case studies",
     "ctaLab": "Enter the lab"
   },
   "sections": {
-    "featured": "What’s hot",
-    "nowBuilding": "Now building",
-    "engineeringLab": "Engineering lab",
+    "featured": "Top pick",
+    "nowBuilding": "What I'm doing now",
+    "engineeringLab": "Lab experiments",
     "buildLog": "Build log",
     "stack": "Why this stack",
-    "timeline": "Build timeline",
+    "timeline": "Shipping timeline",
     "reading": "Reading list",
-    "roadmap": "Public roadmap"
+    "roadmap": "Roadmap"
   },
   "search": {
-    "placeholder": "Search projects, logs, patterns..."
+    "placeholder": "Search my work and notes"
   },
   "status": {
     "currentlyCoding": "Currently coding",

@@ -16,7 +16,11 @@ type TrackerCard = {
 function mapIssuesToColumns(
   issues: Awaited<ReturnType<typeof getKoonjIssues>>,
 ): { done: TrackerCard[]; inProgress: TrackerCard[]; next: TrackerCard[] } {
-  const base = { done: [] as TrackerCard[], inProgress: [] as TrackerCard[], next: [] as TrackerCard[] };
+  const base = {
+    done: [] as TrackerCard[],
+    inProgress: [] as TrackerCard[],
+    next: [] as TrackerCard[],
+  };
   if (!issues) return base;
 
   for (const issue of issues) {
@@ -26,7 +30,8 @@ function mapIssuesToColumns(
       detail: issue.html_url,
       url: issue.html_url,
     };
-    if (labels.includes("done") || issue.state === "closed") base.done.push(card);
+    if (labels.includes("done") || issue.state === "closed")
+      base.done.push(card);
     else if (labels.includes("next")) base.next.push(card);
     else base.inProgress.push(card);
   }
@@ -56,7 +61,9 @@ export default async function KoonjStatusPage({
 
   const grouped = {
     done: liveGrouped.done.length ? liveGrouped.done : groupedStatic.done,
-    inProgress: liveGrouped.inProgress.length ? liveGrouped.inProgress : groupedStatic.inProgress,
+    inProgress: liveGrouped.inProgress.length
+      ? liveGrouped.inProgress
+      : groupedStatic.inProgress,
     next: liveGrouped.next.length ? liveGrouped.next : groupedStatic.next,
   };
 
@@ -67,25 +74,47 @@ export default async function KoonjStatusPage({
         title="Koonj public tracker"
         description="Current milestone, completed features, and what's next."
       />
-
-      <LazySection minHeight={240} skeleton={<Skeleton className="h-60" />}>
-        <div className="grid gap-3 md:grid-cols-3">
-          <TrackerColumn title="In progress" items={grouped.inProgress} color="amber" />
-          <TrackerColumn title="Done" items={grouped.done} color="green" />
-          <TrackerColumn title="Next" items={grouped.next} color="blue" />
-        </div>
-      </LazySection>
-
       <LazySection minHeight={220} skeleton={<Skeleton className="h-56" />}>
         <MilestoneMap
           steps={[
-            { title: "Foundation", detail: "Auth, billing, design tokens", status: grouped.done.length ? "done" : "done" },
-            { title: "Communities Core", detail: "Roles, membership snapshots", status: grouped.inProgress.length ? "in-progress" : "next" },
-            { title: "Events + Live", detail: "Presence, announcements, gating", status: grouped.inProgress.length > 1 ? "in-progress" : "next" },
-            { title: "Plugins", detail: "Automation marketplace", status: grouped.next.length ? "next" : "next" },
-            { title: "Launch", detail: "Pilot with 3 communities", status: "next" },
+            {
+              title: "Foundation",
+              detail: "Auth, billing, design tokens",
+              status: grouped.done.length ? "done" : "done",
+            },
+            {
+              title: "Communities Core",
+              detail: "Roles, membership snapshots",
+              status: grouped.inProgress.length ? "in-progress" : "next",
+            },
+            {
+              title: "Events + Live",
+              detail: "Presence, announcements, gating",
+              status: grouped.inProgress.length > 1 ? "in-progress" : "next",
+            },
+            {
+              title: "Plugins",
+              detail: "Automation marketplace",
+              status: grouped.next.length ? "next" : "next",
+            },
+            {
+              title: "Launch",
+              detail: "Pilot with 3 communities",
+              status: "next",
+            },
           ]}
         />
+      </LazySection>
+      <LazySection minHeight={240} skeleton={<Skeleton className="h-60" />}>
+        <div className="grid gap-3 md:grid-cols-3">
+          <TrackerColumn
+            title="In progress"
+            items={grouped.inProgress}
+            color="amber"
+          />
+          <TrackerColumn title="Done" items={grouped.done} color="green" />
+          <TrackerColumn title="Next" items={grouped.next} color="blue" />
+        </div>
       </LazySection>
     </div>
   );
@@ -130,9 +159,13 @@ function TrackerColumn({
                 item.title
               )}
             </p>
-            <p className="text-xs text-[color:var(--muted)] line-clamp-2">{item.detail}</p>
+            <p className="text-xs text-[color:var(--muted)] line-clamp-2">
+              {item.detail}
+            </p>
             {item.eta ? (
-              <p className="mt-1 text-xs text-[color:var(--muted)]">ETA: {item.eta}</p>
+              <p className="mt-1 text-xs text-[color:var(--muted)]">
+                ETA: {item.eta}
+              </p>
             ) : null}
           </div>
         ))}
@@ -144,7 +177,11 @@ function TrackerColumn({
 function MilestoneMap({
   steps,
 }: {
-  steps: { title: string; detail: string; status: "done" | "in-progress" | "next" }[];
+  steps: {
+    title: string;
+    detail: string;
+    status: "done" | "in-progress" | "next";
+  }[];
 }) {
   return (
     <div className="card p-5">
@@ -153,7 +190,10 @@ function MilestoneMap({
       </p>
       <div className="relative grid gap-4 md:grid-cols-5">
         {steps.map((step, idx) => (
-          <div key={step.title} className="relative flex flex-col items-start gap-2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--background)] p-3">
+          <div
+            key={step.title}
+            className="relative flex flex-col items-start gap-2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--background)] p-3"
+          >
             <div className="flex items-center gap-2">
               <span
                 className={clsx(
@@ -182,7 +222,11 @@ function MilestoneMap({
                     : "border-slate-300 text-slate-700",
               )}
             >
-              {step.status === "done" ? "Completed" : step.status === "in-progress" ? "In progress" : "Queued"}
+              {step.status === "done"
+                ? "Completed"
+                : step.status === "in-progress"
+                  ? "In progress"
+                  : "Queued"}
             </span>
           </div>
         ))}

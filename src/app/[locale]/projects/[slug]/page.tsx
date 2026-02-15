@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getProject, getProjects } from "@/data/projects";
@@ -6,7 +7,7 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CoverImage } from "@/components/ui/cover-image";
-import { BackButton } from "@/components/ui/back-button";
+import { ArrowLeft } from "lucide-react";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -30,7 +31,13 @@ export default async function ProjectDetail({
 
   return (
     <article className="space-y-6">
-      <BackButton />
+      <Link
+        href={`/${locale}/projects`}
+        className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
+      >
+        <ArrowLeft size={14} />
+        Back to case studies
+      </Link>
       <SectionHeading
         eyebrow="Case study"
         title={project.meta.title}

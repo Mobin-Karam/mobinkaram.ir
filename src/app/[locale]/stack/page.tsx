@@ -14,16 +14,23 @@ import {
   SiTailwindcss,
   SiPlausibleanalytics,
 } from "react-icons/si";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 function stackIcon(name: string) {
   const n = name.toLowerCase();
-  if (n.includes("typescript")) return <SiTypescript className="text-sky-500" />;
-  if (n.includes("next")) return <SiNextdotjs className="text-black dark:text-white" />;
+  if (n.includes("typescript"))
+    return <SiTypescript className="text-sky-500" />;
+  if (n.includes("next"))
+    return <SiNextdotjs className="text-black dark:text-white" />;
   if (n.includes("nest")) return <SiNestjs className="text-red-500" />;
   if (n.includes("postgres")) return <SiPostgresql className="text-sky-700" />;
-  if (n.includes("expo")) return <SiExpo className="text-gray-800 dark:text-gray-200" />;
-  if (n.includes("tailwind")) return <SiTailwindcss className="text-cyan-500" />;
-  if (n.includes("plausible")) return <SiPlausibleanalytics className="text-indigo-500" />;
+  if (n.includes("expo"))
+    return <SiExpo className="text-gray-800 dark:text-gray-200" />;
+  if (n.includes("tailwind"))
+    return <SiTailwindcss className="text-cyan-500" />;
+  if (n.includes("plausible"))
+    return <SiPlausibleanalytics className="text-indigo-500" />;
   return <span className="text-[color:var(--muted)]">•</span>;
 }
 
@@ -35,6 +42,13 @@ export default async function StackPage({
   const { locale } = await params;
   return (
     <div className="space-y-6">
+      <Link
+        href={`/${locale}/build`}
+        className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
+      >
+        <ArrowLeft size={14} />
+        Back to Profile
+      </Link>
       <div className="flex items-center justify-between gap-3">
         <SectionHeading
           eyebrow="Stack"

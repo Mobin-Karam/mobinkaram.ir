@@ -41,7 +41,7 @@ export default async function LocaleHome({
         <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
           <span className="pill text-[10px]">Koonj</span>
           <p className="text-sm font-semibold text-[color:var(--foreground)]">
-            Koonj Phase 2 is live in tracker—plugins + analytics underway.
+            Koonj Phase 2 is live. Plugins and analytics are in progress.
           </p>
         </div>
       ),
@@ -52,7 +52,7 @@ export default async function LocaleHome({
         <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
           <span className="pill text-[10px]">RSS</span>
           <p className="text-sm text-[color:var(--foreground)]">
-            Subscribe to /rss.xml for build logs, lab drops, and case-study updates.
+            Get updates from /rss.xml for new logs, lab notes, and projects.
           </p>
         </div>
       ),
@@ -63,7 +63,7 @@ export default async function LocaleHome({
         <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
           <span className="pill text-[10px]">Lab</span>
           <p className="text-sm text-[color:var(--foreground)]">
-            New navigation + state-model experiments available in the Engineering Lab.
+            Fresh navigation and state-model experiments are in the Lab now.
           </p>
         </div>
       ),
@@ -159,8 +159,8 @@ export default async function LocaleHome({
         <LazySection minHeight={260} skeleton={<Skeleton className="h-64" />}>
           <SectionHeading
             eyebrow="GitHub"
-            title="Pinned repos (Koonj + personal)"
-            description="Hand-picked repos only; live data from GitHub."
+            title="Pinned GitHub repos"
+            description="Live from Koonj-Inc and my personal account."
           />
           <div className="mt-4 grid gap-4 md:grid-cols-[1.2fr,1fr]">
             <div className="space-y-3">
