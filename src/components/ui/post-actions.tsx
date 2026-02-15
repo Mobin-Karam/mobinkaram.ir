@@ -118,13 +118,6 @@ export function PostActions({ title }: { title: string }) {
           <MoreHorizontal size={14} />
           More
         </button>
-        <button
-          onClick={() => shareSocial("x")}
-          className="pill nav-btn hover:-translate-y-0.5 hover:shadow-md transition text-[11px]"
-        >
-          <Send size={14} />
-          Share
-        </button>
       </div>
 
       {open ? (
