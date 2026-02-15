@@ -44,7 +44,7 @@ export default async function LocaleHome({
           <img
             src="/banners/koonj.svg"
             alt="Koonj roadmap"
-            className="h-[110px] w-[110px] rounded-2xl border border-[color:var(--border)] object-cover md:h-[140px] md:w-[140px]"
+            className="h-[140px] w-full rounded-2xl border border-[color:var(--border)] object-cover md:h-[180px]"
             loading="lazy"
           />
           <div className="flex flex-col gap-1">
@@ -64,7 +64,7 @@ export default async function LocaleHome({
           <img
             src="/banners/rss.svg"
             alt="RSS feed"
-            className="h-[110px] w-[110px] rounded-2xl border border-[color:var(--border)] object-cover md:h-[140px] md:w-[140px]"
+            className="h-[140px] w-full rounded-2xl border border-[color:var(--border)] object-cover md:h-[180px]"
             loading="lazy"
           />
           <div className="flex flex-col gap-1">
@@ -84,7 +84,7 @@ export default async function LocaleHome({
           <img
             src="/banners/lab.svg"
             alt="Engineering Lab"
-            className="h-[110px] w-[110px] rounded-2xl border border-[color:var(--border)] object-cover md:h-[140px] md:w-[140px]"
+            className="h-[140px] w-full rounded-2xl border border-[color:var(--border)] object-cover md:h-[180px]"
             loading="lazy"
           />
           <div className="flex flex-col gap-1">
