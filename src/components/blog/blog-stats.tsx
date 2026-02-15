@@ -1,4 +1,17 @@
+ "use client";
+
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { BarChart3 } from "lucide-react";
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 type Stat = { label: string; days?: number | null; count: number };
 
@@ -7,7 +20,47 @@ type Props = {
 };
 
 export function BlogStats({ stats }: Props) {
-  const max = Math.max(1, ...stats.map((s) => s.count));
+  const labels = stats.map((s) => s.label);
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: "Posts published",
+        data: stats.map((s) => s.count),
+        backgroundColor: "rgba(59, 130, 246, 0.35)",
+        borderColor: "rgba(59, 130, 246, 0.9)",
+        borderWidth: 1.5,
+        borderRadius: 6,
+        hoverBackgroundColor: "rgba(59, 130, 246, 0.55)",
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: "rgba(15,23,42,0.9)",
+        borderColor: "#1f2937",
+        borderWidth: 1,
+        titleColor: "#f8fafc",
+        bodyColor: "#e2e8f0",
+      },
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: "var(--muted)" },
+      },
+      y: {
+        beginAtZero: true,
+        grid: { color: "rgba(148, 163, 184, 0.15)" },
+        ticks: { stepSize: 1, color: "var(--muted)" },
+      },
+    },
+  };
 
   return (
     <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 shadow-[var(--glow)]">
@@ -15,24 +68,8 @@ export function BlogStats({ stats }: Props) {
         <BarChart3 size={16} />
         Publishing cadence
       </div>
-      <div className="space-y-2 text-sm">
-        {stats.map((s) => {
-          const pct = Math.max(6, Math.round((s.count / max) * 100));
-          return (
-            <div key={s.label} className="space-y-1">
-              <div className="flex items-center justify-between text-[11px] uppercase text-[color:var(--muted)]">
-                <span>{s.label}</span>
-                <span className="font-semibold text-[color:var(--foreground)]">{s.count}</span>
-              </div>
-              <div className="h-2.5 w-full rounded-full bg-[color:var(--background)]">
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-[color:var(--accent-strong)] to-[color:var(--accent-weak)]"
-                  style={{ width: `${pct}%` }}
-                />
-              </div>
-            </div>
-          );
-        })}
+      <div className="h-56">
+        <Bar data={data} options={options as any} />
       </div>
     </div>
   );
