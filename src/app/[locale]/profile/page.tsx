@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionHeading } from "@/components/ui/primitives";
 import { getNowBlocks } from "@/data/now";
 import { stackReasons } from "@/data/stack";
 import type { Locale } from "@/i18n/config";
-import { LazySection } from "@/components/ui/lazy-section";
-import { Skeleton } from "@/components/ui/skeleton";
+import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { PreferencesPanel } from "@/components/ui/preferences-panel";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import {

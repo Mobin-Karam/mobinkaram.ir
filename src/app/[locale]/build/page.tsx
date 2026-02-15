@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionHeading } from "@/components/ui/primitives";
 import { getProjects } from "@/data/projects";
 import { getLabEntries } from "@/data/lab";
 import { getBuildLogs } from "@/data/logs";
 import type { Locale } from "@/i18n/config";
-import { LazySection } from "@/components/ui/lazy-section";
-import { Skeleton } from "@/components/ui/skeleton";
+import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { ArrowRight } from "lucide-react";
 
 export default async function BuildHubPage({
