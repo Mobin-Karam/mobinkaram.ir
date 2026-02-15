@@ -44,7 +44,7 @@ export default function ContactPage({
       <SectionHeading
         eyebrow="Contact"
         title="Let’s build something practical"
-        description="I reply quickly to concise, technical messages."
+        description="I reply quickly to concise, technical messages. Best for architecture reviews, build help, or collaboration."
       />
       <div className="grid gap-4 sm:grid-cols-2">
         {contacts.map(({ label, href, icon: Icon, note }) => (

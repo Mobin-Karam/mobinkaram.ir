@@ -87,6 +87,15 @@ export default function SecurityPage({
             <Pill>Dependency audit</Pill>
             <Pill>Security headers</Pill>
           </div>
+          <div className="mt-4 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 text-sm text-[color:var(--muted)]">
+            <p className="text-[color:var(--foreground)] font-semibold text-sm mb-2">Release gates</p>
+            <ul className="list-disc space-y-1 pl-4">
+              <li>All env vars sourced from secret store, no defaults in code.</li>
+              <li>OWASP quick pass: authz on every handler; input validation at edges.</li>
+              <li>Security headers + rate limits verified in staging before promote.</li>
+              <li>Backups last restore test &lt; 30 days; rollback plan documented.</li>
+            </ul>
+          </div>
         </div>
       </LazySection>
     </div>

@@ -88,6 +88,24 @@ export default function ArchitecturePage({
             <Pill>CI/CD</Pill>
             <Pill>Disaster readiness</Pill>
           </div>
+          <div className="mt-4 grid gap-3 md:grid-cols-2 text-sm text-[color:var(--muted)]">
+            <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-3">
+              <p className="text-[color:var(--foreground)] font-semibold text-sm mb-1">Principles</p>
+              <ul className="space-y-1 list-disc pl-4">
+                <li>Interfaces first; implementations can change safely.</li>
+                <li>Observability baked in before launch.</li>
+                <li>Separate compute, cache, and storage concerns.</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-3">
+              <p className="text-[color:var(--foreground)] font-semibold text-sm mb-1">Pipelines</p>
+              <ul className="space-y-1 list-disc pl-4">
+                <li>Lint → typecheck → tests → preview deploy.</li>
+                <li>Blue/green rollout with health probes.</li>
+                <li>Rollback switch and postmortem template.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </LazySection>
     </div>
