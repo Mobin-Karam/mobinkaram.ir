@@ -39,15 +39,8 @@ export default async function BlogCategoryPage({
   const posts = await getPostIndex(locale as "en" | "fa");
   const filtered = filterByCategory(posts, category);
 
-  const theme = config.theme ?? {};
-  const style: React.CSSProperties = {
-    backgroundImage: theme.bgPattern ? `url(${theme.bgPattern})` : undefined,
-    backgroundColor: theme.background ?? undefined,
-    color: theme.text ?? undefined,
-  };
-
   return (
-    <div className="space-y-6" style={style}>
+    <div className="space-y-6">
       <SectionBackLink href={`/${locale}/blog`} label="Back to blog" />
       <SectionHeading
         eyebrow="Blog"

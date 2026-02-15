@@ -78,43 +78,31 @@ export default async function BlogIndex({
             }))}
           />
           <div className="grid gap-4 md:grid-cols-2">
-            {categoriesWithCounts.map((c) => {
-              const theme = c.theme ?? {};
-              const style: React.CSSProperties = {
-                backgroundImage: theme.bgPattern ? `url(${theme.bgPattern})` : undefined,
-                backgroundColor: theme.background ?? undefined,
-                color: theme.text ?? undefined,
-              };
-              return (
-                <Card
-                  key={c.slug}
-                  className="relative overflow-hidden"
-                  style={style}
-                >
-                  {c.iconPath ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={c.iconPath}
-                      alt={c.slug}
-                      className="absolute right-3 top-3 h-8 w-8 opacity-60"
-                      loading="lazy"
-                    />
-                  ) : null}
-                  <SectionHeading
-                    eyebrow="Category"
-                    title={c.title?.[locale] ?? c.title?.en ?? c.slug}
-                    description={c.description?.[locale] ?? c.description?.en ?? ""}
+            {categoriesWithCounts.map((c) => (
+              <Card key={c.slug} className="p-5 relative overflow-hidden">
+                {c.iconPath ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={c.iconPath}
+                    alt={c.slug}
+                    className="absolute right-3 top-3 h-8 w-8 opacity-60"
+                    loading="lazy"
                   />
-                  <p className="text-sm text-[color:var(--muted)]">{c.count} posts available.</p>
-                  <Link
-                    href={`/${locale}/blog/${c.slug}`}
-                    className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
-                  >
-                    View {c.title?.[locale] ?? c.title?.en ?? c.slug}
-                  </Link>
-                </Card>
-              );
-            })}
+                ) : null}
+                <SectionHeading
+                  eyebrow="Category"
+                  title={c.title?.[locale] ?? c.title?.en ?? c.slug}
+                  description={c.description?.[locale] ?? c.description?.en ?? ""}
+                />
+                <p className="text-sm text-[color:var(--muted)]">{c.count} posts available.</p>
+                <Link
+                  href={`/${locale}/blog/${c.slug}`}
+                  className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
+                >
+                  View {c.title?.[locale] ?? c.title?.en ?? c.slug}
+                </Link>
+              </Card>
+            ))}
           </div>
         </div>
       </LazySection>
