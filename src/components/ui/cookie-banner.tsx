@@ -23,8 +23,7 @@ export function CookieBanner() {
 
   return (
     <div
-      className="fixed inset-x-3 bottom-[calc(120px+env(safe-area-inset-bottom))] z-40 w-[min(100%,1100px)] animate-[fadeIn_220ms_ease] rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)]/95 p-4 shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] backdrop-blur-xl backdrop-saturate-150 ring-1 ring-white/10 md:left-1/2 md:-translate-x-1/2 md:px-6"
-      style={{ left: "50%", transform: "translateX(-50%)" }}
+      className="fixed left-1/2 bottom-[calc(110px+env(safe-area-inset-bottom))] z-40 w-[min(96vw,1100px)] -translate-x-1/2 animate-[fadeIn_220ms_ease] rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)]/95 p-4 shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] backdrop-blur-xl backdrop-saturate-150 ring-1 ring-white/10 md:px-6"
     >
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-3">
