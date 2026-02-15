@@ -43,6 +43,18 @@ export default async function LocaleHome({
       href: `/${locale}/koonj-status`,
     },
     {
+      id: "build",
+      imageSrc: "/banners/build.svg",
+      imageAlt: "Engineer hub banner",
+      href: `/${locale}/build`,
+    },
+    {
+      id: "profile",
+      imageSrc: "/banners/profile.svg",
+      imageAlt: "Profile banner",
+      href: `/${locale}/profile`,
+    },
+    {
       id: "rss",
       imageSrc: "/banners/rss.svg",
       imageAlt: "RSS banner",
