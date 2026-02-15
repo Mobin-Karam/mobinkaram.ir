@@ -40,7 +40,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
     >
       <span
         aria-hidden
-        className="absolute inset-y-1 left-0 z-0 rounded-full bg-white/12 blur-[2px] transition-[transform,width] duration-250 ease-out"
+        className="absolute inset-y-1 left-0 z-0 rounded-full bg-white/12 blur-[2px] transition-[transform,width] duration-300 ease-out"
         style={{
           width: `${100 / items.length}%`,
           transform: `translateX(${indicatorX}%)`,
@@ -67,11 +67,20 @@ export function MobileNav({ locale }: { locale: Locale }) {
             <span
               aria-hidden
               className={clsx(
-                "absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-200 ease-out",
+                "absolute inset-0 rounded-full bg-white/10 opacity-0 transition duration-300 ease-out",
                 active && "opacity-100",
               )}
             />
-            <Icon size={18} />
+            <span
+              className={clsx(
+                "flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300",
+                active
+                  ? "bg-[color:var(--accent)]/15 text-[color:var(--accent-strong)]"
+                  : "bg-transparent text-[color:var(--muted)]",
+              )}
+            >
+              <Icon size={18} />
+            </span>
             <span className="capitalize">{item.label}</span>
           </Link>
         );
