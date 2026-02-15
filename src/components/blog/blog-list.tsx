@@ -21,9 +21,10 @@ export function BlogList({ posts, tags, locale }: Props) {
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState<string>("all");
   const [onlyNew, setOnlyNew] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(6);
 
   const filtered = useMemo(() => {
-    return posts
+    const result = posts
       .filter((p) => (activeTag === "all" ? true : p.tags?.includes(activeTag)))
       .filter((p) => (onlyNew ? isNew(p.date) : true))
       .filter((p) => {
@@ -35,7 +36,14 @@ export function BlogList({ posts, tags, locale }: Props) {
           p.tags?.some((t) => t.toLowerCase().includes(q))
         );
       });
+    return result;
   }, [posts, activeTag, onlyNew, query]);
+
+  // Reset pagination when filters change
+  const filteredLength = filtered.length;
+  useMemo(() => {
+    setVisibleCount(Math.min(6, filteredLength || 6));
+  }, [filteredLength, activeTag, onlyNew, query]);
 
   return (
     <div className="space-y-4">
@@ -103,7 +111,7 @@ export function BlogList({ posts, tags, locale }: Props) {
       </div>
 
       <div className="grid gap-3 md:grid-cols-2">
-        {filtered.map((post) => (
+        {filtered.slice(0, visibleCount).map((post) => (
           <Link
             key={post.slug}
             href={`/${locale}/blog/${post.slug}`}
@@ -148,6 +156,17 @@ export function BlogList({ posts, tags, locale }: Props) {
           </Link>
         ))}
       </div>
+
+      {filtered.length > visibleCount ? (
+        <div className="flex justify-center">
+          <button
+            onClick={() => setVisibleCount((c) => c + 6)}
+            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:-translate-y-0.5 hover:shadow-md"
+          >
+            Load more
+          </button>
+        </div>
+      ) : null}
 
       {filtered.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-[color:var(--border)] bg-[color:var(--surface)] p-6 text-center text-sm text-[color:var(--muted)]">
