@@ -18,10 +18,6 @@ import {
   ShieldCheck,
   Mail,
   Flag,
-  Rss,
-  Github,
-  Linkedin,
-  Globe2,
   LayoutPanelLeft,
   UserRound,
   PanelsTopLeft,
@@ -80,48 +76,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
               </p>
             </div>
           </div>
-          <div className="hidden items-center gap-2 md:flex">
-            <Link
-              href="https://www.linkedin.com/in/mobin-karam/"
-              className="pill nav-btn ltr-text hover:-translate-y-0.5 hover:shadow-md transition group"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Linkedin size={14} />
-              LinkedIn
-            </Link>
-            <Link
-              href="https://github.com/Mobin-Karam"
-              className="pill nav-btn ltr-text hover:-translate-y-0.5 hover:shadow-md transition group"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Github size={14} />
-              GitHub
-            </Link>
-            <Link
-              href="https://quera.org/profile/mobinkaram"
-              className="pill nav-btn ltr-text hover:-translate-y-0.5 hover:shadow-md transition group"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Globe2 size={14} />
-              Quera
-            </Link>
-            <Link
-              href="/rss.xml"
-              className="pill nav-btn ltr-text hover:-translate-y-0.5 hover:shadow-md transition group"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Rss size={14} />
-              RSS
-            </Link>
-            <InstallButton />
-          </div>
           <StatusDot label={t("status.currentlyCoding")} />
         </div>
         <div className="flex items-center gap-2">
+          <InstallButton />
           <ThemeToggle />
           <button
             className="pill flex items-center gap-2 md:hidden transition hover:-translate-y-0.5 hover:shadow-md"

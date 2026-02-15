@@ -70,8 +70,8 @@ export default async function ProfilePage({
       />
 
       <LazySection minHeight={240} skeleton={<Skeleton className="h-60" />}>
-        <div className="relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-6 text-white shadow-[0_20px_80px_-40px_rgba(0,0,0,0.8)]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.15),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(16,185,129,0.15),transparent_30%)]" />
+        <div className="relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-slate-900 p-6 text-white shadow-[0_20px_80px_-40px_rgba(0,0,0,0.8)]">
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 opacity-95" />
           <div className="relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
