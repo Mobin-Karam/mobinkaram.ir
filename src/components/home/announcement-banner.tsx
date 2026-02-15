@@ -35,14 +35,6 @@ export function AnnouncementBanner({
   const [deltaX, setDeltaX] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!playing || slides.length < 2) return;
-    const id = window.setInterval(() => next(), autoPlayMs);
-    return () => window.clearInterval(id);
-  }, [playing, slides.length, autoPlayMs, next]);
-
-  if (!slides.length) return null;
-
   const goTo = (i: number) => {
     const total = slides.length;
     const nextIndex = loop ? (i + total) % total : Math.max(0, Math.min(i, total - 1));
@@ -51,6 +43,14 @@ export function AnnouncementBanner({
 
   const prev = () => goTo(index - 1);
   const next = () => goTo(index + 1);
+
+  useEffect(() => {
+    if (!playing || slides.length < 2) return;
+    const id = window.setInterval(() => next(), autoPlayMs);
+    return () => window.clearInterval(id);
+  }, [playing, slides.length, autoPlayMs, next]);
+
+  if (!slides.length) return null;
 
   const onTouchStart = (e: React.TouchEvent) => {
     setStartX(e.touches[0].clientX);
