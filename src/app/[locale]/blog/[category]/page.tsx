@@ -5,7 +5,7 @@ import { getPostIndex, filterByCategory, type BlogCategory } from "@/lib/blog";
 import type { Locale } from "@/i18n/config";
 
 export const revalidate = 1800;
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 const categories: { id: BlogCategory; title: string; description: string }[] = [
   { id: "engineering", title: "Engineering", description: "Systems, product, and delivery." },
@@ -28,8 +28,7 @@ export default async function BlogCategoryPage({
   params: Promise<{ locale: Locale; category: BlogCategory }>;
 }) {
   const { locale, category } = await params;
-  const config = categories.find((c) => c.id === category);
-  if (!config) notFound();
+  const config = categories.find((c) => c.id === category) ?? categories[0];
 
   const posts = await getPostIndex(locale as "en" | "fa");
   const filtered = filterByCategory(posts, category);
