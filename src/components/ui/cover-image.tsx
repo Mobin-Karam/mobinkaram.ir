@@ -1,3 +1,5 @@
+ "use client";
+
 // Reusable cover renderer for case studies, lab notes, and build logs.
 // Shows the provided cover image when available; otherwise renders a branded gradient card.
 type Props = {
@@ -14,6 +16,9 @@ export function CoverImage({ title, cover }: Props) {
         alt={title}
         className="w-full max-h-96 rounded-3xl border border-[color:var(--border)] object-cover shadow-[var(--glow)]"
         loading="lazy"
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
       />
     );
   }
