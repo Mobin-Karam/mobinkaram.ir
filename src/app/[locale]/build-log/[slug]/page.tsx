@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getBuildLogs, getLog } from "@/data/logs";
@@ -7,8 +6,8 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CoverImage } from "@/components/ui/cover-image";
-import { ArrowLeft } from "lucide-react";
 import { PostActions } from "@/components/ui/post-actions";
+import { SectionBackLink } from "@/components/ui/section-back-link";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -32,13 +31,10 @@ export default async function BuildLogDetail({
 
   return (
     <article className="space-y-6">
-      <Link
+      <SectionBackLink
         href={`/${locale}/build-log`}
-        className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
-      >
-        <ArrowLeft size={14} />
-        Back to build log
-      </Link>
+        label="Back to build log"
+      />
       <SectionHeading
         eyebrow="Log"
         title={log.meta.title}

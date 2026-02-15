@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getLabEntries, getLabEntry } from "@/data/lab";
@@ -7,8 +6,8 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CoverImage } from "@/components/ui/cover-image";
-import { ArrowLeft } from "lucide-react";
 import { PostActions } from "@/components/ui/post-actions";
+import { SectionBackLink } from "@/components/ui/section-back-link";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -32,13 +31,7 @@ export default async function LabDetail({
 
   return (
     <article className="space-y-6">
-      <Link
-        href={`/${locale}/lab`}
-        className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
-      >
-        <ArrowLeft size={14} />
-        Back to lab
-      </Link>
+      <SectionBackLink href={`/${locale}/lab`} label="Back to lab" />
       <SectionHeading
         eyebrow="Experiment"
         title={experiment.meta.title}
