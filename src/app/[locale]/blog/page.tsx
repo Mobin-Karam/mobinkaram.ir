@@ -25,7 +25,11 @@ export default async function BlogIndex({
   if (!posts.length) {
     return (
       <div className="space-y-4">
-        <SectionHeading eyebrow="Blog" title="Engineering articles" description="No posts yet." />
+        <SectionHeading
+          eyebrow="Blog"
+          title="Engineering articles"
+          description="No posts yet."
+        />
       </div>
     );
   }
@@ -33,7 +37,9 @@ export default async function BlogIndex({
   const [featured, ...rest] = posts;
   const categoriesWithCounts = categories.map((c) => ({
     ...c,
-    count: posts.filter((p) => (p as any).category === c.slug || categorizePost(p) === c.slug).length,
+    count: posts.filter(
+      (p) => (p as any).category === c.slug || categorizePost(p) === c.slug,
+    ).length,
   }));
   const newCount = posts.filter((p) => {
     const diff = Date.now() - Date.parse(p.date);
@@ -43,7 +49,8 @@ export default async function BlogIndex({
   const now = Date.now();
   const daysAgo = (days: number) => now - days * 24 * 60 * 60 * 1000;
   const countSince = (days?: number | null) =>
-    posts.filter((p) => (days ? Date.parse(p.date) >= daysAgo(days) : true)).length;
+    posts.filter((p) => (days ? Date.parse(p.date) >= daysAgo(days) : true))
+      .length;
   const stats = [
     { label: "7 days", days: 7, count: countSince(7) },
     { label: "30 days", days: 30, count: countSince(30) },
@@ -62,13 +69,23 @@ export default async function BlogIndex({
       />
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>
         <div className="space-y-4">
+          <CategoryPicker
+            locale={locale}
+            categories={categoriesWithCounts.map((c) => ({
+              slug: c.slug,
+              title: c.title?.[locale] ?? c.title?.en ?? c.slug,
+              count: c.count,
+            }))}
+          />
           <div className="grid gap-4 md:grid-cols-2">
             {categoriesWithCounts.map((c) => (
               <Card key={c.slug} className="p-5">
                 <SectionHeading
                   eyebrow="Category"
                   title={c.title?.[locale] ?? c.title?.en ?? c.slug}
-                  description={c.description?.[locale] ?? c.description?.en ?? ""}
+                  description={
+                    c.description?.[locale] ?? c.description?.en ?? ""
+                  }
                 />
                 <p className="text-sm text-[color:var(--muted)]">
                   {c.count} posts available.
@@ -82,52 +99,6 @@ export default async function BlogIndex({
               </Card>
             ))}
           </div>
-
-          <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
-            <BlogHero
-              locale={locale}
-              post={featured as any}
-              category={categorizePost(featured as any)}
-            />
-            <Card className="flex flex-col gap-4 p-5">
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-[color:var(--foreground)]">Blog stats</p>
-                <Link
-                  href="/rss.xml"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 rounded-full border border-[color:var(--border)] px-3 py-1 text-[12px] font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
-                >
-                  <Rss size={14} />
-                  RSS
-                </Link>
-              </div>
-              <BlogStats stats={stats} />
-              <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--background)] p-3 text-sm">
-                <p className="text-[11px] uppercase text-[color:var(--muted)]">New posts</p>
-                <p className="text-2xl font-semibold text-[color:var(--foreground)]">{newCount}</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-[11px] uppercase text-[color:var(--muted)]">Topics</p>
-                <div className="flex flex-wrap gap-2">
-                  {tags.slice(0, 12).map((tag) => (
-                    <span key={tag} className="pill text-[11px]">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          </div>
-
-          <CategoryPicker
-            locale={locale}
-            categories={categoriesWithCounts.map((c) => ({
-              slug: c.slug,
-              title: c.title?.[locale] ?? c.title?.en ?? c.slug,
-              count: c.count,
-            }))}
-          />
         </div>
       </LazySection>
     </div>

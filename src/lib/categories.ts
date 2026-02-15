@@ -1,4 +1,5 @@
 import "server-only";
+import { assetUrl } from "@/lib/github-content";
 
 type Category = {
   slug: string;
@@ -6,6 +7,13 @@ type Category = {
   description: { en: string; fa: string };
   icon?: string;
   iconPath?: string;
+  theme?: {
+    primary?: string;
+    secondary?: string;
+    background?: string;
+    text?: string;
+    bgPattern?: string;
+  };
 };
 
 const owner = process.env.CONTENT_REPO_OWNER ?? "Mobin-Karam";
@@ -32,7 +40,17 @@ async function fetchCategoriesFile() {
 
 export async function getCategories(): Promise<Category[]> {
   const cats = await fetchCategoriesFile();
-  return cats ?? [];
+  if (!cats) return [];
+  return cats.map((c) => ({
+    ...c,
+    iconPath: c.iconPath ? assetUrl(c.iconPath) : c.iconPath,
+    theme: c.theme
+      ? {
+          ...c.theme,
+          bgPattern: c.theme.bgPattern ? assetUrl(c.theme.bgPattern) : c.theme.bgPattern,
+        }
+      : undefined,
+  }));
 }
 
 export type { Category };
