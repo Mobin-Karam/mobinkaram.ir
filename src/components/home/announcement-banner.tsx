@@ -24,10 +24,14 @@ export function AnnouncementBanner({
 }: Props) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
+  const [direction, setDirection] = useState<"right" | "left">("right");
+  const [startX, setStartX] = useState<number | null>(null);
+  const [deltaX, setDeltaX] = useState(0);
 
   useEffect(() => {
     if (!playing || slides.length < 2) return;
     const id = window.setInterval(() => {
+      setDirection("right");
       setIndex((i) => (i + 1) % slides.length);
     }, autoPlayMs);
     return () => window.clearInterval(id);
@@ -35,8 +39,38 @@ export function AnnouncementBanner({
 
   if (!slides.length) return null;
 
-  const prev = () => setIndex((i) => (i - 1 + slides.length) % slides.length);
-  const next = () => setIndex((i) => (i + 1) % slides.length);
+  const prev = () => {
+    setDirection("left");
+    setIndex((i) => (i - 1 + slides.length) % slides.length);
+  };
+  const next = () => {
+    setDirection("right");
+    setIndex((i) => (i + 1) % slides.length);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setStartX(e.touches[0].clientX);
+    setDeltaX(0);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (startX === null) return;
+    setDeltaX(e.touches[0].clientX - startX);
+  };
+
+  const onTouchEnd = () => {
+    if (Math.abs(deltaX) > 40) {
+      deltaX > 0 ? prev() : next();
+    }
+    setStartX(null);
+    setDeltaX(0);
+  };
+
+  const onWheel = (e: React.WheelEvent) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 10) {
+      e.deltaX > 0 ? next() : prev();
+    }
+  };
 
   return (
     <div className="mb-5 w-full overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--glow)]">
@@ -46,6 +80,10 @@ export function AnnouncementBanner({
           style={{
             height: `${height.base}px`,
           }}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          onWheel={onWheel}
         >
           {slides.map((slide, i) => (
             <a
@@ -55,7 +93,12 @@ export function AnnouncementBanner({
                 "absolute inset-0 block transition-all duration-500 ease-out",
                 i === index
                   ? "translate-x-0 opacity-100"
-                  : "translate-x-full opacity-0 pointer-events-none",
+                  : clsx(
+                      direction === "right"
+                        ? "translate-x-full"
+                        : "-translate-x-full",
+                      "opacity-0 pointer-events-none",
+                    ),
               )}
               style={{ minHeight: `${height.base}px` }}
               target={slide.href?.startsWith("http") ? "_blank" : undefined}
