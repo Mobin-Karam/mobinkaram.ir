@@ -29,5 +29,14 @@ jobs:
       - name: Deploy
         env:
           LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          # or your PAT secret
+          GITHUB_CONTENT_TOKEN: ${{ secrets.GITHUB_CONTENT_TOKEN }}
+          CONTENT_REPO_OWNER: ${{ secrets.CONTENT_REPO_OWNER }}
+          CONTENT_REPO_NAME: ${{ secrets.CONTENT_REPO_NAME }}
+          CONTENT_REPO_BRANCH: ${{ secrets.CONTENT_REPO_BRANCH }}
+          CONTENT_ENGINEER_OWNER: ${{ secrets.CONTENT_ENGINEER_OWNER }}
+          CONTENT_ENGINEER_REPO: ${{ secrets.CONTENT_ENGINEER_REPO }}
+          CONTENT_ENGINEER_BRANCH: ${{ secrets.CONTENT_ENGINEER_BRANCH }}
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
         run: |
           liara deploy --app="mobinkaram" --api-token="$LIARA_TOKEN" --no-app-logs --port=3000 --platform=node --build-location=iran
