@@ -1,0 +1,47 @@
+export const meta = {
+  slug: "koonj",
+  title: "Koonj — community + payments platform",
+  summary:
+    "Mobile app for small communities to run paid memberships, live events, and gated content.",
+  tags: ["React Native", "NestJS", "PostgreSQL", "Realtime"],
+  stack: ["Expo", "NestJS", "PostgreSQL", "Redis", "tRPC"],
+  year: "2025-2026",
+  status: "Phase 2",
+  featured: true,
+  date: "2026-02-01",
+  author: "Mobin Karam",
+  authorAvatar: "",
+  readingMinutes: 6,
+};
+
+# Problem
+Small Iranian communities lack reliable infrastructure for subscriptions, roles, and live events. Telegram/WhatsApp are brittle for payments and governance.
+
+# Architecture
+- **Client:** Expo (React Native) + React Query. Offline-first with IndexedDB (web) and AsyncStorage (native).
+- **Gateway:** tRPC over HTTP with web socket presence channel.
+- **Backend:** NestJS, modular, CQRS for financial flows.
+- **Data:** PostgreSQL (Timescale for events), Redis for cache/queue, S3 for assets.
+- **Observability:** OpenTelemetry + Honeycomb, Sentry, Grafana Loki for logs.
+
+```text
+[Expo App] --tRPC--> [Gateway] --HTTP--> [NestJS Services] --SQL--> [PostgreSQL]
+      \\__ websocket presence __> [Redis pub/sub]
+```
+
+# Stack decisions
+- Dropped in-app purchases; moved to Zarinpal secure links + webhooks to avoid store risk.
+- Membership model redesigned to “Membership Snapshot” for price/version history.
+- Navigation moved to hybrid tabs + modals for discoverability and deep links.
+
+# Trade-offs / failures
+- First real-time presence with Socket.IO leaked memory; migrated to `ws` with custom heartbeat.
+- FCM delivery issues in Iran — added email + in-app inbox as fallback.
+
+# What I learned
+- CQRS around money made debugging safe and auditable.
+- Aggressive prefetch on community screen kept first interaction under 300ms.
+- Shipping observability in Sprint 1 prevented outages later.
+
+# Next
+- Phase 2: plugin marketplace for communities (role automation + payment analytics).

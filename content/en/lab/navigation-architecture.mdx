@@ -1,0 +1,22 @@
+export const meta = {
+  slug: "navigation-architecture",
+  title: "Navigation architecture in React Native",
+  summary: "Hybrid tabs + modal stack to preserve state and deep-link safely.",
+  tags: ["React Native", "Navigation"],
+  area: "react-patterns",
+  date: "2026-01-12",
+  author: "Mobin Karam",
+  authorAvatar: "",
+  readingMinutes: 4,
+};
+
+## Idea
+Use `expo-router` parallel routes with a modal stack so each tab keeps its own history while modals stay global.
+
+## Findings
+- Keeping tab state with `unstable_settings` in expo-router was simpler than custom navigators.
+- Deep links rely on `Linking.createURL` + a custom scheme that works inside Telegram.
+- Removing nested stacks reduced memory footprint by ~12%.
+
+## Result
+Tab switch time dropped from 280ms → 140ms and the “white flash” bug disappeared.

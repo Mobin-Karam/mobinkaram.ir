@@ -1,0 +1,32 @@
+export const meta = {
+  slug: "fieldkit",
+  title: "FieldKit — field ops dashboard",
+  summary:
+    "Web console for rural internet support teams to track tickets, routes, and SLA health in real-time.",
+  tags: ["Next.js", "Mapbox", "Supabase", "Edge"],
+  stack: ["Next.js", "Supabase", "Mapbox", "Edge Functions"],
+  year: "2024-2025",
+  status: "In production",
+  featured: false,
+  date: "2025-08-15",
+  author: "Mobin Karam",
+  authorAvatar: "",
+  readingMinutes: 4,
+};
+
+# Problem
+Support teams sent field updates via WhatsApp; SLA breaches were invisible.
+
+# Architecture
+- Next.js App Router + server actions for ticket ops
+- Supabase for auth + realtime presence
+- Mapbox for technician routing
+- Edge Functions for operator webhooks
+
+# Highlights
+- Technician location events every 30s; server actions used for atomic upserts.
+- Dynamic form schema per failure type, pulled from CMS so operators require zero training.
+- RTL/LTR aware map controls with offline fallback tiles.
+
+# Learning
+Edge caching on the ticket list kept TTFB at 180ms without sacrificing freshness.

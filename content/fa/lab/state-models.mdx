@@ -1,0 +1,27 @@
+export const meta = {
+  slug: "state-models",
+  title: "State models for huge forms",
+  summary: "Zustand vs React Hook Form on a 200-field installation form.",
+  tags: ["State", "Performance", "React"],
+  area: "ui-systems",
+  date: "2025-11-03",
+  author: "Mobin Karam",
+  authorAvatar: "",
+  readingMinutes: 3,
+};
+
+## Context
+Installation forms had 200 fields and struggled on low-end Android devices.
+
+## Experiment
+- Variant A: Zustand with precise selectors
+- Variant B: React Hook Form + `useFieldArray`
+- Tools: React Profiler + Web Vitals
+
+## Results
+- Variant A rendered ~6 times per change; Variant B ~14.
+- A used less memory but made deeply nested data awkward.
+- Final hybrid: React Hook Form for validation, Zustand for cross-form shared state.
+
+## Takeaway
+Separating validation from display kept speed while taming complexity.

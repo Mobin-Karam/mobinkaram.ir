@@ -1,0 +1,39 @@
+{
+  "brand": {
+    "name": "Mobin Karam",
+    "role": "Product Engineer • Founder @ Koonj"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Case Studies",
+    "lab": "Engineering Lab",
+    "log": "Build Log",
+    "now": "Now",
+    "stack": "Stack",
+    "about": "About",
+    "tracker": "Koonj Tracker"
+  },
+  "hero": {
+    "headline": "I build scalable apps, communities, and experimental digital products.",
+    "sub": "This site is my developer operating system: how I think, architect, and ship what’s next.",
+    "ctaProjects": "Case studies",
+    "ctaLab": "Enter the lab"
+  },
+  "sections": {
+    "featured": "What’s hot",
+    "nowBuilding": "Now building",
+    "engineeringLab": "Engineering lab",
+    "buildLog": "Build log",
+    "stack": "Why this stack",
+    "timeline": "Build timeline",
+    "reading": "Reading list",
+    "roadmap": "Public roadmap"
+  },
+  "search": {
+    "placeholder": "Search projects, logs, patterns..."
+  },
+  "status": {
+    "currentlyCoding": "Currently coding",
+    "online": "Active"
+  }
+}

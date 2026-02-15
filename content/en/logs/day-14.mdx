@@ -1,0 +1,14 @@
+export const meta = {
+  slug: "day-14",
+  title: "Day 14 — fixing auth architecture",
+  summary: "Split session service from user service and added device binding.",
+  tags: ["Auth", "Security", "NestJS"],
+  date: "2026-01-28",
+  author: "Mobin Karam",
+  authorAvatar: "",
+  readingMinutes: 2,
+};
+
+- Extracted session service so tokens rotate independently of user updates.
+- Added device fingerprint to session payload to make hijacking harder.
+- Load test 2,500 logins/min without drop (was 1,800).
