@@ -59,12 +59,6 @@ export default async function BlogIndex({
       />
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>
         <div className="space-y-4">
-          <BlogStats stats={stats} />
-          <CategoryPicker
-            locale={locale}
-            engineeringCount={engineeringPosts.length}
-            islamCount={islamPosts.length}
-          />
           <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
             <Card className="p-5">
               <SectionHeading eyebrow="Category" title="Engineering" />
@@ -129,6 +123,12 @@ export default async function BlogIndex({
               </div>
             </Card>
           </div>
+
+          <CategoryPicker
+            locale={locale}
+            engineeringCount={engineeringPosts.length}
+            islamCount={islamPosts.length}
+          />
         </div>
       </LazySection>
     </div>
