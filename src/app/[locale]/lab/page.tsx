@@ -1,11 +1,11 @@
-import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionHeading } from "@/components/ui/primitives";
 import { getLabEntries } from "@/data/lab";
 import type { Locale } from "@/i18n/config";
 import Link from "next/link";
-import { LazySection } from "@/components/ui/lazy-section";
-import { Skeleton } from "@/components/ui/skeleton";
+import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { BackButton } from "@/components/ui/back-button";
 import { ArrowLeft } from "lucide-react";
+import { SectionBackLink } from "@/components/ui/section-back-link";
 
 export default async function LabPage({
   params,
@@ -17,13 +17,7 @@ export default async function LabPage({
 
   return (
     <div className="space-y-6">
-      <Link
-        href={`/${locale}/projects`}
-        className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
-      >
-        <ArrowLeft size={14} />
-        Back to Engineer Hub
-      </Link>
+      <SectionBackLink href={`/${locale}/build`} label="Back to Engineer hub" />
       <div className="flex items-center justify-between gap-3">
         <SectionHeading
           eyebrow="Lab"

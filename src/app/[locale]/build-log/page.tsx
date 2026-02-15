@@ -1,9 +1,8 @@
-import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionHeading } from "@/components/ui/primitives";
 import { getBuildLogs } from "@/data/logs";
 import type { Locale } from "@/i18n/config";
 import Link from "next/link";
-import { LazySection } from "@/components/ui/lazy-section";
-import { Skeleton } from "@/components/ui/skeleton";
+import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { BackButton } from "@/components/ui/back-button";
 import { SectionBackLink } from "@/components/ui/section-back-link";
 
@@ -24,7 +23,6 @@ export default async function BuildLogPage({
           title="Short build notes"
           description="Brief, surgical notes on what changed today."
         />
-        <BackButton />
       </div>
       <LazySection minHeight={260} skeleton={<Skeleton className="h-64" />}>
         <div className="grid gap-3 md:grid-cols-2">
