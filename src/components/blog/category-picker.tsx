@@ -4,11 +4,10 @@ import { useRouter } from "next/navigation";
 
 type Props = {
   locale: string;
-  engineeringCount: number;
-  islamCount: number;
+  categories: { slug: string; title: string; count: number }[];
 };
 
-export function CategoryPicker({ locale, engineeringCount, islamCount }: Props) {
+export function CategoryPicker({ locale, categories }: Props) {
   const router = useRouter();
 
   return (
@@ -29,8 +28,11 @@ export function CategoryPicker({ locale, engineeringCount, islamCount }: Props) 
           <option value="" disabled>
             Select category
           </option>
-          <option value="engineering">Engineering ({engineeringCount})</option>
-          <option value="islam">Islam ({islamCount})</option>
+          {categories.map((c) => (
+            <option key={c.slug} value={c.slug}>
+              {c.title} ({c.count})
+            </option>
+          ))}
         </select>
       </div>
     </div>

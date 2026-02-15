@@ -72,11 +72,11 @@ export const getRelatedPosts = cache(
 );
 
 export const getAllSlugs = cache(async () => {
-  const entries: { locale: "en" | "fa"; slug: string; category: BlogCategory }[] = [];
+  const entries: { locale: "en" | "fa"; slug: string; category: string }[] = [];
   for (const locale of locales) {
     const files = await listPostFiles(locale);
     files.forEach((f) =>
-      entries.push({ locale, slug: f.name.replace(/\.mdx$/, ""), category: f.category as BlogCategory }),
+      entries.push({ locale, slug: f.name.replace(/\.mdx$/, ""), category: f.category }),
     );
   }
   return entries;
@@ -111,12 +111,12 @@ export const getAuthor = cache(async (id = "mobin") => {
 const islamMatcher = (tag: string) =>
   tag.toLowerCase() === "islam" || tag.toLowerCase() === "اسلام";
 
-export type BlogCategory = "engineering" | "islam";
+export type BlogCategory = string;
 
 export function categorizePost(post: Post) {
   if ((post as any).category) return (post as any).category as BlogCategory;
   const hasIslam = (post.tags ?? []).some(islamMatcher);
-  return hasIslam ? "islam" : "engineering";
+  return hasIslam ? "islam" : "general";
 }
 
 export function filterByCategory(posts: Post[], category: BlogCategory) {

@@ -62,6 +62,12 @@ export async function getAuthorFile(id = "mobin") {
   return JSON.parse(decodeContent(data.content as string));
 }
 
+export async function getCategoriesFile() {
+  const data = await githubFetch("categories/categories.json");
+  if (!data?.content) return null;
+  return JSON.parse(decodeContent(data.content as string));
+}
+
 export function assetUrl(relativePath: string) {
   if (!relativePath) return undefined;
   if (relativePath.startsWith("http")) return relativePath;

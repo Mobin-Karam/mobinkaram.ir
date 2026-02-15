@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SectionHeading, Card } from "@/components/ui/primitives";
 import { getPostIndex, getUniqueBlogTags, categorizePost } from "@/lib/blog";
+import { getCategories } from "@/lib/categories";
 import type { Locale } from "@/i18n/config";
 import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { BlogHero } from "@/components/blog/blog-hero";
@@ -19,6 +20,7 @@ export default async function BlogIndex({
   const { locale } = await params;
   const posts = await getPostIndex(locale as "en" | "fa");
   const tags = await getUniqueBlogTags(locale as "en" | "fa");
+  const categories = await getCategories();
 
   if (!posts.length) {
     return (
@@ -29,13 +31,14 @@ export default async function BlogIndex({
   }
 
   const [featured, ...rest] = posts;
+  const categoriesWithCounts = categories.map((c) => ({
+    ...c,
+    count: posts.filter((p) => (p as any).category === c.slug || categorizePost(p) === c.slug).length,
+  }));
   const newCount = posts.filter((p) => {
     const diff = Date.now() - Date.parse(p.date);
     return diff <= 4 * 24 * 60 * 60 * 1000;
   }).length;
-
-  const islamPosts = posts.filter((p) => categorizePost(p) === "islam");
-  const engineeringPosts = posts.filter((p) => categorizePost(p) === "engineering");
 
   const now = Date.now();
   const daysAgo = (days: number) => now - days * 24 * 60 * 60 * 1000;
@@ -59,32 +62,25 @@ export default async function BlogIndex({
       />
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>
         <div className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
-            <Card className="p-5">
-              <SectionHeading eyebrow="Category" title="Engineering" />
-              <p className="text-sm text-[color:var(--muted)]">
-                Systems, product, and delivery writing. {engineeringPosts.length} posts.
-              </p>
-              <Link
-                href={`/${locale}/blog/engineering`}
-                className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
-              >
-                View engineering
-              </Link>
-            </Card>
-
-            <Card className="p-5">
-              <SectionHeading eyebrow="Category" title="Islam" />
-              <p className="text-sm text-[color:var(--muted)]">
-                Faith, practice, and reflections. {islamPosts.length} posts.
-              </p>
-              <Link
-                href={`/${locale}/blog/islam`}
-                className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
-              >
-                View Islam
-              </Link>
-            </Card>
+          <div className="grid gap-4 md:grid-cols-2">
+            {categoriesWithCounts.map((c) => (
+              <Card key={c.slug} className="p-5">
+                <SectionHeading
+                  eyebrow="Category"
+                  title={c.title?.[locale] ?? c.title?.en ?? c.slug}
+                  description={c.description?.[locale] ?? c.description?.en ?? ""}
+                />
+                <p className="text-sm text-[color:var(--muted)]">
+                  {c.count} posts available.
+                </p>
+                <Link
+                  href={`/${locale}/blog/${c.slug}`}
+                  className="mt-3 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1 text-sm font-semibold text-[color:var(--accent-strong)] hover:-translate-y-0.5 transition"
+                >
+                  View {c.title?.[locale] ?? c.title?.en ?? c.slug}
+                </Link>
+              </Card>
+            ))}
           </div>
 
           <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
@@ -126,8 +122,11 @@ export default async function BlogIndex({
 
           <CategoryPicker
             locale={locale}
-            engineeringCount={engineeringPosts.length}
-            islamCount={islamPosts.length}
+            categories={categoriesWithCounts.map((c) => ({
+              slug: c.slug,
+              title: c.title?.[locale] ?? c.title?.en ?? c.slug,
+              count: c.count,
+            }))}
           />
         </div>
       </LazySection>
