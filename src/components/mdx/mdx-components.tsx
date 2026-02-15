@@ -1,4 +1,5 @@
 import type { MDXComponents } from "mdx/types";
+import { CodeCopyButton } from "@/components/mdx/code-copy";
 
 export const mdxComponents: MDXComponents = {
   h1: (props) => (
@@ -57,10 +58,10 @@ export const mdxComponents: MDXComponents = {
     />
   ),
   pre: (props) => (
-    <pre
-      className="mb-6 mt-4 overflow-x-auto rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-5 text-[13px] leading-7 text-[color:var(--foreground)] shadow-inner"
-      {...props}
-    />
+    <pre className="group relative mb-6 mt-4 overflow-x-auto rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface-strong)] p-5 text-[13px] leading-7 text-[color:var(--foreground)] shadow-inner">
+      <CodeCopyButton />
+      <code {...props} />
+    </pre>
   ),
   hr: (props) => (
     <hr className="my-8 border-t border-[color:var(--border)]" {...props} />
