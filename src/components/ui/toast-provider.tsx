@@ -41,10 +41,12 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 
   const value = useMemo(() => ({ toast }), [toast]);
 
+  const shouldRender = typeof document !== "undefined" && toasts.length > 0;
+
   return (
     <ToastContext.Provider value={value}>
       {children}
-      {typeof document !== "undefined"
+      {shouldRender
         ? createPortal(
             <div className="fixed bottom-16 right-4 z-50 flex max-w-sm flex-col gap-3 md:right-6">
               {toasts.map((t) => (
