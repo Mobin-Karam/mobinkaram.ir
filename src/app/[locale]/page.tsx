@@ -38,63 +38,21 @@ export default async function LocaleHome({
   const bannerSlides = [
     {
       id: "koonj",
-      content: (
-        <div className="flex items-center gap-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/banners/koonj.svg"
-            alt="Koonj roadmap"
-            className="h-[140px] w-full rounded-2xl border border-[color:var(--border)] object-cover md:h-[180px]"
-            loading="lazy"
-          />
-          <div className="flex flex-col gap-1">
-            <span className="pill text-[10px]">Koonj</span>
-            <p className="text-sm font-semibold text-[color:var(--foreground)]">
-              Koonj Phase 2 is live. Plugins and analytics are in progress.
-            </p>
-          </div>
-        </div>
-      ),
+      imageSrc: "/banners/koonj.svg",
+      imageAlt: "Koonj roadmap banner",
+      href: `/${locale}/koonj-status`,
     },
     {
       id: "rss",
-      content: (
-        <div className="flex items-center gap-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/banners/rss.svg"
-            alt="RSS feed"
-            className="h-[140px] w-full rounded-2xl border border-[color:var(--border)] object-cover md:h-[180px]"
-            loading="lazy"
-          />
-          <div className="flex flex-col gap-1">
-            <span className="pill text-[10px]">RSS</span>
-            <p className="text-sm text-[color:var(--foreground)]">
-              Get updates from /rss.xml for new logs, lab notes, and projects.
-            </p>
-          </div>
-        </div>
-      ),
+      imageSrc: "/banners/rss.svg",
+      imageAlt: "RSS banner",
+      href: "/rss.xml",
     },
     {
       id: "lab",
-      content: (
-        <div className="flex items-center gap-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/banners/lab.svg"
-            alt="Engineering Lab"
-            className="h-[140px] w-full rounded-2xl border border-[color:var(--border)] object-cover md:h-[180px]"
-            loading="lazy"
-          />
-          <div className="flex flex-col gap-1">
-            <span className="pill text-[10px]">Lab</span>
-            <p className="text-sm text-[color:var(--foreground)]">
-              Fresh navigation and state-model experiments are in the Lab now.
-            </p>
-          </div>
-        </div>
-      ),
+      imageSrc: "/banners/lab.svg",
+      imageAlt: "Engineering Lab banner",
+      href: `/${locale}/lab`,
     },
   ];
 

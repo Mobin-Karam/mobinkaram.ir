@@ -6,20 +6,32 @@ import clsx from "clsx";
 
 export type Slide = {
   id: string;
-  content: React.ReactNode;
+  imageSrc: string;
+  imageAlt: string;
+  href?: string;
 };
 
-export function AnnouncementBanner({ slides }: { slides: Slide[] }) {
+type Props = {
+  slides: Slide[];
+  height?: { base: number; md: number };
+  autoPlayMs?: number;
+};
+
+export function AnnouncementBanner({
+  slides,
+  height = { base: 220, md: 260 },
+  autoPlayMs = 4200,
+}: Props) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
 
   useEffect(() => {
-    if (!playing) return;
+    if (!playing || slides.length < 2) return;
     const id = window.setInterval(() => {
       setIndex((i) => (i + 1) % slides.length);
-    }, 4200);
+    }, autoPlayMs);
     return () => window.clearInterval(id);
-  }, [playing, slides.length]);
+  }, [playing, slides.length, autoPlayMs]);
 
   if (!slides.length) return null;
 
@@ -28,29 +40,46 @@ export function AnnouncementBanner({ slides }: { slides: Slide[] }) {
 
   return (
     <div className="mb-5 w-full overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--glow)]">
-      <div className="relative flex items-center">
+      <div className="relative">
+        <div
+          className="relative w-full"
+          style={{
+            height: `${height.base}px`,
+          }}
+        >
+          {slides.map((slide, i) => (
+            <a
+              key={slide.id}
+              href={slide.href || "#"}
+              className={clsx(
+                "absolute inset-0 block transition-all duration-500 ease-out",
+                i === index
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-full opacity-0 pointer-events-none",
+              )}
+              style={{ minHeight: `${height.base}px` }}
+              target={slide.href?.startsWith("http") ? "_blank" : undefined}
+              rel="noreferrer"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={slide.imageSrc}
+                alt={slide.imageAlt}
+                className="h-full w-full rounded-2xl border border-[color:var(--border)] object-cover"
+                loading="lazy"
+              />
+            </a>
+          ))}
+        </div>
         <button
-          className="hidden p-3 text-[color:var(--muted)] transition hover:text-[color:var(--foreground)] md:block"
+          className="absolute left-2 top-1/2 -translate-y-1/2 hidden rounded-full bg-[color:var(--surface)]/80 p-2 text-[color:var(--muted)] shadow-md transition hover:text-[color:var(--foreground)] md:block"
           onClick={prev}
           aria-label="Previous announcement"
         >
           <ChevronLeft size={18} />
         </button>
-        <div className="flex-1 px-4 py-3">
-          {slides.map((slide, i) => (
-            <div
-              key={slide.id}
-              className={clsx(
-                "min-h-[120px] md:min-h-[160px] transition-opacity duration-500",
-                i === index ? "opacity-100" : "opacity-0 hidden",
-              )}
-            >
-              {slide.content}
-            </div>
-          ))}
-        </div>
         <button
-          className="hidden p-3 text-[color:var(--muted)] transition hover:text-[color:var(--foreground)] md:block"
+          className="absolute right-2 top-1/2 -translate-y-1/2 hidden rounded-full bg-[color:var(--surface)]/80 p-2 text-[color:var(--muted)] shadow-md transition hover:text-[color:var(--foreground)] md:block"
           onClick={next}
           aria-label="Next announcement"
         >
@@ -64,7 +93,7 @@ export function AnnouncementBanner({ slides }: { slides: Slide[] }) {
               key={i}
               onClick={() => setIndex(i)}
               className={clsx(
-                "h-2 w-2 rounded-full transition",
+                "h-2 w-6 rounded-full transition",
                 i === index
                   ? "bg-[color:var(--accent-strong)]"
                   : "bg-[color:var(--border)]",
