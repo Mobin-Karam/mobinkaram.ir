@@ -18,6 +18,7 @@ import type { Locale } from "@/i18n/config";
 const items = [
   { key: "home", label: "Home", icon: Home, href: "" },
   { key: "engineer", label: "Engineer", icon: LayoutPanelLeft, href: "/build" },
+  { key: "blog", label: "Blog", icon: PanelsTopLeft, href: "/blog" },
   { key: "profile", label: "Profile", icon: UserRound, href: "/profile" },
   { key: "tracker", label: "Tracker", icon: Flag, href: "/koonj-status" },
   { key: "contact", label: "Contact", icon: Mail, href: "/contact" },

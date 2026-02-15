@@ -49,6 +49,24 @@ export const getPostIndex = cache(async (locale: "en" | "fa") => {
   return loadIndex(locale);
 });
 
+export const getRelatedPosts = cache(
+  async (locale: "en" | "fa", slug: string, tags: string[] = []) => {
+    const posts = await loadIndex(locale);
+    return posts
+      .filter((p) => p.slug !== slug)
+      .map((p) => ({
+        post: p,
+        score: p.tags?.reduce(
+          (acc, tag) => acc + (tags.includes(tag) ? 1 : 0),
+          0,
+        ) ?? 0,
+      }))
+      .sort((a, b) => b.score - a.score || b.post.date.localeCompare(a.post.date))
+      .slice(0, 3)
+      .map((x) => x.post);
+  },
+);
+
 export const getAllSlugs = cache(async () => {
   const entries: { locale: "en" | "fa"; slug: string }[] = [];
   for (const locale of locales) {

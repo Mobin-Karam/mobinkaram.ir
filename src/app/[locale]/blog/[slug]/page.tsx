@@ -5,9 +5,10 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { CoverImage } from "@/components/ui/cover-image";
 import { PostActions } from "@/components/ui/post-actions";
 import { SectionBackLink } from "@/components/ui/section-back-link";
-import { getAllSlugs, getPostBySlug } from "@/lib/blog";
+import { getAllSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { siteUrl, articleLd } from "@/lib/seo";
 import type { Locale } from "@/i18n/config";
+import Link from "next/link";
 
 export const revalidate = 1800;
 
@@ -54,6 +55,16 @@ export default async function BlogPostPage({
   const result = await getPostBySlug(locale as "en" | "fa", slug);
   if (!result) notFound();
   const { content, frontmatter } = result;
+  const related = await getRelatedPosts(
+    locale as "en" | "fa",
+    frontmatter.slug,
+    frontmatter.tags ?? [],
+  );
+  const postsInLocale = (await getAllSlugs()).filter((p) => p.locale === locale);
+  const slugs = postsInLocale.map((p) => p.slug);
+  const currentIndex = slugs.indexOf(frontmatter.slug);
+  const prevSlug = currentIndex > 0 ? slugs[currentIndex - 1] : null;
+  const nextSlug = currentIndex >= 0 && currentIndex < slugs.length - 1 ? slugs[currentIndex + 1] : null;
   const ld = articleLd({
     title: frontmatter.title,
     description: frontmatter.description,
@@ -97,6 +108,53 @@ export default async function BlogPostPage({
           <div className="mdx-content prose max-w-none">{content}</div>
         </div>
       </LazySection>
+
+      <div className="grid gap-3 md:grid-cols-2">
+        <Link
+          href={`/${locale}/blog/${prevSlug ?? frontmatter.slug}`}
+          className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 hover:-translate-y-0.5 hover:shadow-md transition block text-left"
+        >
+          <p className="text-[10px] uppercase text-[color:var(--muted)]">Previous</p>
+          <p className="text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
+            {prevSlug ?? frontmatter.slug}
+          </p>
+        </Link>
+        <Link
+          href={`/${locale}/blog/${nextSlug ?? frontmatter.slug}`}
+          className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 hover:-translate-y-0.5 hover:shadow-md transition block text-right"
+        >
+          <p className="text-[10px] uppercase text-[color:var(--muted)]">Next</p>
+          <p className="text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
+            {nextSlug ?? frontmatter.slug}
+          </p>
+        </Link>
+      </div>
+
+      {related.length ? (
+        <div className="card p-5">
+          <SectionHeading eyebrow="Related" title="You might also like" />
+          <div className="mt-3 grid gap-3 md:grid-cols-3">
+            {related.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/${locale}/blog/${post.slug}`}
+                className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-3 hover:-translate-y-0.5 hover:shadow-md transition block"
+              >
+                <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
+                  <span>{post.date}</span>
+                  <span>{post.readingTime ?? 5} min</span>
+                </div>
+                <p className="text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
+                  {post.title}
+                </p>
+                <p className="text-xs text-[color:var(--muted)] line-clamp-2">
+                  {post.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </article>
   );
 }
