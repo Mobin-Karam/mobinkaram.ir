@@ -109,9 +109,22 @@ export function BlogList({ posts, tags, locale }: Props) {
             href={`/${locale}/blog/${post.slug}`}
             className="group relative overflow-hidden rounded-2xl border border-[color:var(--border)] bg-gradient-to-br from-[color:var(--surface)] via-[color:var(--background)] to-[color:var(--surface)] p-4 shadow-[var(--glow)] transition hover:-translate-y-0.5 hover:shadow-lg"
           >
-            <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-10">
-              <div className="h-full w-full bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.25),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(16,185,129,0.20),transparent_35%)]" />
-            </div>
+            {post.cover ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={post.cover}
+                alt={post.title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover opacity-10 transition duration-500 group-hover:opacity-15"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+              />
+            ) : (
+              <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-10">
+                <div className="h-full w-full bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.25),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(16,185,129,0.20),transparent_35%)]" />
+              </div>
+            )}
             <div className="relative z-10 space-y-2">
               <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
                 <span>{post.date}</span>
