@@ -92,31 +92,60 @@ export default async function BlogIndex({
             </Card>
           </div>
 
-          {islamPosts.length ? (
+          <div className="grid gap-4 md:grid-cols-2">
             <Card className="p-5">
-              <SectionHeading eyebrow="Focus" title="Islam articles" />
-              <div className="mt-3 grid gap-3 md:grid-cols-3">
-                {islamPosts.slice(0, 6).map((post) => (
-                  <Link
-                    key={post.slug}
-                    href={`/${locale}/blog/${post.slug}`}
-                    className="rounded-xl border border-[color:var(--border)] bg-[color:var(--background)] p-3 hover:-translate-y-0.5 hover:shadow-md transition block"
-                  >
-                    <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
-                      <span>{post.date}</span>
-                      <span>{post.readingTime ?? 5} min</span>
-                    </div>
-                    <p className="mt-1 text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
-                      {post.title}
-                    </p>
-                    <p className="text-xs text-[color:var(--muted)] line-clamp-2">
-                      {post.description}
-                    </p>
-                  </Link>
-                ))}
+              <SectionHeading eyebrow="Category" title="Engineering" />
+              <div className="mt-3 grid gap-3">
+                {rest
+                  .filter((p) => !(p.tags ?? []).some((t) => t.toLowerCase() === "islam" || t.toLowerCase() === "اسلام"))
+                  .slice(0, 6)
+                  .map((post) => (
+                    <Link
+                      key={post.slug}
+                      href={`/${locale}/blog/${post.slug}`}
+                      className="rounded-xl border border-[color:var(--border)] bg-[color:var(--background)] p-3 hover:-translate-y-0.5 hover:shadow-md transition block"
+                    >
+                      <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
+                        <span>{post.date}</span>
+                        <span>{post.readingTime ?? 5} min</span>
+                      </div>
+                      <p className="mt-1 text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
+                        {post.title}
+                      </p>
+                      <p className="text-xs text-[color:var(--muted)] line-clamp-2">
+                        {post.description}
+                      </p>
+                    </Link>
+                  ))}
               </div>
             </Card>
-          ) : null}
+
+            {islamPosts.length ? (
+              <Card className="p-5">
+                <SectionHeading eyebrow="Category" title="Islam" />
+                <div className="mt-3 grid gap-3">
+                  {islamPosts.slice(0, 6).map((post) => (
+                    <Link
+                      key={post.slug}
+                      href={`/${locale}/blog/${post.slug}`}
+                      className="rounded-xl border border-[color:var(--border)] bg-[color:var(--background)] p-3 hover:-translate-y-0.5 hover:shadow-md transition block"
+                    >
+                      <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
+                        <span>{post.date}</span>
+                        <span>{post.readingTime ?? 5} min</span>
+                      </div>
+                      <p className="mt-1 text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
+                        {post.title}
+                      </p>
+                      <p className="text-xs text-[color:var(--muted)] line-clamp-2">
+                        {post.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </Card>
+            ) : null}
+          </div>
 
           <BlogList posts={rest} tags={tags} locale={locale} />
         </div>
