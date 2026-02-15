@@ -1,8 +1,6 @@
 import { SectionHeading } from "@/components/ui/section-heading";
 import type { Locale } from "@/i18n/config";
-import { BackButton } from "@/components/ui/back-button";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { SectionBackLink } from "@/components/ui/section-back-link";
 
 export default async function AboutPage({
   params,
@@ -30,20 +28,13 @@ export default async function AboutPage({
 
   return (
     <div className="space-y-6">
-      <Link
-        href={`/${locale}/build`}
-        className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
-      >
-        <ArrowLeft size={14} />
-        Back to Profile
-      </Link>
+      <SectionBackLink href={`/${locale}/profile`} label="Back to profile" />
       <div className="flex items-center justify-between gap-3">
         <SectionHeading
           eyebrow="About"
           title="How I got here"
           description="Founder version, not a biography."
         />
-        <BackButton />
       </div>
 
       <div className="card p-5 space-y-4">

@@ -4,7 +4,7 @@ import { techEvolution } from "@/data/tech-evolution";
 import type { Locale } from "@/i18n/config";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
-import { BackButton } from "@/components/ui/back-button";
+import { SectionBackLink } from "@/components/ui/section-back-link";
 import {
   SiTypescript,
   SiNextdotjs,
@@ -14,8 +14,6 @@ import {
   SiTailwindcss,
   SiPlausibleanalytics,
 } from "react-icons/si";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 
 function stackIcon(name: string) {
   const n = name.toLowerCase();
@@ -42,20 +40,13 @@ export default async function StackPage({
   const { locale } = await params;
   return (
     <div className="space-y-6">
-      <Link
-        href={`/${locale}/build`}
-        className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
-      >
-        <ArrowLeft size={14} />
-        Back to Profile
-      </Link>
+      <SectionBackLink href={`/${locale}/profile`} label="Back to profile" />
       <div className="flex items-center justify-between gap-3">
         <SectionHeading
           eyebrow="Stack"
           title="Why I use these tools"
           description="Reasoning first, not just a skills list."
         />
-        <BackButton />
       </div>
       <LazySection minHeight={260} skeleton={<Skeleton className="h-64" />}>
         <div className="grid gap-3 md:grid-cols-2">

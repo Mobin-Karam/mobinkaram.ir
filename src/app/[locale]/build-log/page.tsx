@@ -5,6 +5,7 @@ import Link from "next/link";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BackButton } from "@/components/ui/back-button";
+import { SectionBackLink } from "@/components/ui/section-back-link";
 
 export default async function BuildLogPage({
   params,
@@ -16,6 +17,7 @@ export default async function BuildLogPage({
 
   return (
     <div className="space-y-6">
+      <SectionBackLink href={`/${locale}/build`} label="Back to engineer hub" />
       <div className="flex items-center justify-between gap-3">
         <SectionHeading
           eyebrow="Build log"
