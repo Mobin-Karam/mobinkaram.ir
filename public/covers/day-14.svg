@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg14" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1727"/>
+      <stop offset="1" stop-color="#132742"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg14)"/>
+  <text x="120" y="200" fill="#c7d2fe" font-family="Inter, 'Segoe UI', sans-serif" font-size="52" font-weight="700">Build Log · Day 14</text>
+  <text x="120" y="260" fill="#9ca3af" font-family="Inter, 'Segoe UI', sans-serif" font-size="26">Fixing auth architecture & navigation</text>
+  <text x="120" y="340" fill="#a5b4fc" font-family="Inter, 'Segoe UI', sans-serif" font-size="22">Prefetch · Guard rails · Session hardening</text>
+  <rect x="120" y="380" width="420" height="4" fill="#4f46e5"/>
+</svg>

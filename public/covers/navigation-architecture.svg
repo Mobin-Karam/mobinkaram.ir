@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1f2937"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grad)"/>
+  <g stroke="#7c93ff" stroke-width="3" fill="none" opacity="0.6">
+    <path d="M200 160h250v120H200z"/>
+    <path d="M750 160h250v120H750z"/>
+    <path d="M475 420h250v120H475z"/>
+    <path d="M450 220h100"/>
+    <path d="M650 220h100"/>
+    <path d="M600 280v120"/>
+  </g>
+  <text x="190" y="130" fill="#c7d2fe" font-family="Inter, 'Segoe UI', sans-serif" font-size="42" font-weight="700">Navigation architecture</text>
+  <text x="190" y="190" fill="#9ca3af" font-family="Inter, 'Segoe UI', sans-serif" font-size="24">Hybrid tabs + modals · deep links · state sync</text>
+</svg>

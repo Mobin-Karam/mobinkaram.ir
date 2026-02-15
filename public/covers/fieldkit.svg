@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#2f3f7f"/>
+    </linearGradient>
+    <radialGradient id="p" cx="30%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#7c93ff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#7c93ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect width="1200" height="630" fill="url(#p)"/>
+  <rect x="120" y="150" width="960" height="330" rx="26" fill="#0b1021" opacity="0.65" stroke="#7c93ff" stroke-width="2"/>
+  <text x="150" y="250" fill="#c7d2fe" font-family="Inter, 'Segoe UI', sans-serif" font-size="42" font-weight="700">FieldKit — field ops dashboard</text>
+  <text x="150" y="310" fill="#9ca3af" font-family="Inter, 'Segoe UI', sans-serif" font-size="26">Ticket routing · SLA health · Mapbox overlays</text>
+  <text x="150" y="380" fill="#c084fc" font-family="Inter, 'Segoe UI', sans-serif" font-size="24">Next.js · Supabase · Edge Functions</text>
+</svg>
