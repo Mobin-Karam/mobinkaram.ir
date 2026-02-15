@@ -1,4 +1,4 @@
-import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionHeading } from "@/components/ui/primitives";
 import type { Locale } from "@/i18n/config";
 import { SectionBackLink } from "@/components/ui/section-back-link";
 

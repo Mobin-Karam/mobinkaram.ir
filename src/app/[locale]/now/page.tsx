@@ -1,9 +1,7 @@
-﻿import { SectionHeading } from "@/components/ui/section-heading";
+﻿import { SectionHeading, LazySection, Skeleton } from "@/components/ui/primitives";
 import { getNowBlocks } from "@/data/now";
 import type { Locale } from "@/i18n/config";
 import { GitHubActivity } from "@/components/widgets/github-activity";
-import { LazySection } from "@/components/ui/lazy-section";
-import { Skeleton } from "@/components/ui/skeleton";
 import { SectionBackLink } from "@/components/ui/section-back-link";
 
 export default async function NowPage({

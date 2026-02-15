@@ -1,9 +1,8 @@
-import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionHeading } from "@/components/ui/primitives";
 import { stackReasons } from "@/data/stack";
 import { techEvolution } from "@/data/tech-evolution";
 import type { Locale } from "@/i18n/config";
-import { LazySection } from "@/components/ui/lazy-section";
-import { Skeleton } from "@/components/ui/skeleton";
+import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { SectionBackLink } from "@/components/ui/section-back-link";
 import {
   SiTypescript,
