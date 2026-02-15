@@ -121,15 +121,22 @@ export function AnnouncementBanner({
               target={slide.href?.startsWith("http") ? "_blank" : undefined}
               rel="noreferrer"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={slide.mobileImageSrc ?? slide.imageSrc}
-                srcSet={`${slide.mobileImageSrc ?? slide.imageSrc} 640w, ${slide.imageSrc} 1200w`}
-                sizes="100vw"
-                alt={slide.imageAlt}
-                className="h-full w-full rounded-2xl border border-[color:var(--border)] object-cover"
-                loading="lazy"
-              />
+              <picture>
+                {slide.mobileImageSrc ? (
+                  <source
+                    media="(max-width: 767px)"
+                    srcSet={slide.mobileImageSrc}
+                  />
+                ) : null}
+                <source media="(min-width: 768px)" srcSet={slide.imageSrc} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={slide.mobileImageSrc ?? slide.imageSrc}
+                  alt={slide.imageAlt}
+                  className="h-full w-full rounded-2xl border border-[color:var(--border)] object-cover"
+                  loading="lazy"
+                />
+              </picture>
             </a>
           ))}
         </div>
