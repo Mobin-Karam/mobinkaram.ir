@@ -6,6 +6,7 @@ import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { BlogHero } from "@/components/blog/blog-hero";
 import { BlogList } from "@/components/blog/blog-list";
 import { Rss } from "lucide-react";
+import { BlogStats } from "@/components/blog/blog-stats";
 
 export const revalidate = 1800;
 
@@ -32,6 +33,19 @@ export default async function BlogIndex({
     return diff <= 4 * 24 * 60 * 60 * 1000;
   }).length;
 
+  const now = Date.now();
+  const daysAgo = (days: number) => now - days * 24 * 60 * 60 * 1000;
+  const countSince = (days?: number | null) =>
+    posts.filter((p) => (days ? Date.parse(p.date) >= daysAgo(days) : true)).length;
+  const stats = [
+    { label: "7 days", days: 7, count: countSince(7) },
+    { label: "30 days", days: 30, count: countSince(30) },
+    { label: "60 days", days: 60, count: countSince(60) },
+    { label: "90 days", days: 90, count: countSince(90) },
+    { label: "1 year", days: 365, count: countSince(365) },
+    { label: "All time", days: null, count: posts.length },
+  ];
+
   return (
     <div className="space-y-6">
       <SectionHeading
@@ -43,7 +57,7 @@ export default async function BlogIndex({
         <div className="space-y-4">
           <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
             <BlogHero locale={locale} post={featured as any} />
-            <Card className="flex flex-col gap-3 p-5">
+            <Card className="flex flex-col gap-4 p-5">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold text-[color:var(--foreground)]">Blog stats</p>
                 <Link
@@ -56,24 +70,15 @@ export default async function BlogIndex({
                   RSS
                 </Link>
               </div>
-              <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="rounded-xl border border-[color:var(--border)] bg-[color:var(--background)] p-3">
-                  <p className="text-[11px] uppercase text-[color:var(--muted)]">Posts</p>
-                  <p className="text-2xl font-semibold text-[color:var(--foreground)]">
-                    {posts.length}
-                  </p>
-                </div>
-                <div className="rounded-xl border border-[color:var(--border)] bg-[color:var(--background)] p-3">
-                  <p className="text-[11px] uppercase text-[color:var(--muted)]">New</p>
-                  <p className="text-2xl font-semibold text-[color:var(--foreground)]">
-                    {newCount}
-                  </p>
-                </div>
+              <BlogStats stats={stats} />
+              <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--background)] p-3 text-sm">
+                <p className="text-[11px] uppercase text-[color:var(--muted)]">New posts</p>
+                <p className="text-2xl font-semibold text-[color:var(--foreground)]">{newCount}</p>
               </div>
               <div className="space-y-2">
                 <p className="text-[11px] uppercase text-[color:var(--muted)]">Topics</p>
                 <div className="flex flex-wrap gap-2">
-                  {tags.slice(0, 10).map((tag) => (
+                  {tags.slice(0, 12).map((tag) => (
                     <span key={tag} className="pill text-[11px]">
                       {tag}
                     </span>

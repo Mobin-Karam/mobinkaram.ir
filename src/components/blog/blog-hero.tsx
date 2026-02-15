@@ -1,3 +1,5 @@
+ "use client";
+
 import Link from "next/link";
 import clsx from "clsx";
 import { ArrowUpRight } from "lucide-react";
@@ -28,6 +30,9 @@ export function BlogHero({ locale, post }: Props) {
           alt={post.title}
           className="absolute inset-0 h-full w-full object-cover opacity-50 transition duration-500 group-hover:opacity-70"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.style.display = "none";
+          }}
         />
       ) : null}
       <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--background)] via-[color:var(--background)]/85 to-transparent" />
