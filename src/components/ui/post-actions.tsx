@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Clipboard,
   Download,
@@ -11,6 +11,10 @@ import {
   MoreHorizontal,
   Send,
 } from "lucide-react";
+import { useClickOutside } from "@/hooks/use-click-outside";
+import { useCopyToast } from "@/hooks/use-copy-toast";
+import { useShare } from "@/hooks/use-share";
+import { slugify, escapeHtml } from "@/lib/strings";
 
 function grabPostText() {
   const el = document.querySelector(".mdx-content");
@@ -18,26 +22,17 @@ function grabPostText() {
 }
 
 export function PostActions({ title }: { title: string }) {
-  const [status, setStatus] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
-  const shareUrl =
-    typeof window !== "undefined" ? window.location.href : "";
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (!(e.target as HTMLElement)?.closest?.("[data-post-actions]")) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("click", handler);
-    return () => document.removeEventListener("click", handler);
-  }, []);
+  const { status, show } = useCopyToast();
+  const { share } = useShare();
+  const containerRef = useRef<HTMLDivElement>(null);
+  useClickOutside(containerRef, () => setOpen(false));
 
   const copyText = async (asMd = false) => {
     const text = grabPostText();
     if (!text) return;
     await navigator.clipboard.writeText(asMd ? text : text);
-    setStatus("Copied to clipboard");
-    setTimeout(() => setStatus(null), 1800);
+    show("Copied to clipboard");
   };
 
   const download = (ext: "txt" | "md") => {
@@ -84,24 +79,14 @@ export function PostActions({ title }: { title: string }) {
   };
 
   const shareSocial = (platform: "x" | "telegram" | "reddit") => {
-    const text = `${title} — ${shareUrl}`;
-    const encodedText = encodeURIComponent(text);
-    const encodedUrl = encodeURIComponent(shareUrl);
-    let url = "";
-    if (platform === "x") {
-      url = `https://twitter.com/intent/tweet?text=${encodedText}`;
-    } else if (platform === "telegram") {
-      url = `https://t.me/share/url?url=${encodedUrl}&text=${encodedText}`;
-    } else {
-      url = `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedText}`;
-    }
-    window.open(url, "_blank", "noopener,noreferrer");
+    share(platform, title);
   };
 
   return (
     <div
       className="relative mb-3 flex flex-wrap items-center gap-2 text-xs"
       data-post-actions
+      ref={containerRef}
     >
       <button
         onClick={() => copyText(true)}
