@@ -31,6 +31,8 @@ export function MobileNav({ locale }: { locale: Locale }) {
       ? pathname === `/${locale}` || pathname === `/${locale}/`
       : pathname.startsWith(`/${locale}${item.href}`),
   );
+  const indicatorX =
+    activeIndex >= 0 ? (activeIndex * 100) / items.length : 0;
   return (
     <nav
       className="fixed left-1/2 z-30 flex w-[min(96%,1100px)] -translate-x-1/2 items-center justify-around overflow-hidden rounded-full border border-white/25 bg-gradient-to-r from-[color:var(--surface)]/92 via-white/30 to-[color:var(--surface)]/92 px-3 py-2 shadow-[0_18px_45px_-24px_rgba(0,0,0,0.55)] backdrop-blur-xl backdrop-saturate-150 ring-1 ring-black/5 md:hidden"
@@ -41,7 +43,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
         className="absolute inset-y-1 left-0 z-0 rounded-full bg-white/12 blur-[2px] transition-[transform,width] duration-250 ease-out"
         style={{
           width: `${100 / items.length}%`,
-          transform: `translateX(${(activeIndex >= 0 ? activeIndex : 0) * 100}%)`,
+          transform: `translateX(${indicatorX}%)`,
         }}
       />
       {items.map((item) => {

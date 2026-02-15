@@ -150,13 +150,19 @@ export function SiteHeader({ locale }: { locale: Locale }) {
               key={item.key}
               href={path}
             className={clsx(
-                "pill nav-btn group flex items-center gap-2 hover:shadow-md transition hover:-translate-y-0.5",
+                "relative overflow-hidden pill nav-btn group flex items-center gap-2 hover:shadow-md transition hover:-translate-y-0.5",
                 active && "border-[color:var(--accent)] text-[color:var(--foreground)] shadow-sm",
               )}
               onClick={() => setOpen(false)}
             >
               <Icon size={15} className="text-[color:var(--muted)] group-hover:text-[color:var(--foreground)] transition" />
               {t(`nav.${item.key}`)}
+              <span
+                className={clsx(
+                  "absolute inset-x-2 -bottom-[6px] h-[2px] rounded-full bg-[color:var(--accent-strong)] transition-transform duration-300",
+                  active ? "scale-x-100" : "scale-x-0",
+                )}
+              />
             </Link>
           );
         })}
