@@ -34,6 +34,9 @@ export default async function ProfilePage({
     { label: "Now", href: `/${locale}/now`, desc: "Live focus and activity" },
     { label: "Stack", href: `/${locale}/stack`, desc: "Tools and reasoning" },
     { label: "About", href: `/${locale}/about`, desc: "Philosophy and goals" },
+    { label: "Architecture", href: `/${locale}/architecture`, desc: "System design snapshots" },
+    { label: "Security", href: `/${locale}/security`, desc: "Secure-by-default habits" },
+    { label: "Contact", href: `/${locale}/contact`, desc: "Reach me fast" },
   ];
 
   const iconFor = (name: string) => {
@@ -92,13 +95,13 @@ export default async function ProfilePage({
           </div>
         </div>
       </LazySection>
-      {/* <LazySection minHeight={200} skeleton={<Skeleton className="h-48" />}>
+      <LazySection minHeight={200} skeleton={<Skeleton className="h-48" />}>
         <div className="card p-5 space-y-3">
           <h3 className="text-lg font-semibold text-[color:var(--foreground)]">
-            Now
+            Current focus
           </h3>
           <div className="grid gap-3 md:grid-cols-3">
-            {now.map((block) => (
+            {now.slice(0, 3).map((block) => (
               <div
                 key={block.title}
                 className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-3"
@@ -115,7 +118,7 @@ export default async function ProfilePage({
             ))}
           </div>
         </div>
-      </LazySection> */}
+      </LazySection>
       <LazySection minHeight={220} skeleton={<Skeleton className="h-52" />}>
         <div className="card p-5 space-y-3">
           <h3 className="text-lg font-semibold text-[color:var(--foreground)]">
