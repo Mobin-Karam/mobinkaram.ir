@@ -5,7 +5,7 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { CoverImage } from "@/components/ui/cover-image";
 import { PostActions } from "@/components/ui/post-actions";
 import { SectionBackLink } from "@/components/ui/section-back-link";
-import { getAllSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
+import { getAllSlugs, getPostBySlug, getRelatedPosts, isPostNew } from "@/lib/blog";
 import { siteUrl, articleLd } from "@/lib/seo";
 import type { Locale } from "@/i18n/config";
 import Link from "next/link";
@@ -102,6 +102,9 @@ export default async function BlogPostPage({
           <Pill key={tag}>{tag}</Pill>
         ))}
         <Pill>{frontmatter.readingTime ?? 5} min read</Pill>
+        {isPostNew(frontmatter.date) ? (
+          <Pill className="border-amber-300 bg-amber-50 text-amber-800">New</Pill>
+        ) : null}
       </div>
       <CoverImage title={frontmatter.title} cover={frontmatter.cover} />
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>
@@ -145,6 +148,11 @@ export default async function BlogPostPage({
                   <span>{post.date}</span>
                   <span>{post.readingTime ?? 5} min</span>
                 </div>
+                {isPostNew(post.date) ? (
+                  <span className="mt-1 inline-flex items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
+                    New
+                  </span>
+                ) : null}
                 <p className="text-sm font-semibold text-[color:var(--foreground)] line-clamp-2">
                   {post.title}
                 </p>

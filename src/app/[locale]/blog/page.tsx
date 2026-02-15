@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionHeading } from "@/components/ui/primitives";
-import { getPostIndex } from "@/lib/blog";
+import { getPostIndex, isPostNew } from "@/lib/blog";
 import type { Locale } from "@/i18n/config";
 import { LazySection, Skeleton } from "@/components/ui/primitives";
 
@@ -33,6 +33,11 @@ export default async function BlogIndex({
                 <span>{post.date}</span>
                 <span>{post.readingTime ?? 5} min read</span>
               </div>
+              {isPostNew(post.date) ? (
+                <span className="mt-2 inline-flex items-center gap-1 rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
+                  New
+                </span>
+              ) : null}
               <p className="mt-2 text-sm font-semibold text-[color:var(--foreground)]">
                 {post.title}
               </p>

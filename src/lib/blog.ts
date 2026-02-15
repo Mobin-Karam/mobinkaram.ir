@@ -89,4 +89,10 @@ export const getAuthor = cache(async (id = "mobin") => {
   return getAuthorFile(id);
 });
 
+export function isPostNew(date?: string, days = 4) {
+  if (!date) return false;
+  const diff = Date.now() - Date.parse(date);
+  return diff <= days * 24 * 60 * 60 * 1000;
+}
+
 export const revalidate = revalidateSeconds;
