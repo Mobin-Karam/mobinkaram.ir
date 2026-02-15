@@ -34,9 +34,13 @@ async function loadIndex(locale: "en" | "fa") {
     const slug = file.name.replace(/\.mdx$/, "");
     const source = await getPostFile(locale, slug);
     if (!source) continue;
-    const { frontmatter } = await compilePost(locale, source);
-    if (frontmatter.published === false) continue;
-    posts.push(frontmatter);
+    try {
+      const { frontmatter } = await compilePost(locale, source);
+      if (frontmatter.published === false) continue;
+      posts.push(frontmatter);
+    } catch (err) {
+      console.warn(`[blog] failed to compile ${locale}/${slug}:`, err);
+    }
   }
   if (posts.length === 0) {
     const { frontmatter } = await compilePost(locale, fallbackSource);
@@ -78,7 +82,14 @@ export const getAllSlugs = cache(async () => {
 
 export const getPostBySlug = cache(async (locale: "en" | "fa", slug: string) => {
   const source = await getPostFile(locale, slug);
-  if (source) return compilePost(locale, source);
+  if (source) {
+    try {
+      return await compilePost(locale, source);
+    } catch (err) {
+      console.warn(`[blog] failed to compile ${locale}/${slug}:`, err);
+      return null;
+    }
+  }
   if (slug === fallbackSlug) {
     return compilePost(locale, fallbackSource);
   }
@@ -87,6 +98,13 @@ export const getPostBySlug = cache(async (locale: "en" | "fa", slug: string) => 
 
 export const getAuthor = cache(async (id = "mobin") => {
   return getAuthorFile(id);
+});
+
+export const getUniqueBlogTags = cache(async (locale: "en" | "fa") => {
+  const posts = await loadIndex(locale);
+  return Array.from(new Set(posts.flatMap((p) => p.tags ?? []))).sort((a, b) =>
+    a.localeCompare(b),
+  );
 });
 
 export function isPostNew(date?: string, days = 4) {

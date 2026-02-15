@@ -5,9 +5,17 @@ import { mdxComponents } from "@/components/mdx/mdx-components";
 import type { Post, PostFrontmatter } from "@/types/post";
 import { assetUrl } from "./github-content";
 
+// Some MDX content uses expressions like "<400 lines" which MDX parses as
+// invalid JSX (tag names cannot start with a digit). To keep authoring simple,
+// we sanitise any "<digit" (including Persian digits) into a literal "&lt;digit".
+function sanitizeNumericTags(source: string) {
+  return source.replace(/<([0-9\u06f0-\u06f9])/g, "&lt;$1");
+}
+
 export async function compilePost(locale: "en" | "fa", source: string) {
+  const safeSource = sanitizeNumericTags(source);
   const { content, frontmatter } = await compileMDX<PostFrontmatter>({
-    source,
+    source: safeSource,
     options: {
       parseFrontmatter: true,
       mdxOptions: { remarkPlugins: [remarkGfm] },

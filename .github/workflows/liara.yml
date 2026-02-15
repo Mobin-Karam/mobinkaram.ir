@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: liara
+      name: Liara 
       url: https://mobinkaram.liara.run
     concurrency:
       group: liara-deploy

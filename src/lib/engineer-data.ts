@@ -61,11 +61,15 @@ async function loadCategory<TMeta>(category: "projects" | "lab" | "logs", locale
     const slug = file.name.replace(/\.mdx$/, "");
     const source = await getEngineerFile(category, locale as "en" | "fa", slug);
     if (!source) continue;
-    const { frontmatter, content } = await compileEngineerMDX(source);
-    const Component = () => content;
-    const meta = { slug, ...frontmatter } as TMeta & { slug: string; published?: boolean };
-    if (meta.published === false) continue;
-    entries.push({ meta: meta as TMeta, Component, locale });
+    try {
+      const { frontmatter, content } = await compileEngineerMDX(source);
+      const Component = () => content;
+      const meta = { slug, ...frontmatter } as TMeta & { slug: string; published?: boolean };
+      if (meta.published === false) continue;
+      entries.push({ meta: meta as TMeta, Component, locale });
+    } catch (err) {
+      console.warn(`[engineer] failed to compile ${category}/${locale}/${slug}:`, err);
+    }
   }
   return entries.sort((a, b) => (b.meta as any).date?.localeCompare((a.meta as any).date ?? "") ?? 0);
 }
