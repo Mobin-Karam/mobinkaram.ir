@@ -5,7 +5,7 @@ import { getPostIndex, filterByCategory, type BlogCategory } from "@/lib/blog";
 import type { Locale } from "@/i18n/config";
 
 export const revalidate = 1800;
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 const categories: { id: BlogCategory; title: string; description: string }[] = [
   { id: "engineering", title: "Engineering", description: "Systems, product, and delivery." },
