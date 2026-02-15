@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SectionHeading } from "@/components/ui/primitives";
 import { getNowBlocks } from "@/data/now";
 import { stackReasons } from "@/data/stack";
+import { getPostIndex } from "@/lib/blog";
 import type { Locale } from "@/i18n/config";
 import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { PreferencesPanel } from "@/components/ui/preferences-panel";
@@ -23,6 +24,7 @@ export default async function ProfilePage({
 }) {
   const { locale } = await params;
   const now = getNowBlocks(locale);
+  const posts = await getPostIndex(locale as "en" | "fa");
 
   const story = [
     "Product engineer building for small communities at Koonj.",
@@ -146,6 +148,41 @@ export default async function ProfilePage({
         </div>
       </LazySection>
       <PreferencesPanel />
+
+      <LazySection minHeight={200} skeleton={<Skeleton className="h-48" />}>
+        <div className="card p-5 space-y-3">
+          <h3 className="text-lg font-semibold text-[color:var(--foreground)]">
+            Latest writing
+          </h3>
+          <div className="grid gap-3 md:grid-cols-2">
+            {posts.slice(0, 2).map((post) => (
+              <Link
+                key={post.slug}
+                href={`/${locale}/blog/${post.slug}`}
+                className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-3 hover:-translate-y-0.5 hover:shadow-md transition"
+              >
+                <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
+                  <span>{post.date}</span>
+                  <span>{post.readingTime ?? 5} min</span>
+                </div>
+                <p className="text-sm font-semibold text-[color:var(--foreground)]">
+                  {post.title}
+                </p>
+                <p className="text-xs text-[color:var(--muted)] line-clamp-2">
+                  {post.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+          <Link
+            href={`/${locale}/blog`}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
+          >
+            View all posts
+            <ArrowRight size={14} />
+          </Link>
+        </div>
+      </LazySection>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { SectionHeading } from "@/components/ui/primitives";
 import { getProjects } from "@/data/projects";
 import { getLabEntries } from "@/data/lab";
 import { getBuildLogs } from "@/data/logs";
+import { getPostIndex } from "@/lib/blog";
 import type { Locale } from "@/i18n/config";
 import { LazySection, Skeleton } from "@/components/ui/primitives";
 import { ArrowRight } from "lucide-react";
@@ -16,6 +17,7 @@ export default async function BuildHubPage({
   const projects = getProjects(locale);
   const lab = getLabEntries(locale);
   const logs = getBuildLogs(locale);
+  const posts = await getPostIndex(locale as "en" | "fa");
 
   const quickLinks = [
     { label: "Case studies", href: `/${locale}/projects`, desc: "Shipped products", count: projects.length },
@@ -147,6 +149,50 @@ export default async function BuildHubPage({
               </Link>
             ))}
           </div>
+        </div>
+      </LazySection>
+
+      <LazySection minHeight={220} skeleton={<Skeleton className="h-52" />}>
+        <div className="card p-5">
+          <SectionHeading
+            eyebrow="Articles"
+            title="Latest engineering posts"
+            description="Long-form writeups pulled from the content repo."
+          />
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {posts.slice(0, 2).map((post) => (
+              <Link
+                key={post.slug}
+                href={`/${locale}/blog/${post.slug}`}
+                className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 hover:-translate-y-0.5 hover:shadow-lg transition block"
+              >
+                <div className="flex items-center justify-between text-[11px] text-[color:var(--muted)]">
+                  <span>{post.date}</span>
+                  <span>{post.readingTime ?? 5} min</span>
+                </div>
+                <p className="mt-2 text-sm font-semibold text-[color:var(--foreground)]">
+                  {post.title}
+                </p>
+                <p className="text-xs text-[color:var(--muted)] line-clamp-2">
+                  {post.description}
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2 text-[10px] text-[color:var(--muted)]">
+                  {post.tags?.slice(0, 3).map((tag) => (
+                    <span key={tag} className="pill text-[10px]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </Link>
+            ))}
+          </div>
+          <Link
+            href={`/${locale}/blog`}
+            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--accent-strong)]"
+          >
+            View all posts
+            <ArrowRight size={14} />
+          </Link>
         </div>
       </LazySection>
     </div>
