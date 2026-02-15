@@ -37,7 +37,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
     >
       <span
         aria-hidden
-        className="absolute inset-y-1 left-0 z-0 rounded-full bg-white/25 shadow-lg shadow-white/30 blur-[2px] transition-[transform,width] duration-400 ease-[cubic-bezier(0.22,0.61,0.36,1)]"
+        className="absolute inset-y-1 left-0 z-0 rounded-full bg-white/25 shadow-lg shadow-white/30 blur-[2px] transition-transform duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)]"
         style={{
           width: `${100 / items.length}%`,
           transform: `translateX(${indicatorX}%)`,
@@ -70,7 +70,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
             />
             <span
               className={clsx(
-                "flex h-10 w-10 items-center justify-center rounded-full transition-all duration-400 ease-[cubic-bezier(0.22,0.61,0.36,1)]",
+                "flex h-10 w-10 items-center justify-center rounded-full transition-all duration-500 ease-[cubic-bezier(0.22,0.61,0.36,1)]",
                 active
                   ? "bg-white/20 text-[color:var(--accent-strong)] shadow-inner shadow-white/30 ring-2 ring-[color:var(--accent-strong)] ring-offset-2 ring-offset-[color:var(--surface)]"
                   : "bg-white/5 text-[color:var(--muted)] ring-0",
