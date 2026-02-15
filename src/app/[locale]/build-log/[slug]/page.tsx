@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { SectionHeading, LazySection, Skeleton } from "@/components/ui/primitives";
+import { SectionHeading, LazySection, Skeleton, Pill } from "@/components/ui/primitives";
 import { getBuildLogs, getLog } from "@/data/logs";
 import { locales, type Locale } from "@/i18n/config";
 import { ArticleMeta } from "@/components/ui/article-meta";
@@ -47,11 +47,9 @@ export default async function BuildLogDetail({
       />
       <div className="flex flex-wrap gap-2">
         {log.meta.tags.map((tag) => (
-          <span key={tag} className="pill">
-            {tag}
-          </span>
+          <Pill key={tag}>{tag}</Pill>
         ))}
-        <span className="pill">{log.meta.readingMinutes} min read</span>
+        <Pill>{log.meta.readingMinutes} min read</Pill>
       </div>
       <CoverImage title={log.meta.title} cover={cover} />
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>

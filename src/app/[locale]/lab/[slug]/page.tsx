@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { SectionHeading, LazySection, Skeleton } from "@/components/ui/primitives";
+import { SectionHeading, LazySection, Skeleton, Pill } from "@/components/ui/primitives";
 import { getLabEntries, getLabEntry } from "@/data/lab";
 import { locales, type Locale } from "@/i18n/config";
 import { ArticleMeta } from "@/components/ui/article-meta";
@@ -44,12 +44,10 @@ export default async function LabDetail({
       />
       <div className="flex flex-wrap gap-2">
         {experiment.meta.tags.map((tag) => (
-          <span key={tag} className="pill">
-            {tag}
-          </span>
+          <Pill key={tag}>{tag}</Pill>
         ))}
-        <span className="pill">{experiment.meta.area}</span>
-        <span className="pill">{experiment.meta.readingMinutes} min read</span>
+        <Pill>{experiment.meta.area}</Pill>
+        <Pill>{experiment.meta.readingMinutes} min read</Pill>
       </div>
       <CoverImage title={experiment.meta.title} cover={cover} />
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>
