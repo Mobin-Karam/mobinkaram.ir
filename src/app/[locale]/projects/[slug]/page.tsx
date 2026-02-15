@@ -1,10 +1,8 @@
 import { notFound } from "next/navigation";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionHeading, LazySection, Skeleton } from "@/components/ui/primitives";
 import { getProject, getProjects } from "@/data/projects";
 import { locales, type Locale } from "@/i18n/config";
 import { ArticleMeta } from "@/components/ui/article-meta";
-import { LazySection } from "@/components/ui/lazy-section";
-import { Skeleton } from "@/components/ui/skeleton";
 import { CoverImage } from "@/components/ui/cover-image";
 import { PostActions } from "@/components/ui/post-actions";
 import { SectionBackLink } from "@/components/ui/section-back-link";
