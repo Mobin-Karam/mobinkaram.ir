@@ -6,6 +6,7 @@ import { BackToTop } from "@/components/ui/back-to-top";
 import { NotificationBar } from "@/components/ui/notification-bar";
 import { LocationBar } from "@/components/ui/location-bar";
 import { CookieBanner } from "@/components/ui/cookie-banner";
+import { ToastProvider } from "@/components/ui/toast-provider";
 import type { Locale } from "@/i18n/config";
 
 type Props = {
@@ -15,29 +16,31 @@ type Props = {
 
 export function AppShell({ locale, children }: Props) {
   return (
-    <div className="layout-shell">
-      <NotificationBar
-        message="New: RSS feed is live and GitHub pins are real-time. Follow along as I ship Koonj."
-        cta={
-          <a
-            href="/rss.xml"
-            target="_blank"
-            rel="noreferrer"
-            className="text-[color:var(--accent-strong)] underline underline-offset-4"
-          >
-            Subscribe
-          </a>
-        }
-        countdownSeconds={10}
-      />
-      <SiteHeader locale={locale} />
-      <LocationBar />
-      <main>{children}</main>
-      <SiteFooter />
-      <MobileNav locale={locale} />
-      <CookieBanner />
-      <BackToTop />
-    </div>
+    <ToastProvider>
+      <div className="layout-shell">
+        <NotificationBar
+          message="New: RSS feed is live and GitHub pins are real-time. Follow along as I ship Koonj."
+          cta={
+            <a
+              href="/rss.xml"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[color:var(--accent-strong)] underline underline-offset-4"
+            >
+              Subscribe
+            </a>
+          }
+          countdownSeconds={10}
+        />
+        <SiteHeader locale={locale} />
+        <LocationBar />
+        <main>{children}</main>
+        <SiteFooter />
+        <MobileNav locale={locale} />
+        <CookieBanner />
+        <BackToTop />
+      </div>
+    </ToastProvider>
   );
 }
 

@@ -23,7 +23,7 @@ function grabPostText() {
 
 export function PostActions({ title }: { title: string }) {
   const [open, setOpen] = useState(false);
-  const { status, show } = useCopyToast();
+  const { show } = useCopyToast();
   const { share } = useShare();
   const containerRef = useRef<HTMLDivElement>(null);
   useClickOutside(containerRef, () => setOpen(false));
@@ -118,11 +118,6 @@ export function PostActions({ title }: { title: string }) {
         </div>
       ) : null}
 
-      {status ? (
-        <div className="fixed bottom-16 right-6 z-40 rounded-full bg-emerald-500 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-emerald-300/50">
-          {status}
-        </div>
-      ) : null}
     </div>
   );
 }
