@@ -36,12 +36,15 @@ export function Button({
   icon,
   children,
   className,
+  asChild,
   ...props
 }: Props) {
+  // asChild is reserved for potential future polymorphic usage; ignore for now to avoid leaking to DOM
+  const domProps = { ...props } as ButtonHTMLAttributes<HTMLButtonElement>;
   return (
     <button
       className={clsx(base, variants[variant], sizes[size], className)}
-      {...props}
+      {...domProps}
     >
       {icon}
       {children}
