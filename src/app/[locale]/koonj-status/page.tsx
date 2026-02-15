@@ -1,10 +1,8 @@
-import { SectionHeading } from "@/components/ui/section-heading";
+import { SectionHeading, LazySection, Skeleton } from "@/components/ui/primitives";
 import { koonjTracker } from "@/data/tracker";
 import type { Locale } from "@/i18n/config";
 import { getKoonjIssues } from "@/lib/github";
 import clsx from "clsx";
-import { LazySection } from "@/components/ui/lazy-section";
-import { Skeleton } from "@/components/ui/skeleton";
 import { RoadmapSvg } from "@/components/ui/roadmap-svg";
 
 type TrackerCard = {
