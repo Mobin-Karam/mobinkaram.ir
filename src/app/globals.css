@@ -62,7 +62,13 @@ a {
 .layout-shell {
   max-width: 1080px;
   margin-inline: auto;
-  padding: 28px 20px 64px;
+  padding: 28px 20px calc(140px + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 768px) {
+  .layout-shell {
+    padding-bottom: 64px;
+  }
 }
 
 .card {

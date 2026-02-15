@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUp, Github, Linkedin, Rss } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Rss, Globe2 } from "lucide-react";
+import { useClientDevice } from "@/hooks/use-client-device";
 
 export function SiteFooter() {
+  const device = useClientDevice();
   const goTop = () => {
     if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -41,6 +43,15 @@ export function SiteFooter() {
             LinkedIn
           </Link>
           <Link
+            href="https://quera.org/profile/mobinkaram"
+            target="_blank"
+            rel="noreferrer"
+            className="pill nav-btn hover:-translate-y-0.5 hover:shadow-md transition"
+          >
+            <Globe2 size={14} />
+            Quera
+          </Link>
+          <Link
             href="/rss.xml"
             target="_blank"
             rel="noreferrer"
@@ -60,8 +71,18 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-[color:var(--muted)]">
-        <span>Built with Next.js, TypeScript, MDX, Tailwind.</span>
-        <span>Hosting on Vercel · Analytics via Plausible · RSS ready.</span>
+        <span>Built with Next.js, TypeScript, MDX, Tailwind — with love & AI.</span>
+        <span>Hosted on Liara · Analytics via Plausible · RSS ready.</span>
+        <span className="flex items-center gap-1">
+          You&rsquo;re browsing on
+          <strong className="font-semibold text-[color:var(--foreground)]">
+            {device.os}
+          </strong>
+          using
+          <strong className="font-semibold text-[color:var(--foreground)]">
+            {device.browser}
+          </strong>
+        </span>
       </div>
     </footer>
   );

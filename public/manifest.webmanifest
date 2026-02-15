@@ -1,0 +1,15 @@
+{
+  "name": "Mobin Karam — Product Engineer",
+  "short_name": "Mobin Karam",
+  "start_url": "/en",
+  "display": "standalone",
+  "background_color": "#0b1021",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

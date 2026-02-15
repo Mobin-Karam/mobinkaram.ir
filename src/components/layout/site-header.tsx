@@ -5,9 +5,10 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { StatusDot } from "@/components/ui/status-dot";
+import { InstallButton } from "@/components/ui/install-button";
 import type { Locale } from "@/i18n/config";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   Menu,
@@ -23,17 +24,16 @@ import {
   Rss,
   Github,
   Linkedin,
+  Globe2,
+  LayoutPanelLeft,
+  UserRound,
 } from "lucide-react";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 const navItems: { key: string; href: string; icon: LucideIcon }[] = [
   { key: "home", href: "", icon: Home },
-  { key: "projects", href: "/projects", icon: PanelsTopLeft },
-  { key: "lab", href: "/lab", icon: Beaker },
-  { key: "log", href: "/build-log", icon: NotebookPen },
-  { key: "now", href: "/now", icon: Activity },
-  { key: "stack", href: "/stack", icon: Layers },
-  { key: "about", href: "/about", icon: User },
+  { key: "engineer", href: "/build", icon: LayoutPanelLeft },
+  { key: "profile", href: "/profile", icon: UserRound },
   { key: "tracker", href: "/koonj-status", icon: Flag },
 ];
 
@@ -42,14 +42,27 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const currentLocale = locale ?? "en";
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const avatarUrl = "https://github.com/Mobin-Karam.png";
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 6);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-30 mb-10 flex flex-col gap-3 border-b border-[color:var(--border)] bg-gradient-to-r from-[color:var(--surface)]/92 via-white/80 to-[color:var(--surface)]/92 pb-4 backdrop-blur-xl">
+    <header
+      className={clsx(
+        "sticky top-0 z-30 mb-6 flex flex-col gap-2 border-b border-[color:var(--border)] bg-gradient-to-r from-[color:var(--surface)]/92 via-white/80 to-[color:var(--surface)]/92 px-2 pb-3 backdrop-blur-xl transition-shadow",
+        scrolled && "shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)]",
+      )}
+    >
       <div className="relative h-0.5 w-full">
         <ScrollProgress />
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-3 px-1">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] px-4 py-2 shadow-[var(--glow)] transition hover:-translate-y-0.5 hover:shadow-lg">
             <img
@@ -87,6 +100,15 @@ export function SiteHeader({ locale }: { locale: Locale }) {
               GitHub
             </Link>
             <Link
+              href="https://quera.org/profile/mobinkaram"
+              className="pill nav-btn ltr-text hover:-translate-y-0.5 hover:shadow-md transition group"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Globe2 size={14} />
+              Quera
+            </Link>
+            <Link
               href="/rss.xml"
               className="pill nav-btn ltr-text hover:-translate-y-0.5 hover:shadow-md transition group"
               target="_blank"
@@ -95,6 +117,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
               <Rss size={14} />
               RSS
             </Link>
+            <InstallButton />
           </div>
           <StatusDot label={t("status.currentlyCoding")} />
         </div>
@@ -137,16 +160,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             </Link>
           );
         })}
-        <Link
-          href="/rss.xml"
-          target="_blank"
-          rel="noreferrer"
-          className="pill nav-btn group flex items-center gap-2 hover:-translate-y-0.5 hover:shadow-md transition"
-        >
-          <Rss size={15} className="text-[color:var(--muted)] group-hover:text-[color:var(--foreground)] transition" />
-          RSS
-        </Link>
       </nav>
     </header>
   );
 }
+

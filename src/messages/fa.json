@@ -1,15 +1,18 @@
 {
   "brand": {
-    "name": "Mobin Karam",
+    "name": "Mobin Karam — Product Engineer",
     "role": "Product Engineer / Founder at Koonj"
   },
   "nav": {
     "home": "Home",
+    "engineer": "Engineering Hub",
+    "profile": "Profile",
     "projects": "Case Studies",
     "lab": "Engineering Lab",
     "log": "Build Log",
     "now": "Now",
     "stack": "Stack",
+    "work": "Work",
     "about": "About",
     "tracker": "Koonj Tracker"
   },

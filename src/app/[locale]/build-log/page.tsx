@@ -4,6 +4,7 @@ import type { Locale } from "@/i18n/config";
 import Link from "next/link";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { BackButton } from "@/components/ui/back-button";
 
 export default async function BuildLogPage({
   params,
@@ -15,11 +16,14 @@ export default async function BuildLogPage({
 
   return (
     <div className="space-y-6">
-      <SectionHeading
-        eyebrow="Build log"
-        title="Short build notes"
-        description="Brief, surgical notes on what changed today."
-      />
+      <div className="flex items-center justify-between gap-3">
+        <SectionHeading
+          eyebrow="Build log"
+          title="Short build notes"
+          description="Brief, surgical notes on what changed today."
+        />
+        <BackButton />
+      </div>
       <LazySection minHeight={260} skeleton={<Skeleton className="h-64" />}>
         <div className="grid gap-3 md:grid-cols-2">
           {logs.map((log) => (

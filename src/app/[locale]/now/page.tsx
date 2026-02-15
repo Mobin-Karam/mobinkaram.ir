@@ -4,6 +4,7 @@ import type { Locale } from "@/i18n/config";
 import { GitHubActivity } from "@/components/widgets/github-activity";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { BackButton } from "@/components/ui/back-button";
 
 export default async function NowPage({
   params,
@@ -16,12 +17,15 @@ export default async function NowPage({
 
   return (
     <div className="space-y-6">
-      <LazySection minHeight={180} skeleton={<Skeleton className="h-44" />}>
+      <div className="flex items-center justify-between gap-3">
         <SectionHeading
           eyebrow="Now"
           title="What I'm focused on now"
           description="Kept fresh to show real coding and research focus."
         />
+        <BackButton />
+      </div>
+      <LazySection minHeight={180} skeleton={<Skeleton className="h-44" />}>
         <div className="grid gap-3 md:grid-cols-3">
           {blocks.map((block) => (
             <div

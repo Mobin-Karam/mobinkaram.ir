@@ -12,6 +12,7 @@ export type LabMeta = {
   area: string;
   date: string;
   author: string;
+  cover?: string;
   authorAvatar?: string;
   readingMinutes: number;
 };

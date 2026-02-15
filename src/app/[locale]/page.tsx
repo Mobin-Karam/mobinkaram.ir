@@ -16,6 +16,7 @@ import { getGithubHighlights } from "@/lib/github";
 import clsx from "clsx";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AnnouncementBanner } from "@/components/home/announcement-banner";
 
 export default async function LocaleHome({
   params,
@@ -33,9 +34,45 @@ export default async function LocaleHome({
   const nowBlocks = getNowBlocks(locale) ?? [];
   const searchIndex = buildSearchIndex(locale);
   const github = await getGithubHighlights();
+  const bannerSlides = [
+    {
+      id: "koonj",
+      content: (
+        <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
+          <span className="pill text-[10px]">Koonj</span>
+          <p className="text-sm font-semibold text-[color:var(--foreground)]">
+            Koonj Phase 2 is live in tracker—plugins + analytics underway.
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: "rss",
+      content: (
+        <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
+          <span className="pill text-[10px]">RSS</span>
+          <p className="text-sm text-[color:var(--foreground)]">
+            Subscribe to /rss.xml for build logs, lab drops, and case-study updates.
+          </p>
+        </div>
+      ),
+    },
+    {
+      id: "lab",
+      content: (
+        <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-3">
+          <span className="pill text-[10px]">Lab</span>
+          <p className="text-sm text-[color:var(--foreground)]">
+            New navigation + state-model experiments available in the Engineering Lab.
+          </p>
+        </div>
+      ),
+    },
+  ];
 
   return (
     <div className="space-y-10">
+      <AnnouncementBanner slides={bannerSlides} />
       <Hero
         locale={locale}
         headline={t("hero.headline")}

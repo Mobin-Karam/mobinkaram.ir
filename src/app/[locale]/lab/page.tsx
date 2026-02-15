@@ -4,6 +4,7 @@ import type { Locale } from "@/i18n/config";
 import Link from "next/link";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { BackButton } from "@/components/ui/back-button";
 
 export default async function LabPage({
   params,
@@ -15,11 +16,14 @@ export default async function LabPage({
 
   return (
     <div className="space-y-6">
-      <SectionHeading
-        eyebrow="Lab"
-        title="Engineering experiments"
-        description="Small, focused experiments on navigation, state, and performance."
-      />
+      <div className="flex items-center justify-between gap-3">
+        <SectionHeading
+          eyebrow="Lab"
+          title="Engineering experiments"
+          description="Small, focused experiments on navigation, state, and performance."
+        />
+        <BackButton />
+      </div>
       <LazySection minHeight={260} skeleton={<Skeleton className="h-64" />}>
         <div className="grid gap-3 md:grid-cols-2">
           {experiments.map((item) => (

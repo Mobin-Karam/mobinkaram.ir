@@ -4,6 +4,28 @@ import { techEvolution } from "@/data/tech-evolution";
 import type { Locale } from "@/i18n/config";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { BackButton } from "@/components/ui/back-button";
+import {
+  SiTypescript,
+  SiNextdotjs,
+  SiNestjs,
+  SiPostgresql,
+  SiExpo,
+  SiTailwindcss,
+  SiPlausibleanalytics,
+} from "react-icons/si";
+
+function stackIcon(name: string) {
+  const n = name.toLowerCase();
+  if (n.includes("typescript")) return <SiTypescript className="text-sky-500" />;
+  if (n.includes("next")) return <SiNextdotjs className="text-black dark:text-white" />;
+  if (n.includes("nest")) return <SiNestjs className="text-red-500" />;
+  if (n.includes("postgres")) return <SiPostgresql className="text-sky-700" />;
+  if (n.includes("expo")) return <SiExpo className="text-gray-800 dark:text-gray-200" />;
+  if (n.includes("tailwind")) return <SiTailwindcss className="text-cyan-500" />;
+  if (n.includes("plausible")) return <SiPlausibleanalytics className="text-indigo-500" />;
+  return <span className="text-[color:var(--muted)]">•</span>;
+}
 
 export default async function StackPage({
   params,
@@ -13,11 +35,14 @@ export default async function StackPage({
   const { locale } = await params;
   return (
     <div className="space-y-6">
-      <SectionHeading
-        eyebrow="Stack"
-        title="Why I use these tools"
-        description="Reasoning first, not just a skills list."
-      />
+      <div className="flex items-center justify-between gap-3">
+        <SectionHeading
+          eyebrow="Stack"
+          title="Why I use these tools"
+          description="Reasoning first, not just a skills list."
+        />
+        <BackButton />
+      </div>
       <LazySection minHeight={260} skeleton={<Skeleton className="h-64" />}>
         <div className="grid gap-3 md:grid-cols-2">
           {stackReasons.map((item) => (
@@ -27,7 +52,10 @@ export default async function StackPage({
             >
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold text-[color:var(--foreground)]">
-                  {item.name}
+                  <span className="inline-flex items-center gap-2">
+                    {stackIcon(item.name)}
+                    {item.name}
+                  </span>
                 </p>
                 <span className="pill text-[10px]">Core</span>
               </div>

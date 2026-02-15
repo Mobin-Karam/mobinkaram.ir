@@ -13,6 +13,7 @@ export type ProjectMeta = {
   year: string;
   date: string;
   author: string;
+  cover?: string;
   authorAvatar?: string;
   readingMinutes: number;
   status?: string;

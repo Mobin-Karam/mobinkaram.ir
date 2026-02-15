@@ -27,9 +27,13 @@ const vazir = Vazirmatn({
 });
 
 export const metadata: Metadata = {
-  title: "Mobin Karam | Developer OS",
+  title: "Mobin Karam — Product Engineer | Developer OS",
   description:
-    "Engineering workspace, build log, and product lab by Mobin Karam (Koonj Inc). English-first with Persian keywords for search.",
+    "Developer OS = my public engineering workspace, build log, and product lab for Koonj. I build products, not operating systems.",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/icon.svg",
+  },
   keywords: [
     "Mobin Karam",
     "Koonj",
@@ -64,7 +68,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Mobin Karam | Developer OS",
+    title: "Mobin Karam — Developer OS",
     description:
       "Engineering workspace, build log, and product lab by Mobin Karam (Koonj Inc).",
     url: "https://mobinkaram.ir",
@@ -75,7 +79,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mobin Karam | Developer OS",
+    title: "Mobin Karam — Developer OS",
     description:
       "Engineering workspace, build log, and product lab by Mobin Karam (Koonj Inc).",
   },

@@ -11,6 +11,7 @@ export type LogMeta = {
   tags: string[];
   date: string;
   author: string;
+  cover?: string;
   authorAvatar?: string;
   readingMinutes: number;
 };

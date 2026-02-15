@@ -7,6 +7,7 @@ import { ArticleMeta } from "@/components/ui/article-meta";
 import { ArrowLeft } from "lucide-react";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { CoverImage } from "@/components/ui/cover-image";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -26,6 +27,7 @@ export default async function ProjectDetail({
   const project = getProject(locale, slug);
   if (!project) notFound();
   const Content = project.Component;
+  const cover = project.meta.cover;
 
   return (
     <article className="space-y-6">
@@ -59,6 +61,7 @@ export default async function ProjectDetail({
         ) : null}
         <span className="pill">{project.meta.readingMinutes} min read</span>
       </div>
+      <CoverImage title={project.meta.title} cover={cover} />
       <LazySection minHeight={320} skeleton={<Skeleton className="h-80" />}>
         <div className="mdx-card p-6">
           <div className="mdx-content prose max-w-none">
