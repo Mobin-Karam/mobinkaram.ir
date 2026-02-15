@@ -5,6 +5,7 @@ import { getKoonjIssues } from "@/lib/github";
 import clsx from "clsx";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
+import { RoadmapSvg } from "@/components/ui/roadmap-svg";
 
 type TrackerCard = {
   title: string;
@@ -75,21 +76,17 @@ export default async function KoonjStatusPage({
         description="Current milestone, completed features, and what's next."
       />
       <LazySection minHeight={220} skeleton={<Skeleton className="h-56" />}>
-        <MilestoneMap
+        <RoadmapSvg
           steps={[
+            { title: "Foundation", detail: "Auth & billing", status: "done" },
             {
-              title: "Foundation",
-              detail: "Auth, billing, design tokens",
-              status: grouped.done.length ? "done" : "done",
+              title: "Memberships",
+              detail: "Snapshots + roles",
+              status: grouped.inProgress.length ? "in-progress" : "done",
             },
             {
-              title: "Communities Core",
-              detail: "Roles, membership snapshots",
-              status: grouped.inProgress.length ? "in-progress" : "next",
-            },
-            {
-              title: "Events + Live",
-              detail: "Presence, announcements, gating",
+              title: "Live events",
+              detail: "Presence + gating",
               status: grouped.inProgress.length > 1 ? "in-progress" : "next",
             },
             {
@@ -97,11 +94,7 @@ export default async function KoonjStatusPage({
               detail: "Automation marketplace",
               status: grouped.next.length ? "next" : "next",
             },
-            {
-              title: "Launch",
-              detail: "Pilot with 3 communities",
-              status: "next",
-            },
+            { title: "Pilot launch", detail: "3 communities", status: "next" },
           ]}
         />
       </LazySection>

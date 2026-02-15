@@ -17,6 +17,8 @@ import clsx from "clsx";
 import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AnnouncementBanner } from "@/components/home/announcement-banner";
+import { RoadmapSvg } from "@/components/ui/roadmap-svg";
+import { koonjTracker } from "@/data/tracker";
 
 export default async function LocaleHome({
   params,
@@ -82,10 +84,7 @@ export default async function LocaleHome({
       />
 
       <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
-        <LazySection
-          minHeight={220}
-          skeleton={<Skeleton className="h-52" />}
-        >
+        <LazySection minHeight={220} skeleton={<Skeleton className="h-52" />}>
           <div className="card p-5">
             <SectionHeading
               eyebrow={t("sections.featured")}
@@ -105,7 +104,8 @@ export default async function LocaleHome({
                   {featured.meta.stack.join(" • ")}
                 </p>
                 <p className="text-xs text-[color:var(--muted)]">
-                  {featured.meta.readingMinutes} min read · {featured.meta.author}
+                  {featured.meta.readingMinutes} min read ·{" "}
+                  {featured.meta.author}
                 </p>
                 <Link
                   href={`/${locale}/projects/${featured.meta.slug}`}
@@ -134,7 +134,10 @@ export default async function LocaleHome({
 
       <LazySection minHeight={220} skeleton={<Skeleton className="h-52" />}>
         <div className="card p-5">
-          <SectionHeading eyebrow={t("sections.nowBuilding")} title="Live status" />
+          <SectionHeading
+            eyebrow={t("sections.nowBuilding")}
+            title="Live status"
+          />
           <div className="mt-4 grid gap-3 md:grid-cols-3">
             {nowBlocks.map((block) => (
               <div
@@ -155,7 +158,27 @@ export default async function LocaleHome({
         </div>
       </LazySection>
 
-      <div className="card p-5">
+      <LazySection minHeight={220} skeleton={<Skeleton className="h-56" />}>
+        <div className="card p-5">
+          <SectionHeading
+            eyebrow="Koonj"
+            title="Koonj roadmap"
+            description="Where the product is heading next."
+          />
+          <div className="mt-4">
+            <RoadmapSvg steps={koonjTracker} />
+          </div>
+          <Link
+            href={`/${locale}/koonj-status`}
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-[color:var(--accent)] px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5"
+          >
+            Open tracker
+            <ArrowRight size={14} />
+          </Link>
+        </div>
+      </LazySection>
+
+      {/* <div className="card p-5">
         <LazySection minHeight={260} skeleton={<Skeleton className="h-64" />}>
           <SectionHeading
             eyebrow="GitHub"
@@ -209,9 +232,9 @@ export default async function LocaleHome({
             </div>
           </div>
         </LazySection>
-      </div>
+      </div> */}
 
-      <div className="grid gap-4 md:grid-cols-2">
+      {/* <div className="grid gap-4 md:grid-cols-2">
         <div className="card p-5">
           <SectionHeading
             eyebrow={t("sections.engineeringLab")}
@@ -286,9 +309,9 @@ export default async function LocaleHome({
             <ArrowRight size={14} />
           </Link>
         </div>
-      </div>
+      </div> */}
 
-      <div className="card p-5">
+      {/* <div className="card p-5">
         <SectionHeading eyebrow={t("sections.stack")} title="Engineering stack" />
         <div className="mt-4 grid gap-3 md:grid-cols-2">
           {otherProjects.slice(0, 2).map((project) => (
@@ -320,11 +343,11 @@ export default async function LocaleHome({
           Stack details
           <ArrowRight size={14} />
         </Link>
-      </div>
+      </div> */}
 
-      <div className="grid gap-4 md:grid-cols-2">
-      <div className="card p-5">
-        <LazySection minHeight={200} skeleton={<Skeleton className="h-52" />}>
+      {/* <div className="grid gap-4 md:grid-cols-2">
+        <div className="card p-5">
+          <LazySection minHeight={200} skeleton={<Skeleton className="h-52" />}>
             <SectionHeading eyebrow={t("sections.timeline")} title="Timeline" />
             <div className="mt-4 space-y-3">
               {timeline.map((item) => (
@@ -337,7 +360,16 @@ export default async function LocaleHome({
                   </div>
                   <div className="flex-1 space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className={clsx("pill text-[10px] uppercase", item.category === "shipping" ? "border-green-500" : item.category === "build" ? "border-amber-500" : "border-blue-500")}>
+                      <span
+                        className={clsx(
+                          "pill text-[10px] uppercase",
+                          item.category === "shipping"
+                            ? "border-green-500"
+                            : item.category === "build"
+                              ? "border-amber-500"
+                              : "border-blue-500",
+                        )}
+                      >
                         {item.category}
                       </span>
                       <p className="text-sm font-semibold text-[color:var(--foreground)]">
@@ -354,9 +386,12 @@ export default async function LocaleHome({
           </LazySection>
         </div>
 
-      <div className="card p-5">
-        <LazySection minHeight={200} skeleton={<Skeleton className="h-52" />}>
-            <SectionHeading eyebrow={t("sections.reading")} title="Reading list" />
+        <div className="card p-5">
+          <LazySection minHeight={200} skeleton={<Skeleton className="h-52" />}>
+            <SectionHeading
+              eyebrow={t("sections.reading")}
+              title="Reading list"
+            />
             <div className="mt-4 space-y-3">
               {readingList.map((item) => (
                 <div
@@ -394,9 +429,9 @@ export default async function LocaleHome({
             </div>
           </LazySection>
         </div>
-      </div>
+      </div> */}
 
-      <div className="card p-5">
+      {/* <div className="card p-5">
         <SectionHeading
           eyebrow={t("sections.roadmap")}
           title="Koonj tracker"
@@ -409,7 +444,7 @@ export default async function LocaleHome({
           Open tracker
           <ArrowRight size={14} />
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

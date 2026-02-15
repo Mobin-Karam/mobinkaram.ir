@@ -8,6 +8,7 @@ import { LazySection } from "@/components/ui/lazy-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CoverImage } from "@/components/ui/cover-image";
 import { ArrowLeft } from "lucide-react";
+import { PostActions } from "@/components/ui/post-actions";
 
 export function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -43,6 +44,7 @@ export default async function ProjectDetail({
         title={project.meta.title}
         description={project.meta.summary}
       />
+      <PostActions title={project.meta.title} />
       <ArticleMeta
         author={project.meta.author}
         date={project.meta.date}
