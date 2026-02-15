@@ -6,8 +6,8 @@ import { useEffect } from "react";
  * Calls `onOutside` when a click/touch happens outside of the given element.
  * Useful for dropdowns, modals, and popovers.
  */
-export function useClickOutside(
-  ref: React.RefObject<HTMLElement>,
+export function useClickOutside<T extends HTMLElement>(
+  ref: React.RefObject<T | null>,
   onOutside: () => void,
 ) {
   useEffect(() => {
