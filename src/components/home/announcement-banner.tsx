@@ -74,7 +74,7 @@ export function AnnouncementBanner({
 
   return (
     <div className="mb-5 w-full overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] shadow-[var(--glow)]">
-      <div className="relative">
+      <div className="relative overflow-hidden">
         <div
           className="relative w-full"
           style={{
@@ -93,12 +93,9 @@ export function AnnouncementBanner({
                 "absolute inset-0 block transition-all duration-500 ease-out",
                 i === index
                   ? "translate-x-0 opacity-100"
-                  : clsx(
-                      direction === "right"
-                        ? "translate-x-full"
-                        : "-translate-x-full",
-                      "opacity-0 pointer-events-none",
-                    ),
+                  : direction === "right"
+                    ? "-translate-x-full opacity-0 pointer-events-none"
+                    : "translate-x-full opacity-0 pointer-events-none",
               )}
               style={{ minHeight: `${height.base}px` }}
               target={slide.href?.startsWith("http") ? "_blank" : undefined}
