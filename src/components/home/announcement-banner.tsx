@@ -19,7 +19,7 @@ type Props = {
 
 export function AnnouncementBanner({
   slides,
-  height = { base: 220, md: 260 },
+  height = { base: 200, md: 260 },
   autoPlayMs = 4200,
 }: Props) {
   const [index, setIndex] = useState(0);
@@ -78,7 +78,7 @@ export function AnnouncementBanner({
         <div
           className="relative w-full"
           style={{
-            height: `${height.base}px`,
+            height: `clamp(${height.base}px, 30vw, ${height.md}px)`,
           }}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
@@ -97,7 +97,7 @@ export function AnnouncementBanner({
                     ? "-translate-x-full opacity-0 pointer-events-none"
                     : "translate-x-full opacity-0 pointer-events-none",
               )}
-              style={{ minHeight: `${height.base}px` }}
+              style={{ minHeight: `clamp(${height.base}px, 30vw, ${height.md}px)` }}
               target={slide.href?.startsWith("http") ? "_blank" : undefined}
               rel="noreferrer"
             >
