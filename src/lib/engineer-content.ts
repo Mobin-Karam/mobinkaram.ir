@@ -8,32 +8,39 @@ const token = process.env.GITHUB_CONTENT_TOKEN ?? process.env.GITHUB_TOKEN;
 const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents`;
 
 async function fetchDir(path: string) {
-  const res = await fetch(`${apiBase}/${path}?ref=${branch}`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-    cache: "force-cache",
-    next: { revalidate: 1800 },
-  });
-  if (res.status === 404) return [];
-  if (!res.ok) throw new Error(`GitHub fetch failed ${res.status} for ${path}`);
-  return res.json();
+  try {
+    const res = await fetch(`${apiBase}/${path}?ref=${branch}`, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      cache: "force-cache",
+      next: { revalidate: 1800 },
+    });
+    if (!res.ok) return [];
+    return res.json();
+  } catch {
+    return [];
+  }
 }
 
 async function fetchFile(path: string) {
-  const res = await fetch(`${apiBase}/${path}?ref=${branch}`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-    cache: "force-cache",
-    next: { revalidate: 1800 },
-  });
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`GitHub fetch failed ${res.status} for ${path}`);
-  const data = await res.json();
-  return Buffer.from(data.content, "base64").toString("utf8");
+  try {
+    const res = await fetch(`${apiBase}/${path}?ref=${branch}`, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      cache: "force-cache",
+      next: { revalidate: 1800 },
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (!data?.content) return null;
+    return Buffer.from(data.content, "base64").toString("utf8");
+  } catch {
+    return null;
+  }
 }
 
 export async function listEngineerFiles(category: "projects" | "lab" | "logs", locale: "en" | "fa") {
