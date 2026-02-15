@@ -72,8 +72,8 @@ export function MobileNav({ locale }: { locale: Locale }) {
               className={clsx(
                 "flex h-10 w-10 items-center justify-center rounded-full transition-all duration-400 ease-[cubic-bezier(0.22,0.61,0.36,1)]",
                 active
-                  ? "bg-white/20 text-[color:var(--accent-strong)] shadow-inner shadow-white/30"
-                  : "bg-white/5 text-[color:var(--muted)]",
+                  ? "bg-white/20 text-[color:var(--accent-strong)] shadow-inner shadow-white/30 ring-2 ring-[color:var(--accent-strong)] ring-offset-2 ring-offset-[color:var(--surface)]"
+                  : "bg-white/5 text-[color:var(--muted)] ring-0",
               )}
             >
               <Icon size={18} />
