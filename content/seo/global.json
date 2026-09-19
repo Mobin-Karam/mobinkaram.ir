@@ -1,0 +1,28 @@
+{
+  "siteName": {
+    "fa": "مبین کرم",
+    "en": "Mobin Karam"
+  },
+  "siteDescription": {
+    "fa": "مهندس نرم افزار ایرانی، متخصص React، Next.js و TypeScript",
+    "en": "Software engineer specializing in React, Next.js, and TypeScript"
+  },
+  "baseUrl": "https://mobinkaram.ir",
+  "ogImage": "/og-image.png",
+  "twitterHandle": "@mobinkaram",
+  "googleVerification": "",
+  "bingVerification": "",
+  "jsonLd": {
+    "person": {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mobin Karam",
+      "url": "https://mobinkaram.ir",
+      "jobTitle": "Software Engineer",
+      "sameAs": [
+        "https://github.com/Mobin-Karam",
+        "https://www.linkedin.com/in/mobin-karam/"
+      ]
+    }
+  }
+}

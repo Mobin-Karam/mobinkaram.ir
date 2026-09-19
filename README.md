@@ -1,33 +1,39 @@
-# Mobinkaram.ir — Developer Operating System
+# Contact Form System (Next.js + Plugin Architecture)
 
-Bilingual (Persian-first, English-second) engineering workspace built with **Next.js App Router**, MDX content, RTL/LTR aware layout, and next-intl. It presents case-study style projects, an engineering lab, public build log, “now” page, stack reasoning, and the Koonj public tracker.
+A modern, reusable contact form system built with **Next.js**, **Zod validation**, and a **plugin-based architecture** for sending leads to multiple services like email, Telegram, or custom APIs.
 
-## Run
+---
 
-```bash
-npm install
-npm run dev
+## 🚀 Features
+
+- ⚡ Built with Next.js App Router
+- 🧠 Schema validation using Zod
+- 🔌 Plugin system (Email / Bale(lik Telegram) / API webhooks)
+- 📩 Easy integration in any project
+- 💰 Optional donation/payment support
+- 📦 Fully reusable as a component or npm package
+- 🧩 Extensible architecture
+
+---
+
+## Env
+
+- also for connection use this env example :
+
+```env
+BALE_BOT_TOKEN=******
+BALE_PROVIDER_TOKEN=******
+
+BALE_CHANNEL=*****
+BALE_CHAT_ID=*****
 ```
 
-Visit http://localhost:3000 → middleware redirects to `/fa` (default locale). Switch languages via the header toggle.
+## 📦 Installation
 
-## Key features
-- MDX-powered content for projects, lab experiments, and build log entries.
-- RTL/LTR adaptive UI, locale-aware routes via `next-intl` middleware.
-- Dark/light themes with `next-themes`.
-- Case-study project pages (problem, architecture diagram, trade-offs, learnings).
-- Engineering Lab, Build Log, Now page, Stack rationale, Reading list, Tech evolution chart.
-- Search across projects/lab/logs, tag filtering, and GitHub activity widget.
-- Public Koonj roadmap/tracker page.
+Clone the project:
 
-## Structure
-- `src/app/[locale]/` — locale-scoped routes (home, projects, lab, build-log, now, stack, about, koonj-status).
-- `content/fa|en/` — MDX content for projects, lab experiments, build logs.
-- `src/data/` — typed metadata (stack reasons, timeline, tracker, reading list).
-- `src/i18n/` — locale config; `middleware.ts` handles redirects/prefixes.
-- `mdx-components.tsx` — shared MDX component styling.
-
-## Notes
-- Default locale is **fa**; English available at `/en/...`.
-- Plausible script slot ready (add your domain to `layout.tsx` if desired).
-- GitHub widget pulls public events for `mobinkaram` with 1h cache and graceful fallback.
+```bash
+git clone https://github.com/Mobin-Karam/contact-form
+cd contact-form
+npm install
+```

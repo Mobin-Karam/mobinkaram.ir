@@ -1,46 +1,125 @@
 {
-  "brand": {
-    "name": "Mobin Karam — Software Engineer",
-    "role": "Full-Stack & Systems • Founder @ Koonj"
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "products": "Services",
+    "projects": "Projects",
+    "blog": "Blog",
+    "results": "Results",
+    "contact": "Contact",
+    "resume": "Resume",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "language": "Language",
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "back": "Back",
+    "loading": "Loading...",
+    "notFound": "Page Not Found",
+    "notFoundDescription": "The link may be incorrect or this page no longer exists.",
+    "backHome": "Back to Home",
+    "search": "Search",
+    "downloadResume": "Download Resume"
   },
   "nav": {
     "home": "Home",
-    "engineer": "Engineering Hub",
-    "blog": "Blog",
-    "architecture": "Architecture",
-    "security": "Security",
-    "contact": "Contact",
-    "profile": "Profile",
-    "projects": "Projects",
-    "lab": "Lab",
-    "log": "Build log",
-    "now": "Now",
-    "stack": "Stack",
-    "work": "Work",
+    "logoName": "MobinKaram",
     "about": "About",
-    "tracker": "Koonj Tracker"
+    "products": "Services",
+    "projects": "Projects",
+    "contact": "Contact",
+    "resume": "Resume",
+    "blog": "Blog"
   },
   "hero": {
-    "headline": "Software Engineer — Full-Stack & Systems",
-    "sub": "I design, build, deploy, and secure production systems.",
-    "ctaProjects": "Case studies",
-    "ctaLab": "Enter the lab"
+    "role": "Full-Stack Developer",
+    "titleLine1": "Building modern",
+    "titleLine2": "$web experiences.$",
+    "description": "I build fast, scalable web applications while expanding my expertise in $cybersecurity and secure systems.$",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me",
+    "followMe": "Follow Me",
+    "portraitAlt": "Portrait of Mobin Karam",
+    "skillsLabel": "Skills",
+    "skills": {
+      "nextjs": "Next.js",
+      "react": "React",
+      "typescript": "TypeScript",
+      "security": "Cybersecurity",
+      "nestjs": "NestJS"
+    },
+    "floating": {
+      "fullStack": "Full-Stack",
+      "cybersecurity": "Cybersecurity",
+      "available": "Available for Work"
+    }
   },
-  "sections": {
-    "featured": "Top pick",
-    "nowBuilding": "What I'm doing now",
-    "engineeringLab": "Lab experiments",
-    "buildLog": "Build log",
-    "stack": "Why this stack",
-    "timeline": "Shipping timeline",
-    "reading": "Reading list",
-    "roadmap": "Roadmap"
+
+  "contact": {
+    "title": "Let's Work Together",
+    "description": "Currently open to frontend roles and collaborative opportunities. If you have a project in mind, I'd love to discuss it.",
+    "email": "Email",
+    "phone": "Phone",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "telegram": "Telegram"
   },
-  "search": {
-    "placeholder": "Search my work and notes"
+  "footer": {
+    "description": "Frontend developer focused on building scalable, precise, and well-crafted digital systems.",
+    "quickLinks": "Quick Links",
+    "connect": "Connect",
+    "copyright": "© {year} — All rights reserved",
+    "credits": "Built with 🤎 and attention to detail"
   },
-  "status": {
-    "currentlyCoding": "Currently coding",
-    "online": "Active"
+  "banner": {
+    "text": "Join my technology channel on Telegram",
+    "joinButton": "Join Channel"
+  },
+  "blog": {
+    "title": "Blog",
+    "eyebrow": "The Engineering Journal",
+    "journalTitleLine1": "Engineering",
+    "journalTitleLine2": "Journal",
+    "description": "Explore my thoughts, technical notes, experiments, engineering decisions, security research, and experiences in software development.",
+    "readMore": "Read More",
+    "noPosts": "No blog posts are available at the moment. Please check back later.",
+    "archive": "Archive",
+    "latestDispatches": "Latest Dispatches",
+    "archiveDescription": "A chronological record of what I build, study, break, fix, research, and learn.",
+    "entry": "Entry {number}",
+    "storyNumber": "No. {number}",
+    "readingTime": "{minutes} min read",
+    "latestStory": "Latest Story",
+    "fromJournal": "From the Journal",
+    "journalQuote": "Technical notes from building, debugging, researching, and learning.",
+    "backToJournal": "Back to Journal",
+    "published": "Published",
+    "lastUpdated": "Last updated",
+    "filedUnder": "Filed under",
+    "olderPost": "Older story",
+    "newerPost": "Newer story",
+    "keepReading": "Keep reading",
+    "relatedStories": "Related stories",
+    "categoryArchive": "Category Archive",
+    "tagArchive": "Tag Archive",
+    "dateArchive": "Date Archive",
+    "yearArchive": "Stories from {year}",
+    "monthArchive": "Archive: {year}/{month}",
+    "dayArchive": "Archive: {year}/{month}/{day}",
+    "masthead": {
+      "topics": "Engineering · Software · Security",
+      "independent": "Independent Engineering Journal",
+      "established": "Est. 2026"
+    },
+    "categories": {
+      "development": "Development",
+      "cybersecurity": "Cybersecurity",
+      "architecture": "Architecture",
+      "ai": "AI"
+    },
+    "empty": {
+      "eyebrow": "The Archive Is Being Prepared",
+      "title": "No stories published yet"
+    }
   }
 }

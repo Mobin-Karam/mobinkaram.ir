@@ -1,30 +1,13 @@
-import clsx from "clsx";
+import { cn } from "@/lib/utils"
 
-type Props = {
-  className?: string;
-};
-
-export function Skeleton({ className }: Props) {
+function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
-      className={clsx(
-        "animate-pulse rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)]",
-        className,
-      )}
+      data-slot="skeleton"
+      className={cn("animate-pulse rounded-md bg-muted", className)}
+      {...props}
     />
-  );
+  )
 }
 
-export function SkeletonLines({ lines = 3 }: { lines?: number }) {
-  return (
-    <div className="space-y-2">
-      {Array.from({ length: lines }).map((_, i) => (
-        <div
-          key={i}
-          className="animate-pulse rounded-full bg-[color:var(--border)]"
-          style={{ height: 10, width: `${90 - i * 8}%` }}
-        />
-      ))}
-    </div>
-  );
-}
+export { Skeleton }
