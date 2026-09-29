@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { SectionHeading, LazySection, Skeleton } from "@/components/ui/primitives";
-import { BlogList } from "@/components/blog/blog-list";
+import { BlogList } from "@/features/blog";
 import { getPostIndex, filterByCategory } from "@/lib/blog";
 import { getCategories } from "@/lib/categories";
 import type { Locale } from "@/i18n/config";
@@ -21,7 +21,7 @@ export async function generateStaticParams() {
   return locales.flatMap((locale) =>
     categories.map((c) => ({
       locale,
-      category: c.slug,
+      year: c.slug,
     })),
   );
 }
@@ -29,9 +29,9 @@ export async function generateStaticParams() {
 export default async function BlogCategoryPage({
   params,
 }: {
-  params: Promise<{ locale: Locale; category: string }>;
+  params: Promise<{ locale: Locale; year: string }>;
 }) {
-  const { locale, category } = await params;
+  const { locale, year: category } = await params;
   const categories = await getCategories();
   const config = categories.find((c) => c.slug === category);
   if (!config) return notFound();

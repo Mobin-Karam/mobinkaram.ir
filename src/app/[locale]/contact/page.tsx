@@ -1,71 +1,93 @@
-import Link from "next/link";
-import { Mail, Github, Linkedin, MessageCircle } from "lucide-react";
-import { SectionHeading } from "@/components/ui/primitives";
-import { locales, type Locale } from "@/i18n/config";
+import type { Metadata } from "next";
+import { BriefcaseBusiness, Code2, Mail, MessageCircle, Phone } from "lucide-react";
+import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 
-const contacts = [
-  {
-    label: "Email",
-    href: "mailto:mohammadmobinkaram@gmail.com",
-    icon: Mail,
-    note: "Fastest way to reach me for collaborations.",
-  },
-  {
-    label: "GitHub",
-    href: "https://github.com/Mobin-Karam",
-    icon: Github,
-    note: "Code, experiments, and Koonj organization work.",
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/mobin-karam/",
-    icon: Linkedin,
-    note: "Professional profile and updates.",
-  },
-  {
-    label: "Quera",
-    href: "https://quera.org/profile/mobinkaram",
-    icon: MessageCircle,
-    note: "Persian community presence and Q&A.",
-  },
-];
+import { getHomeContent } from "@/data/home-content";
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+const socialIcons = {
+  linkedin: BriefcaseBusiness,
+  github: Code2,
+  telegram: MessageCircle,
+};
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const isFa = locale === "fa";
+
+  return {
+    title: isFa ? "تماس با مبین کرم" : "Contact Mobin Karam",
+    description: isFa
+      ? "برای همکاری، پروژه یا فرصت شغلی با مبین کرم در تماس باشید."
+      : "Get in touch with Mobin Karam about collaboration, projects, or opportunities.",
+  };
 }
 
-export default function ContactPage({
+export default async function ContactPage({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const content = getHomeContent(locale).contact;
+  const t = await getTranslations("nav");
+  const primaryLinks = [
+    { ...content.links.email, icon: Mail },
+    { ...content.links.phone, icon: Phone },
+  ];
+  const socialLinks = (["linkedin", "github", "telegram"] as const).map(
+    (key) => ({ ...content.links[key], icon: socialIcons[key] }),
+  );
+
   return (
-    <div className="space-y-6">
-      <SectionHeading
-        eyebrow="Contact"
-        title="Let’s build something practical"
-        description="I reply quickly to concise, technical messages. Best for architecture reviews, build help, or collaboration."
-      />
-      <div className="grid gap-4 sm:grid-cols-2">
-        {contacts.map(({ label, href, icon: Icon, note }) => (
-          <Link
-            key={label}
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-start gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-4 transition hover:-translate-y-0.5 hover:shadow-lg"
-          >
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[color:var(--surface-strong)] text-[color:var(--accent-strong)] shadow-inner">
-              <Icon size={18} />
-            </span>
-            <div className="space-y-1">
-              <p className="text-sm font-semibold text-[color:var(--foreground)]">{label}</p>
-              <p className="text-xs text-[color:var(--muted)]">{note}</p>
-              <p className="text-[11px] text-[color:var(--accent-strong)] ltr-text">{href}</p>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
+    <main className="mx-auto w-full max-w-5xl px-4 pb-16 pt-32 sm:px-6 lg:px-8">
+      <section aria-labelledby="contact-title" className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-10">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-primary">
+          {t("contact")}
+        </p>
+        <h1 id="contact-title" className="mt-3 font-serif text-4xl font-black tracking-tight sm:text-5xl">
+          {content.title}
+        </h1>
+        <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
+          {content.description}
+        </p>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {primaryLinks.map(({ href, icon: Icon, label, value }) => (
+            <a
+              key={href}
+              href={href}
+              className="group flex min-h-32 items-start gap-4 rounded-2xl border border-border bg-background p-5 transition hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                <Icon className="size-5" aria-hidden="true" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-semibold">{label}</span>
+                <span className="mt-1 block break-all text-sm text-muted-foreground" dir="ltr">
+                  {value}
+                </span>
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          {socialLinks.map(({ href, icon: Icon, label }) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-14 items-center gap-3 rounded-xl border border-border px-4 text-sm font-semibold transition hover:border-primary/50 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            >
+              <Icon className="size-4" aria-hidden="true" />
+              {label}
+            </a>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }

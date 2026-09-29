@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Script from "next/script";
 import { ArrowLeft, CalendarDays, Clock3 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { formatBlogDate } from "@/lib/blog/date";
+import { generateBlogPostingJsonLd } from "@/lib/blog/seo";
 import type { BlogAuthor, BlogLocale, BlogPost, BlogPostMeta } from "@/types/blog";
 import BlogArticleNavigation from "./BlogArticleNavigation";
 import MdxContent from "./MdxContent";
@@ -26,9 +28,11 @@ export default async function BlogArticle({
   older: BlogPostMeta | null;
 }) {
   const t = await getTranslations({ locale, namespace: "blog" });
+  const jsonLd = generateBlogPostingJsonLd(post, author);
 
   return (
     <main dir={locale === "fa" ? "rtl" : "ltr"} className="min-h-screen bg-background text-foreground">
+      <Script id={`blog-post-${post.path}`} type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className="border-b border-border">
         <div className="mx-auto max-w-7xl px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 lg:px-8 lg:pb-16 lg:pt-32">
           <div className="flex flex-wrap items-center justify-between gap-3">

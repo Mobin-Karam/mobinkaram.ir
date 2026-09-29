@@ -10,7 +10,7 @@ const SESSION_COOKIE_NAME = "admin-session";
 
 type Locale = (typeof routing.locales)[number];
 
-const protectedRoutes = ["/dashboard"] as const;
+const protectedRoutes = ["/dashboard", "/admin"] as const;
 
 const guestOnlyRoutes = ["/login"] as const;
 

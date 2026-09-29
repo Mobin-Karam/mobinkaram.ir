@@ -1,12 +1,15 @@
-import { SignJWT, jwtVerify } from "jose";
+import { SignJWT, jwtVerify, type JWTPayload } from "jose";
 import bcrypt from "bcrypt";
 import { cookies } from "next/headers";
 
-const SESSION_SECRET = new TextEncoder().encode(
-  process.env.SESSION_SECRET || "default-secret-change-me",
-);
 const COOKIE_NAME = "admin-session";
 const EXPIRY_HOURS = 24;
+
+function sessionSecret() {
+  const value = process.env.SESSION_SECRET;
+  if (!value || value.length < 32) throw new Error("SESSION_SECRET must be configured with at least 32 characters.");
+  return new TextEncoder().encode(value);
+}
 
 export type SessionPayload = {
   username: string;
@@ -27,6 +30,10 @@ export async function verifyCredentials(
     throw new Error("ADMIN_USERNAME or ADMIN_PASSWORD_HASH is missing.");
   }
 
+  if (adminUsername !== "Mobin-Karam") {
+    throw new Error("ADMIN_USERNAME must be Mobin-Karam.");
+  }
+
   if (username !== adminUsername) {
     return false;
   }
@@ -43,11 +50,13 @@ export async function createSession(username: string): Promise<string> {
     loginAt: Date.now(),
   };
 
-  return new SignJWT(payload as any)
+  const jwtPayload: JWTPayload = payload;
+
+  return new SignJWT(jwtPayload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(`${EXPIRY_HOURS}h`)
-    .sign(SESSION_SECRET);
+    .sign(sessionSecret());
 }
 
 /**
@@ -57,7 +66,7 @@ export async function verifySession(
   token: string,
 ): Promise<SessionPayload | null> {
   try {
-    const { payload } = await jwtVerify(token, SESSION_SECRET);
+    const { payload } = await jwtVerify(token, sessionSecret());
     return payload as unknown as SessionPayload;
   } catch {
     return null;

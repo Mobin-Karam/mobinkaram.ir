@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { getAllSlugs } from "@/lib/markdown";
+import { getBlogSitemapEntries } from "@/lib/blog/sitemap";
 
 const baseUrl = "https://mobinkaram.ir";
 const locales = ["fa", "en"];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = ["", "/about", "/products", "/projects", "/results", "/blog"];
 
   const staticEntries = staticPages.flatMap((page) =>
@@ -43,5 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticEntries, ...projectEntries, ...blogEntries];
+  const remoteBlogEntries = await getBlogSitemapEntries();
+
+  return [...staticEntries, ...projectEntries, ...blogEntries, ...remoteBlogEntries];
 }

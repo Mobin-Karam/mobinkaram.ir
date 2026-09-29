@@ -37,5 +37,5 @@ export function getBlogPostHref(
   routeSlug: string,
 ) {
   const parts = getLocalizedDateParts(date, locale);
-  return `/${locale}/${parts.year}/${parts.month}/${parts.day}/${encodeURIComponent(routeSlug)}`;
+  return `/${locale}/blog/${parts.year}/${parts.month}/${parts.day}/${encodeURIComponent(routeSlug)}`;
 }

@@ -20,16 +20,20 @@ export const revalidate = 1800;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return getAllSlugCategories();
+  return (await getAllSlugCategories()).map(({ locale, category, slug }) => ({
+    locale,
+    year: category,
+    month: slug,
+  }));
 }
 
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ locale: Locale; slug: string; category: string }>;
+  params: Promise<{ locale: Locale; year: string; month: string }>;
 }) {
-  const { locale, slug } = await params;
-  const result = await getPostBySlug(locale as "en" | "fa", (await params).category, slug);
+  const { locale, year: requestedCategory, month: slug } = await params;
+  const result = await getPostBySlug(locale as "en" | "fa", requestedCategory, slug);
   if (!result) notFound();
   const { content, frontmatter } = result;
   const category = categorizePost(frontmatter);
@@ -116,7 +120,7 @@ export default async function BlogPostPage({
           <SectionHeading eyebrow="Related" title="You might also like" />
           <div className="mt-3 grid gap-3 md:grid-cols-3">
             {related.map((post) => {
-              const cat = categorizePost(post as any);
+              const cat = categorizePost(post);
               return (
                 <Link
                   key={post.slug}
