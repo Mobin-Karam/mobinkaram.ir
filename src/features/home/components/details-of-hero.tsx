@@ -1,9 +1,9 @@
 import React from "react";
 import { HighlightedText } from "../lib/helper";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { ArrowUpRight, Mail, Notebook } from "lucide-react";
 import Link from "next/link";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { FaGithub, FaInstagram, FaLinkedinIn, FaYoutube } from "react-icons/fa6";
 
 type TFunction = { t: (key: string) => string };
 
@@ -92,29 +92,31 @@ function AccessLinkButtons({
 }
 
 function SocialMediaButtons({ t }: TFunction) {
+  const socials = [
+    { label: "GitHub", href: "https://github.com/Mobin-Karam", icon: FaGithub },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/mobin-karam/", icon: FaLinkedinIn },
+    { label: "Instagram @mobinkaram.dev", href: "https://www.instagram.com/mobinkaram.dev/", icon: FaInstagram },
+    { label: "YouTube @mobinkaramyt", href: "https://www.youtube.com/@mobinkaramyt", icon: FaYoutube },
+  ];
+
   return (
-    <div className="mt-6 flex items-center gap-2">
-      <span className="me-1 hidden text-xs font-medium text-muted-foreground sm:inline">
+    <div className="mt-6 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+      <span className="me-1 text-xs font-medium text-muted-foreground">
         {t("followMe")}
       </span>
-      <a
-        href="https://github.com/Mobin-Karam"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="GitHub"
-        className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
-      >
-        <FaGithub className="size-[18px]" />
-      </a>
-      <a
-        href="https://www.linkedin.com/in/mobin-karam/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-        className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
-      >
-        <FaLinkedinIn className="size-[18px]" />
-      </a>
+      {socials.map(({ label, href, icon: Icon }) => (
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={label}
+          title={label}
+          className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        >
+          <Icon className="size-[18px]" aria-hidden="true" />
+        </a>
+      ))}
     </div>
   );
 }

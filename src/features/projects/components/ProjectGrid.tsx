@@ -11,7 +11,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
   return (
     <div
       className={[
-        "grid grid-cols-1 gap-4 font-mono",
+        "grid grid-cols-1 gap-4",
         "sm:gap-5 md:grid-cols-2",
         "xl:grid-cols-3",
       ].join(" ")}

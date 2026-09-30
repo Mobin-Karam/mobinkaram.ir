@@ -171,6 +171,17 @@ html[data-reading-size="large"] .article-reading-content li {
   text-rendering: optimizeLegibility;
 }
 
+@keyframes article-reader-fab-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(98 229 142 / 0); }
+  50% { box-shadow: 0 0 0 0.45rem rgb(98 229 142 / 0.12); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .article-reader-fab:not(:hover) {
+    animation: article-reader-fab-pulse 2.8s ease-in-out infinite;
+  }
+}
+
 /* Server-highlighted MDX code blocks. The colors follow highlight.js token classes. */
 .article-reading-content pre code.hljs {
   display: block;
@@ -239,34 +250,16 @@ body {
   width: 100%;
 }
 
-/* =========================================================
-   DESKTOP SCROLL STORY
-   Cinematic behavior is desktop-only.
-========================================================= */
-
-@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+/* The current home page is a document flow, not a pinned scroll scene. */
+@media (min-width: 1024px) {
   .hero-story {
-    height: 235svh;
+    height: auto;
   }
 
   .hero-story__panel {
-    position: sticky;
-    top: 0;
-    height: 100svh;
-    overflow: clip;
-    padding-top: var(--site-header-safe);
-  }
-
-  .scroll-story-scene {
-    height: var(--scene-height, 280svh);
-  }
-
-  .scroll-story-panel {
-    position: sticky;
-    top: 0;
-    height: 100svh;
-    overflow: clip;
-    padding-top: var(--site-header-safe);
+    position: relative;
+    height: auto;
+    overflow: visible;
   }
 }
 
@@ -280,19 +273,28 @@ body {
     --site-header-safe: 5rem;
   }
 
-  .hero-story,
   .scroll-story-scene {
     height: auto !important;
     min-height: auto !important;
   }
 
-  .hero-story__panel,
+  .hero-story {
+    min-height: 100svh !important;
+  }
+
   .scroll-story-panel {
     position: relative !important;
     inset: auto !important;
     top: auto !important;
     height: auto !important;
     min-height: auto !important;
+    overflow: visible !important;
+    contain: none !important;
+  }
+
+  .hero-story__panel {
+    position: relative !important;
+    min-height: 100svh !important;
     overflow: visible !important;
     contain: none !important;
   }
@@ -323,15 +325,23 @@ body {
     scroll-behavior: auto;
   }
 
-  .hero-story,
   .scroll-story-scene {
     height: auto !important;
   }
 
-  .hero-story__panel,
   .scroll-story-panel {
     position: relative !important;
     height: auto !important;
+    overflow: visible !important;
+  }
+
+  .hero-story {
+    min-height: 100svh !important;
+  }
+
+  .hero-story__panel {
+    position: relative !important;
+    min-height: 100svh !important;
     overflow: visible !important;
   }
 }

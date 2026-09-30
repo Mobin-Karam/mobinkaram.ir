@@ -12,7 +12,6 @@ import { Toaster } from "sonner";
 import { OfflineListener } from "@/components/errors/offline-listener";
 import { SiteFooter } from "@/components/layout/footer/site-footer";
 import { SiteHeader } from "@/components/layout/header/site-header";
-import { MobileAppNav } from "@/components/layout/header/mobile-app-nav";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ToastProvider } from "@/components/ui/toast-provider";
 import { routing } from "@/i18n/routing";
@@ -184,12 +183,11 @@ export default async function LocaleLayout({
           >
             <SiteHeader />
 
-            <main id="main-content" className="min-w-0 flex-1 pb-[calc(4.75rem+env(safe-area-inset-bottom))] md:pb-0">
+            <main id="main-content" className="min-w-0 flex-1">
               {children}
             </main>
 
             <SiteFooter />
-            <MobileAppNav locale={locale} />
 
             <Toaster
               position="top-center"

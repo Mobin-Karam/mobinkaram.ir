@@ -17,7 +17,7 @@ export default function DesktopTableOfContents({ items, locale }: { items: Table
         <ChevronDown className={`size-4 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden="true" />
       </button>
       {open ? (
-        <ol className="mt-2 max-h-[calc(100dvh-15rem)] space-y-1 overflow-y-auto overscroll-contain border-s border-border pe-2 ps-3 text-sm leading-6">
+        <ol className="mt-2 space-y-1 border-s border-border pe-2 ps-3 text-sm leading-6">
           {items.map((item) => (
             <li key={item.id} className={item.level === 3 ? "ps-3" : ""}>
               <a href={`#${item.id}`} className="flex min-h-10 items-center text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">

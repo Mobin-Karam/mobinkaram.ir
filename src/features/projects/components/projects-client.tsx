@@ -7,7 +7,6 @@ import {
   FolderKanban,
   Search,
   SlidersHorizontal,
-  Sparkles,
   X,
 } from "lucide-react";
 
@@ -135,29 +134,10 @@ export function ProjectsClient({
         ].join(" ")}
       />
 
-      {/* Background decorations */}
-      <div
-        aria-hidden="true"
-        className={[
-          "pointer-events-none absolute -end-48 top-0 -z-10 hidden sm:block",
-          "size-[28rem] rounded-full",
-          "bg-primary/10 blur-[130px]",
-        ].join(" ")}
-      />
-
-      <div
-        aria-hidden="true"
-        className={[
-          "pointer-events-none absolute -start-52 top-[30rem] -z-10 hidden sm:block",
-          "size-[25rem] rounded-full",
-          "bg-blue-500/10 blur-[130px]",
-        ].join(" ")}
-      />
-
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <header className="mb-8 border border-border bg-card font-mono shadow-[7px_7px_0_color-mix(in_srgb,var(--color-border)_75%,transparent)]">
+        <header className="mb-8 overflow-hidden rounded-xl border border-border bg-card">
           <div className="flex items-center gap-2 border-b border-border bg-muted px-4 py-2 text-[10px] uppercase tracking-[0.16em] text-muted-foreground"><span className="size-2 rounded-full bg-destructive" /><span className="size-2 rounded-full bg-warning" /><span className="size-2 rounded-full bg-success" /><span className="ms-2">portfolio@mobinkaram:~/projects</span></div>
-          <div className="p-5 sm:p-7"><p className="text-xs text-primary">$ ls --interactive --stack</p><div className="mt-3 flex flex-wrap items-end justify-between gap-4"><div><h1 className="text-3xl font-bold tracking-tight sm:text-5xl">{t("title")}</h1><p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">{t("description")}</p></div><div className="flex items-center gap-2 text-xs text-muted-foreground"><FolderKanban className="size-4 text-primary" />{projects.length} repositories <Sparkles className="ms-2 size-4 text-primary" /> live index</div></div></div>
+          <div className="p-5 sm:p-7"><p className="font-mono text-xs text-primary">$ ls --interactive --stack</p><div className="mt-3 flex flex-wrap items-end justify-between gap-4"><div><h1 className="text-3xl font-semibold tracking-tight sm:text-5xl">{t("title")}</h1><p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">{t("description")}</p></div><div className="flex items-center gap-2 font-mono text-xs text-muted-foreground"><FolderKanban className="size-4 text-primary" />{projects.length} repositories</div></div></div>
         </header>
 
         {/* Search and filters */}
@@ -173,10 +153,8 @@ export function ProjectsClient({
           <div
             className={[
               "relative",
-              "border border-border bg-card",
-              "bg-background/90 p-2",
-              "shadow-[0_16px_50px_-30px_rgba(0,0,0,0.5)]",
-              "font-mono",
+              "rounded-xl border border-border bg-card p-2",
+              "shadow-[0_16px_50px_-30px_rgba(0,0,0,0.3)]",
             ].join(" ")}
           >
             <div className="flex items-center gap-2">

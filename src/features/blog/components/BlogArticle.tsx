@@ -5,7 +5,12 @@ import { getTranslations } from "next-intl/server";
 import { formatBlogDate } from "@/lib/blog/date";
 import { generateBlogPostingJsonLd } from "@/lib/blog/seo";
 import { extractTableOfContents } from "@/lib/blog/toc";
-import type { BlogAuthor, BlogLocale, BlogPost, BlogPostMeta } from "@/types/blog";
+import type {
+  BlogAuthor,
+  BlogLocale,
+  BlogPost,
+  BlogPostMeta,
+} from "@/types/blog";
 import BlogArticleNavigation from "./BlogArticleNavigation";
 import MdxContent from "./MdxContent";
 import RelatedPosts from "./RelatedPosts";
@@ -35,83 +40,150 @@ export default async function BlogArticle({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: locale === "fa" ? "خانه" : "Home", item: `https://mobinkaram.ir/${locale}` },
-      { "@type": "ListItem", position: 2, name: locale === "fa" ? "بلاگ" : "Blog", item: `https://mobinkaram.ir/${locale}/blog` },
-      { "@type": "ListItem", position: 3, name: post.title, item: `https://mobinkaram.ir${post.href}` },
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: locale === "fa" ? "خانه" : "Home",
+        item: `https://mobinkaram.ir/${locale}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: locale === "fa" ? "بلاگ" : "Blog",
+        item: `https://mobinkaram.ir/${locale}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `https://mobinkaram.ir${post.href}`,
+      },
     ],
   };
   const tableOfContents = extractTableOfContents(post.body);
 
   return (
-    <main dir={locale === "fa" ? "rtl" : "ltr"} className="min-h-screen bg-background text-foreground">
-      <script id={`blog-post-${post.path}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script id={`blog-breadcrumb-${post.path}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <header className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 lg:px-8 lg:pb-16 lg:pt-32">
-          <div className="mb-8 overflow-x-auto border border-border bg-card px-4 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">post@mobinkaram:~/{post.category}/{post.routeSlug}.mdx</div>
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <Link href={`/${locale}/blog`} className="inline-flex min-h-11 items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground hover:text-primary">
+    <main
+      dir={locale === "fa" ? "rtl" : "ltr"}
+      className="min-h-screen bg-background text-foreground"
+    >
+      <script
+        id={`blog-post-${post.path}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        id={`blog-breadcrumb-${post.path}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <header className="border-b border-border bg-card/30">
+        <div className="mx-auto max-w-6xl px-5 pb-8 pt-20 sm:px-6 sm:pt-24 lg:px-8 lg:pt-28">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <Link
+              href={`/${locale}/blog`}
+              className="inline-flex min-h-11 items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground hover:text-primary"
+            >
               <ArrowLeft className="size-4 rtl:-scale-x-100" />
               {t("backToJournal")}
             </Link>
             {translation ? (
-              <Link href={translation.href} className="inline-flex min-h-11 items-center text-xs font-semibold text-primary hover:underline">
+              <Link
+                href={translation.href}
+                className="inline-flex min-h-11 items-center text-xs font-semibold text-primary hover:underline"
+              >
                 {locale === "fa" ? "English" : "فارسی"}
               </Link>
             ) : null}
           </div>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_240px] lg:items-end lg:gap-14">
-            <div>
-              <div className="mb-5 flex flex-wrap items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground sm:text-xs">
-                <Link href={`/${locale}/blog/category/${encodeURIComponent(post.category)}`} className="text-primary hover:underline">
+          <div
+            dir="ltr"
+            className={`mt-5 overflow-hidden rounded-xl border border-border bg-background shadow-[0_12px_36px_-28px_rgba(0,0,0,0.45)] ${post.coverUrl ? "lg:flex" : ""}`}
+          >
+            {post.coverUrl ? (
+              <div
+                className={`order-2 border-t border-border bg-muted lg:w-52 lg:shrink-0 lg:border-t-0 ${locale === "fa" ? "lg:order-1 lg:border-e" : "lg:order-2 lg:border-s"}`}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={post.coverUrl}
+                  alt={post.title}
+                  decoding="async"
+                  fetchPriority="high"
+                  className="h-36 w-full object-cover sm:h-40 lg:h-full"
+                />
+              </div>
+            ) : null}
+            <div
+              dir={locale === "fa" ? "rtl" : "ltr"}
+              className={`order-1 min-w-0 flex-1 p-5 sm:p-6 ${locale === "fa" ? "lg:order-2" : "lg:order-1"}`}
+            >
+              <div className="mb-3 flex flex-wrap items-center gap-2 font-mono text-[10px] font-medium tracking-[0.08em] text-muted-foreground sm:text-[11px]">
+                <Link
+                  href={`/${locale}/blog/category/${encodeURIComponent(post.category)}`}
+                  className="text-primary hover:underline"
+                >
                   {post.categoryInfo?.title?.[locale] || post.category}
                 </Link>
                 <span>/</span>
-                <span className="inline-flex items-center gap-1.5"><Clock3 className="size-3" />{t("readingTime", { minutes: post.readingTime || 1 })}</span>
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock3 className="size-3" />
+                  {t("readingTime", { minutes: post.readingTime || 1 })}
+                </span>
               </div>
-              <h1 className="max-w-5xl text-pretty text-[2.1rem] font-bold leading-[1.18] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="max-w-3xl text-pretty font-sans text-[1.9rem] font-semibold leading-[1.28] tracking-[-0.03em] sm:text-4xl sm:leading-[1.2]">
                 {post.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-[1rem] leading-8 text-muted-foreground sm:text-lg">{post.description}</p>
+              <p className="mt-3 max-w-2xl font-sans text-sm leading-7 text-muted-foreground sm:text-base">
+                {post.description}
+              </p>
               <ArticleReadingControls locale={locale} />
-            </div>
-
-            <div className="border-t border-border pt-5 lg:border-s lg:border-t-0 lg:ps-6 lg:pt-0">
-              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{t("published")}</p>
-              <time className="mt-2 flex items-center gap-2 text-lg font-bold">
-                <CalendarDays className="size-4" />
-                {formatBlogDate(post.date, locale)}
-              </time>
-              {post.updatedAt ? (
-                <div className="mt-5">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{t("lastUpdated")}</p>
-                  <time className="mt-1 block text-sm text-muted-foreground">{formatBlogDate(post.updatedAt, locale)}</time>
+              <div className="mt-5 grid gap-3 border-t border-border pt-4 text-sm sm:grid-cols-2">
+                <div>
+                  <p className="font-mono text-[10px] font-medium tracking-[0.08em] text-muted-foreground">
+                    {t("published")}
+                  </p>
+                  <time className="mt-1.5 flex items-center gap-2 text-sm font-semibold text-foreground">
+                    <CalendarDays className="size-3.5" />
+                    {formatBlogDate(post.date, locale)}
+                  </time>
                 </div>
-              ) : null}
+                {post.updatedAt ? (
+                  <div>
+                    <p className="font-mono text-[10px] font-medium tracking-[0.08em] text-muted-foreground">
+                      {t("lastUpdated")}
+                    </p>
+                    <time className="mt-1.5 block text-sm text-muted-foreground">
+                      {formatBlogDate(post.updatedAt, locale)}
+                    </time>
+                  </div>
+                ) : null}
+              </div>
             </div>
           </div>
-
-          {post.coverUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={post.coverUrl} alt={post.title} decoding="async" fetchPriority="high" className="mx-auto mt-10 max-h-64 w-full max-w-3xl border border-border bg-muted object-cover sm:max-h-96" />
-          ) : null}
         </div>
       </header>
 
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 py-10 sm:px-6 sm:py-14 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-16 lg:px-8 lg:py-20">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_17rem] lg:items-start lg:gap-12 lg:px-8 lg:py-14">
         <article className="min-w-0">
           <BlogTableOfContents items={tableOfContents} locale={locale} mobile />
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-2xl">
             <MdxContent source={post.body} />
           </div>
 
           {!!post.tags?.length && (
-            <footer className="mx-auto mt-14 max-w-3xl border-t border-border pt-8 sm:mt-20">
-              <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("filedUnder")}</p>
+            <footer className="mx-auto mt-14 max-w-2xl border-t border-border pt-7 sm:mt-16">
+              <p className="mb-3 font-mono text-[10px] font-medium tracking-[0.12em] text-muted-foreground">
+                {t("filedUnder")}
+              </p>
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <Link key={tag} href={`/${locale}/blog/tag/${encodeURIComponent(tag)}`} className="inline-flex min-h-11 items-center border border-border bg-muted/30 px-3 text-xs text-muted-foreground hover:border-primary">
+                  <Link
+                    key={tag}
+                    href={`/${locale}/blog/tag/${encodeURIComponent(tag)}`}
+                    className="inline-flex min-h-11 items-center border border-border bg-muted/30 px-3 text-xs text-muted-foreground hover:border-primary"
+                  >
                     #{tag}
                   </Link>
                 ))}
@@ -124,19 +196,29 @@ export default async function BlogArticle({
         </article>
 
         <aside className="hidden lg:block">
-          <div className="sticky top-28 border-s border-border ps-6">
-            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary">{t("eyebrow")}</p>
+          <div className="sticky top-28 max-h-[calc(100dvh-9rem)] overflow-y-auto overscroll-contain rounded-xl border border-border bg-card p-5">
+            <p className="font-mono text-[10px] font-medium tracking-[0.14em] text-primary">
+              {t("eyebrow")}
+            </p>
             {author ? (
-              <div className="mt-5 border-b border-border pb-5">
+              <div className="mt-4 border-b border-border pb-4">
                 {author.avatar ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={author.avatar} alt={author.name} className="mb-3 size-12 rounded-full border border-border object-cover" />
+                  <img
+                    src={author.avatar}
+                    alt={author.name}
+                    className="mb-3 size-12 rounded-full border border-border object-cover"
+                  />
                 ) : null}
                 <p className="text-lg font-bold">{author.name}</p>
-                {author.title ? <p className="mt-1 text-xs text-muted-foreground">{author.title}</p> : null}
+                {author.title ? (
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {author.title}
+                  </p>
+                ) : null}
               </div>
             ) : null}
-            <div className="mt-5 text-sm leading-7 text-muted-foreground">
+            <div className="mt-4 space-y-1 text-xs leading-6 text-muted-foreground">
               <p>{post.categoryInfo?.title?.[locale] || post.category}</p>
               <p>{t("readingTime", { minutes: post.readingTime || 1 })}</p>
               <p>{formatBlogDate(post.date, locale)}</p>
