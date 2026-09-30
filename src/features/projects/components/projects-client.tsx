@@ -340,6 +340,7 @@ export function ProjectsClient({
             className="text-xs text-muted-foreground sm:text-sm"
           >
             {t.rich("showingResults", {
+              count: filteredProjects.length,
               visible: filteredProjects.length,
               total: projects.length,
               strong: (chunks) => (

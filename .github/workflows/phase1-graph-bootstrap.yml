@@ -1,0 +1,110 @@
+name: Phase 1 Graph Bootstrap
+
+on:
+  pull_request:
+    branches: [develop]
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap-graph:
+    if: github.actor != 'github-actions[bot]' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'architecture/complete-phase-1-graph-validation'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.1'
+
+      - name: Install pinned Graphify
+        run: python -m pip install --disable-pip-version-check 'graphifyy==0.9.58'
+
+      - name: Audit current import boundaries
+        run: node tooling/architecture/check-boundaries.mjs --audit --report=docs/architecture/inventory/phase1-import-audit.json
+
+      - name: Freeze current architecture debt as baseline
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const audit = JSON.parse(fs.readFileSync('docs/architecture/inventory/phase1-import-audit.json', 'utf8'));
+          const baseline = {
+            schemaVersion: 1,
+            generatedFrom: 'docs/architecture/inventory/phase1-import-audit.json',
+            policy: 'Existing Phase 1 debt is tolerated; new deep imports or cycles fail CI.',
+            backendDeepImports: audit.backendDeepImports,
+            backendCycles: audit.backendCycles,
+          };
+          fs.writeFileSync('tooling/architecture/baseline.json', `${JSON.stringify(baseline, null, 2)}\n`);
+          NODE
+          node tooling/architecture/check-boundaries.mjs --report=docs/architecture/inventory/phase1-boundary-enforcement.json
+
+      - name: Build fresh code graph and report
+        shell: bash
+        run: |
+          rm -rf graphify-out
+          graphify extract . --code-only --no-viz
+          test -s graphify-out/graph.json
+          graphify cluster-only . --no-viz --no-label
+          test -s graphify-out/GRAPH_REPORT.md
+
+          {
+            echo '# Phase 1 Graphify validation queries'
+            echo
+            echo '## Authorization consumers'
+            graphify query 'AuthorizationService callers consumers backend-v2 modules' --graph graphify-out/graph.json --budget 1200
+            echo
+            echo '## Sync product persistence paths'
+            graphify query 'SyncService tasks study sessions reports students exams persistence' --graph graphify-out/graph.json --budget 1200
+            echo
+            echo '## Dashboard data access'
+            graphify query 'DashboardService DataSource raw SQL plans tasks exams organizations users conversations' --graph graphify-out/graph.json --budget 1200
+            echo
+            echo '## Onboarding orchestration'
+            graphify query 'OnboardingService users students organizations memberships roles conversations persistence' --graph graphify-out/graph.json --budget 1200
+            echo
+            echo '## Realtime and notifications consumers'
+            graphify query 'RealtimeService consumers NotificationsService ChatService GuardianService' --graph graphify-out/graph.json --budget 1200
+          } > graphify-out/phase1-validation.txt
+
+      - name: Fingerprint graph source set
+        run: node tooling/graphify/fingerprint.mjs --write=graphify-out/code-fingerprint.json
+
+      - name: Record generation metadata
+        shell: bash
+        run: |
+          {
+            echo '# Graphify generation metadata'
+            echo
+            echo "- Graphify: $(graphify --version)"
+            echo "- Source commit: $(git rev-parse HEAD)"
+            echo '- Mode: code-only clean rebuild + deterministic clustering/report; no visualization'
+            echo '- Purpose: Phase 1 source dependency validation'
+            echo '- Freshness: enforced by graphify-out/code-fingerprint.json'
+          } > graphify-out/GENERATION.md
+
+      - name: Commit generated evidence
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tooling/architecture/baseline.json docs/architecture/inventory/phase1-import-audit.json docs/architecture/inventory/phase1-boundary-enforcement.json
+          git add -f graphify-out/graph.json graphify-out/GRAPH_REPORT.md graphify-out/phase1-validation.txt graphify-out/code-fingerprint.json graphify-out/GENERATION.md
+          git rm --cached --ignore-unmatch graphify-out/phase1-query.txt || true
+          rm -f graphify-out/phase1-query.txt
+          if git diff --cached --quiet; then
+            echo 'Graph evidence is already current.'
+            exit 0
+          fi
+          git commit -m 'chore: freeze Phase 1 architecture baseline'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}

@@ -1,0 +1,28 @@
+{
+  "version": 3,
+  "discovery": {
+    "maxDepth": 6,
+    "ignoreDirectories": [
+      ".git",
+      "node_modules",
+      "vendor",
+      ".venv",
+      "venv",
+      "dist",
+      "build",
+      "target",
+      ".next",
+      ".turbo",
+      "coverage"
+    ]
+  },
+  "validation": {
+    "installDependencies": false,
+    "quickIncludesBuild": false,
+    "continueAfterFailure": true
+  },
+  "safety": {
+    "blockObviouslyDestructiveCommands": true,
+    "protectSecretFiles": true
+  }
+}

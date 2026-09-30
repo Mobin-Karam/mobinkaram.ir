@@ -1,0 +1,71 @@
+name: Backend v2 Quality
+
+on:
+  pull_request:
+    paths:
+      - 'apps/api/**'
+      - 'packages/api-contract/**'
+      - 'packages/cmb/**'
+      - '.github/workflows/backend-v2-quality.yml'
+  push:
+    branches: [develop, main]
+    paths:
+      - 'apps/api/**'
+      - 'packages/api-contract/**'
+      - 'packages/cmb/**'
+      - '.github/workflows/backend-v2-quality.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+          cache: npm
+          cache-dependency-path: apps/api/package-lock.json
+      - name: Install reusable package dependencies
+        working-directory: .
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dir in packages/cmb/*; do
+            test -f "$dir/package.json" || continue
+            (cd "$dir" && npm ci --ignore-scripts --no-audit --no-fund)
+          done
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Apply every migration to a fresh database
+        env:
+          DATABASE_PATH: ${{ runner.temp }}/moshaver-fresh.sqlite
+        run: npm run migration:run
+      - name: Verify the authorization matrix against a disposable database
+        shell: bash
+        env:
+          DATABASE_PATH: ${{ runner.temp }}/moshaver-security.sqlite
+          NODE_ENV: test
+          ALLOW_E2E_SEED: 'true'
+          COOKIE_SECURE: '0'
+          PORT: '4000'
+        run: |
+          set -euo pipefail
+          node dist/database/seeds/security-matrix.js
+          node dist/main.js >"${RUNNER_TEMP}/moshaver-api.log" 2>&1 &
+          api_pid=$!
+          trap 'kill "$api_pid" 2>/dev/null || true; cat "${RUNNER_TEMP}/moshaver-api.log"' EXIT
+          for attempt in {1..30}; do
+            curl --fail --silent http://127.0.0.1:4000/ready >/dev/null && break
+            if ! kill -0 "$api_pid" 2>/dev/null; then exit 1; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:4000/ready >/dev/null
+          npm run test:e2e:security

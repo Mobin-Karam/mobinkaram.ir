@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": ".github/ai-toolkit/scripts/session-start.sh",
+        "powershell": "powershell -NoProfile -ExecutionPolicy Bypass -File .github/ai-toolkit/scripts/session-start.ps1",
+        "timeoutSec": 40
+      }
+    ],
+    "sessionEnd": [
+      {
+        "type": "command",
+        "bash": "python3 .github/ai-toolkit/scripts/session_summary.py",
+        "powershell": "python .github/ai-toolkit/scripts/session_summary.py",
+        "timeoutSec": 15
+      }
+    ]
+  }
+}

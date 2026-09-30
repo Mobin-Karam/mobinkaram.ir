@@ -1,0 +1,9 @@
+version: 2
+updates:
+  # Add one entry per detected package ecosystem/directory.
+  # Example for npm at repository root:
+  # - package-ecosystem: "npm"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+  #   open-pull-requests-limit: 10

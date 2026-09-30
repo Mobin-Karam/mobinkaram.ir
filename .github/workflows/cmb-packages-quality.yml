@@ -1,0 +1,60 @@
+name: CMB Packages Quality
+
+on:
+  pull_request:
+    paths: ['packages/cmb/**', 'apps/cmb-reference/**', 'apps/api/**', 'tooling/architecture/**', 'tooling/generators/**', 'tooling/workspace/**', '.github/workflows/cmb-packages-quality.yml']
+  push:
+    branches: [develop, main]
+    paths: ['packages/cmb/**', 'apps/cmb-reference/**', 'apps/api/**', 'tooling/architecture/**', 'tooling/generators/**', 'tooling/workspace/**', '.github/workflows/cmb-packages-quality.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  cmb-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.1'
+      - name: Install every CMB package
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dir in packages/cmb/*; do
+            test -f "$dir/package.json" || continue
+            echo "==> $dir"
+            (cd "$dir" && npm ci --ignore-scripts --no-audit --no-fund)
+          done
+      - name: Test every CMB package
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dir in packages/cmb/*; do
+            test -f "$dir/package.json" || continue
+            echo "==> $dir"
+            (cd "$dir" && npm test)
+          done
+      - name: Enforce workspace and package boundaries
+        run: |
+          npm run workspace:check
+          npm run architecture:check
+          npm run architecture:self-test
+          npm run contracts:check
+          npm run cmb:compatibility
+      - name: Verify reusable package artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dir in packages/cmb/*; do
+            test -f "$dir/package.json" || continue
+            (cd "$dir" && npm pack --dry-run --json >/dev/null)
+          done
+      - name: Test the non-education reference service
+        working-directory: apps/cmb-reference
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm test
+      - name: Smoke-test the application generator
+        run: npm run test:generators

@@ -1,0 +1,15 @@
+name: CI
+on:
+  pull_request:
+  push:
+permissions:
+  contents: read
+jobs:
+  # Generate jobs from detected runtimes/package managers instead of assuming a stack.
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # Add runtime setup and dependency installation for the detected project.
+      # Then run repository-defined lint/typecheck/test/build commands.
+      - run: echo "Customize this workflow for the detected project before enabling it."

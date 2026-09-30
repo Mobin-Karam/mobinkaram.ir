@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "matcher": "bash|powershell",
+        "bash": "python3 .github/ai-toolkit/scripts/safety_guard.py",
+        "powershell": "python .github/ai-toolkit/scripts/safety_guard.py",
+        "timeoutSec": 5
+      }
+    ]
+  }
+}

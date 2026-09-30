@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "hooks": {
+    "postToolUse": [
+      {
+        "type": "command",
+        "matcher": "create|edit",
+        "bash": "python3 .github/ai-toolkit/scripts/changed_file_check.py",
+        "powershell": "python .github/ai-toolkit/scripts/changed_file_check.py",
+        "timeoutSec": 5
+      }
+    ]
+  }
+}

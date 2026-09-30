@@ -1,0 +1,2080 @@
+{
+  "communities": {
+    "0": [
+      "next_config",
+      "next_config_nextconfig",
+      "next_config_withnextintl",
+      "ref_next",
+      "src_app_locale_blog_category_category_page",
+      "src_app_locale_blog_category_category_page_categorypage",
+      "src_app_locale_blog_category_category_page_generatemetadata",
+      "src_app_locale_blog_category_category_page_generatestaticparams",
+      "src_app_locale_blog_page",
+      "src_app_locale_blog_page_blogpage",
+      "src_app_locale_blog_page_generatemetadata",
+      "src_app_locale_blog_rss_xml_route",
+      "src_app_locale_blog_rss_xml_route_get",
+      "src_app_locale_blog_rss_xml_route_xml",
+      "src_app_locale_blog_tag_tag_page",
+      "src_app_locale_blog_tag_tag_page_generatemetadata",
+      "src_app_locale_blog_tag_tag_page_tagpage",
+      "src_app_locale_projects_layout",
+      "src_app_locale_projects_layout_metadata",
+      "src_app_locale_projects_layout_projectslayout",
+      "src_app_locale_year_month_day_page",
+      "src_app_locale_year_month_day_page_dayarchivepage",
+      "src_app_locale_year_month_day_page_generatestaticparams",
+      "src_app_locale_year_month_day_slug_page",
+      "src_app_locale_year_month_day_slug_page_blogpostpage",
+      "src_app_locale_year_month_day_slug_page_findpostbyroute",
+      "src_app_locale_year_month_day_slug_page_generatemetadata",
+      "src_app_locale_year_month_day_slug_page_generatestaticparams",
+      "src_app_locale_year_month_day_slug_page_normalizeslug",
+      "src_app_locale_year_month_day_slug_page_params",
+      "src_app_locale_year_month_page",
+      "src_app_locale_year_month_page_generatestaticparams",
+      "src_app_locale_year_month_page_montharchivepage",
+      "src_app_locale_year_page",
+      "src_app_locale_year_page_generatestaticparams",
+      "src_app_locale_year_page_yeararchivepage",
+      "src_app_robots",
+      "src_app_robots_robots",
+      "src_archived_products_layout",
+      "src_archived_products_layout_metadata",
+      "src_archived_products_layout_productslayout",
+      "src_features_blog_components_archiveheader",
+      "src_features_blog_components_archiveheader_archiveheader",
+      "src_features_blog_components_blogarticle",
+      "src_features_blog_components_blogarticle_blogarticle",
+      "src_features_blog_components_blogarticlenavigation",
+      "src_features_blog_components_blogarticlenavigation_blogarticlenavigation",
+      "src_features_blog_components_blogcard",
+      "src_features_blog_components_blogcard_blogcard",
+      "src_features_blog_components_blogmasthead",
+      "src_features_blog_components_blogmasthead_blogmasthead",
+      "src_features_blog_components_blogtimeline",
+      "src_features_blog_components_blogtimeline_blogtimeline",
+      "src_features_blog_components_relatedposts",
+      "src_features_blog_components_relatedposts_relatedposts",
+      "src_lib_blog_config",
+      "src_lib_blog_config_blog_content",
+      "src_lib_blog_config_blog_content_tag",
+      "src_lib_blog_config_getrawcontentbase",
+      "src_lib_blog_config_getrepofullname",
+      "src_lib_blog_content",
+      "src_lib_blog_content_fetchjson",
+      "src_lib_blog_content_fetchraw",
+      "src_lib_blog_content_filestem",
+      "src_lib_blog_content_filterpostsbyarchive",
+      "src_lib_blog_content_findpostbyroute",
+      "src_lib_blog_content_findtranslation",
+      "src_lib_blog_content_getadjacentposts",
+      "src_lib_blog_content_getallposts",
+      "src_lib_blog_content_getcategories",
+      "src_lib_blog_content_getcontenttree",
+      "src_lib_blog_content_getdefaultauthor",
+      "src_lib_blog_content_getpostbypath",
+      "src_lib_blog_content_getrelatedposts",
+      "src_lib_blog_content_gittreeentry",
+      "src_lib_blog_content_gittreeresponse",
+      "src_lib_blog_content_isbloglocale",
+      "src_lib_blog_content_normalizefrontmatter",
+      "src_lib_blog_content_postpathlocale",
+      "src_lib_blog_content_requestinit",
+      "src_lib_blog_date",
+      "src_lib_blog_date_formatblogdate",
+      "src_lib_blog_date_getlocalizeddateparts",
+      "src_lib_blog_date_normalizedatesegment",
+      "src_lib_blog_date_pad2",
+      "src_lib_blog_date_parseblogdate",
+      "src_lib_blog_date_part",
+      "src_lib_blog_media",
+      "src_lib_blog_media_resolvecontentmediaurl",
+      "src_lib_blog_sitemap",
+      "src_lib_blog_sitemap_getblogsitemapentries",
+      "src_lib_blog_url",
+      "src_lib_blog_url_getblogposthref",
+      "src_lib_blog_url_getrouteslug",
+      "src_lib_blog_url_slugifyblogtitle",
+      "src_types_blog",
+      "src_types_blog_blogauthor",
+      "src_types_blog_blogcategory",
+      "src_types_blog_blogdateparts",
+      "src_types_blog_blogfrontmatter",
+      "src_types_blog_bloglocale",
+      "src_types_blog_blogpost",
+      "src_types_blog_blogpostmeta",
+      "src_types_blog_localizedtext"
+    ],
+    "1": [
+      "middleware",
+      "middleware_config",
+      "next_intl_config",
+      "next_intl_config_config",
+      "src_app_rss_xml_route",
+      "src_app_rss_xml_route_builditems",
+      "src_app_rss_xml_route_escape",
+      "src_app_rss_xml_route_feeditem",
+      "src_app_rss_xml_route_get",
+      "src_components_home_hero",
+      "src_components_home_hero_hero",
+      "src_components_home_hero_props",
+      "src_components_layout_direction_updater",
+      "src_components_layout_direction_updater_directionupdater",
+      "src_components_projects_project_grid",
+      "src_components_projects_project_grid_projectgrid",
+      "src_components_ui_locale_switch",
+      "src_components_ui_locale_switch_localeswitch",
+      "src_components_ui_locale_switch_switchlocale",
+      "src_components_ui_search_bar",
+      "src_components_ui_search_bar_buildhref",
+      "src_components_ui_search_bar_props",
+      "src_components_ui_search_bar_searchbar",
+      "src_components_widgets_github_activity",
+      "src_components_widgets_github_activity_githubactivity",
+      "src_components_widgets_github_activity_githubevent",
+      "src_data_now",
+      "src_data_now_getnowblocks",
+      "src_data_now_nowblock",
+      "src_data_now_nowcontent",
+      "src_i18n_config",
+      "src_i18n_config_defaultlocale",
+      "src_i18n_config_islocale",
+      "src_i18n_config_locale",
+      "src_i18n_config_localeprefix",
+      "src_i18n_config_locales",
+      "src_i18n_routing",
+      "src_lib_blog_getpostindex",
+      "src_lib_engineer_content",
+      "src_lib_engineer_content_fetchdir",
+      "src_lib_engineer_content_fetchfile",
+      "src_lib_engineer_content_getengineerfile",
+      "src_lib_engineer_content_listengineerfiles",
+      "src_lib_engineer_data",
+      "src_lib_engineer_data_engineerrevalidate",
+      "src_lib_engineer_data_entry",
+      "src_lib_engineer_data_getbuildlogs",
+      "src_lib_engineer_data_getfeaturedproject",
+      "src_lib_engineer_data_getlabentries",
+      "src_lib_engineer_data_getlabentry",
+      "src_lib_engineer_data_getlog",
+      "src_lib_engineer_data_getproject",
+      "src_lib_engineer_data_getprojects",
+      "src_lib_engineer_data_labmeta",
+      "src_lib_engineer_data_loadcategory",
+      "src_lib_engineer_data_logmeta",
+      "src_lib_engineer_data_projectmeta",
+      "src_lib_engineer_data_uniqueprojecttags",
+      "src_lib_engineer_mdx",
+      "src_lib_engineer_mdx_compileengineermdx",
+      "src_lib_engineer_mdx_sanitizenumerictags",
+      "src_lib_search",
+      "src_lib_search_searchcontent",
+      "src_lib_search_searchresult",
+      "src_lib_search_server",
+      "src_lib_search_server_buildsearchindex"
+    ],
+    "2": [
+      "package_dependencies",
+      "package_dependencies_axios",
+      "package_dependencies_bcrypt",
+      "package_dependencies_browser_image_compression",
+      "package_dependencies_chokidar",
+      "package_dependencies_class_variance_authority",
+      "package_dependencies_clsx",
+      "package_dependencies_cmdk",
+      "package_dependencies_cookie",
+      "package_dependencies_country_flag_icons",
+      "package_dependencies_date_fns",
+      "package_dependencies_dnd_kit_core",
+      "package_dependencies_dnd_kit_sortable",
+      "package_dependencies_dnd_kit_utilities",
+      "package_dependencies_framer_motion",
+      "package_dependencies_fuse_js",
+      "package_dependencies_gray_matter",
+      "package_dependencies_highlight_js",
+      "package_dependencies_hookform_resolvers",
+      "package_dependencies_image_size",
+      "package_dependencies_jose",
+      "package_dependencies_lucide_react",
+      "package_dependencies_mdx_js_react",
+      "package_dependencies_monaco_editor",
+      "package_dependencies_monaco_editor_react",
+      "package_dependencies_next",
+      "package_dependencies_next_intl",
+      "package_dependencies_next_mdx_remote",
+      "package_dependencies_next_safe_action",
+      "package_dependencies_next_themes",
+      "package_dependencies_radix_ui",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_react_dropzone",
+      "package_dependencies_react_hook_form",
+      "package_dependencies_react_hotkeys_hook",
+      "package_dependencies_react_icons",
+      "package_dependencies_react_markdown",
+      "package_dependencies_react_resizable_panels",
+      "package_dependencies_reading_time",
+      "package_dependencies_recharts",
+      "package_dependencies_rehype",
+      "package_dependencies_rehype_autolink_headings",
+      "package_dependencies_rehype_highlight",
+      "package_dependencies_rehype_slug",
+      "package_dependencies_remark",
+      "package_dependencies_remark_breaks",
+      "package_dependencies_remark_gfm",
+      "package_dependencies_remark_html",
+      "package_dependencies_sanitize_html",
+      "package_dependencies_shadcn",
+      "package_dependencies_sharp",
+      "package_dependencies_sitemap",
+      "package_dependencies_slugify",
+      "package_dependencies_sonner",
+      "package_dependencies_tailwind_merge",
+      "package_dependencies_tanstack_react_table",
+      "package_dependencies_tw_animate_css",
+      "package_dependencies_uiw_react_md_editor",
+      "package_dependencies_uuid",
+      "package_dependencies_yaml",
+      "package_dependencies_zod",
+      "package_dependencies_zustand"
+    ],
+    "3": [
+      "ref_lucide_react",
+      "src_app_locale_projects_page",
+      "src_app_locale_projects_page_generatemetadata",
+      "src_app_locale_projects_page_generatestaticparams",
+      "src_app_locale_projects_page_projectspage",
+      "src_app_locale_projects_page_props",
+      "src_app_locale_projects_page_vazirmatn",
+      "src_app_locale_projects_projectsclient",
+      "src_app_locale_projects_projectsclient_emptyprojects",
+      "src_app_locale_projects_projectsclient_emptyprojectsprops",
+      "src_app_locale_projects_projectsclient_pagevariants",
+      "src_app_locale_projects_projectsclient_projectsclient",
+      "src_app_locale_projects_projectsclient_projectsclient_clearallfilters",
+      "src_app_locale_projects_projectsclient_projectsclient_clearsearch",
+      "src_app_locale_projects_projectsclient_projectsclientprops",
+      "src_app_locale_projects_projectsclient_resultvariants",
+      "src_app_locale_projects_projectsclient_sectionvariants",
+      "src_components_blog_blog_stats",
+      "src_components_blog_blog_stats_blogstats",
+      "src_components_blog_blog_stats_props",
+      "src_components_blog_blog_stats_stat",
+      "src_components_sections_github_section_github_commit_item",
+      "src_components_sections_github_section_github_commit_item_githubcommititem",
+      "src_components_sections_github_section_github_commit_item_githubcommititemprops",
+      "src_components_sections_github_section_github_formatters",
+      "src_components_sections_github_section_github_formatters_formatcompactnumber",
+      "src_components_sections_github_section_github_formatters_formatgithubdate",
+      "src_components_sections_github_section_github_formatters_formatrelativegithubdate",
+      "src_components_sections_github_section_github_formatters_getfirstline",
+      "src_components_sections_github_section_github_repository_card",
+      "src_components_sections_github_section_github_repository_card_githubrepositorycard",
+      "src_components_sections_github_section_github_repository_card_githubrepositorycardprops",
+      "src_components_sections_github_section_github_section",
+      "src_components_sections_github_section_github_section_githubsection",
+      "src_components_sections_github_section_github_section_wrapper",
+      "src_components_sections_github_section_github_section_wrapper_githubsectionwrapper",
+      "src_components_sections_github_section_github_stat_card",
+      "src_components_sections_github_section_github_stat_card_githubstatcard",
+      "src_components_sections_github_section_github_stat_card_githubstatcardprops",
+      "src_components_ui_back_button",
+      "src_components_ui_back_button_backbutton",
+      "src_features_projects_projectcard",
+      "src_features_projects_projectcard_getthemeindex",
+      "src_features_projects_projectcard_project_themes",
+      "src_features_projects_projectcard_projectcard",
+      "src_features_projects_projectcard_projectcardprops",
+      "src_features_projects_projectfilters",
+      "src_features_projects_projectfilters_projectfilters",
+      "src_features_projects_projectfilters_projectfiltersprops",
+      "src_features_projects_projectgrid",
+      "src_features_projects_projectgrid_cardvariants",
+      "src_features_projects_projectgrid_gridvariants",
+      "src_features_projects_projectgrid_projectgrid",
+      "src_features_projects_projectgrid_projectgridprops",
+      "src_features_projects_projects",
+      "src_features_projects_projects_project",
+      "src_features_projects_projects_projects",
+      "src_features_projects_projectsearch",
+      "src_features_projects_projectsearch_projectsearch",
+      "src_features_projects_projectsearch_projectsearchprops"
+    ],
+    "4": [
+      "package",
+      "package_name",
+      "package_private",
+      "package_version",
+      "ref_browser_image_compression",
+      "ref_chokidar",
+      "ref_cookie",
+      "ref_country_flag_icons",
+      "ref_date_fns",
+      "ref_dnd_kit_core",
+      "ref_dnd_kit_sortable",
+      "ref_dnd_kit_utilities",
+      "ref_eslint",
+      "ref_eslint_config_next",
+      "ref_eslint_plugin_import",
+      "ref_eslint_plugin_security",
+      "ref_fuse_js",
+      "ref_gray_matter",
+      "ref_highlight_js",
+      "ref_hookform_resolvers",
+      "ref_image_size",
+      "ref_mdx_js_react",
+      "ref_monaco_editor",
+      "ref_monaco_editor_react",
+      "ref_next_mdx_remote",
+      "ref_next_safe_action",
+      "ref_react_dropzone",
+      "ref_react_hook_form",
+      "ref_react_hotkeys_hook",
+      "ref_react_icons",
+      "ref_react_markdown",
+      "ref_reading_time",
+      "ref_recharts",
+      "ref_rehype",
+      "ref_rehype_highlight",
+      "ref_remark_breaks",
+      "ref_sanitize_html",
+      "ref_shadcn",
+      "ref_sharp",
+      "ref_sitemap",
+      "ref_slugify",
+      "ref_tailwindcss_postcss",
+      "ref_tanstack_react_table",
+      "ref_tw_animate_css",
+      "ref_types_bcrypt",
+      "ref_types_cookie",
+      "ref_types_node",
+      "ref_types_react",
+      "ref_types_react_dom",
+      "ref_types_uuid",
+      "ref_typescript",
+      "ref_uiw_react_md_editor",
+      "ref_uuid",
+      "ref_yaml",
+      "ref_zustand"
+    ],
+    "5": [
+      "src_components_ui_avatar",
+      "src_components_ui_avatar_avatar",
+      "src_components_ui_avatar_avatarbadge",
+      "src_components_ui_avatar_avatarfallback",
+      "src_components_ui_avatar_avatargroup",
+      "src_components_ui_avatar_avatargroupcount",
+      "src_components_ui_avatar_avatarimage",
+      "src_components_ui_breadcrumb",
+      "src_components_ui_breadcrumb_breadcrumb",
+      "src_components_ui_breadcrumb_breadcrumbellipsis",
+      "src_components_ui_breadcrumb_breadcrumbitem",
+      "src_components_ui_breadcrumb_breadcrumblink",
+      "src_components_ui_breadcrumb_breadcrumblist",
+      "src_components_ui_breadcrumb_breadcrumbpage",
+      "src_components_ui_breadcrumb_breadcrumbseparator",
+      "src_components_ui_card",
+      "src_components_ui_card_card",
+      "src_components_ui_card_cardaction",
+      "src_components_ui_card_cardcontent",
+      "src_components_ui_card_carddescription",
+      "src_components_ui_card_cardfooter",
+      "src_components_ui_card_cardheader",
+      "src_components_ui_card_cardtitle",
+      "src_components_ui_dropdown_menu",
+      "src_components_ui_dropdown_menu_dropdownmenu",
+      "src_components_ui_dropdown_menu_dropdownmenucheckboxitem",
+      "src_components_ui_dropdown_menu_dropdownmenucontent",
+      "src_components_ui_dropdown_menu_dropdownmenugroup",
+      "src_components_ui_dropdown_menu_dropdownmenuitem",
+      "src_components_ui_dropdown_menu_dropdownmenulabel",
+      "src_components_ui_dropdown_menu_dropdownmenuportal",
+      "src_components_ui_dropdown_menu_dropdownmenuradiogroup",
+      "src_components_ui_dropdown_menu_dropdownmenuradioitem",
+      "src_components_ui_dropdown_menu_dropdownmenuseparator",
+      "src_components_ui_dropdown_menu_dropdownmenushortcut",
+      "src_components_ui_dropdown_menu_dropdownmenusub",
+      "src_components_ui_dropdown_menu_dropdownmenusubcontent",
+      "src_components_ui_dropdown_menu_dropdownmenusubtrigger",
+      "src_components_ui_dropdown_menu_dropdownmenutrigger",
+      "src_components_ui_table",
+      "src_components_ui_table_table",
+      "src_components_ui_table_tablebody",
+      "src_components_ui_table_tablecaption",
+      "src_components_ui_table_tablecell",
+      "src_components_ui_table_tablefooter",
+      "src_components_ui_table_tablehead",
+      "src_components_ui_table_tableheader",
+      "src_components_ui_table_tablerow",
+      "src_lib_utils_cn"
+    ],
+    "6": [
+      "remark",
+      "remark_gfm",
+      "remark_html",
+      "src_actions_content",
+      "src_actions_content_authguard",
+      "src_actions_content_checkslug",
+      "src_actions_content_createcontent",
+      "src_actions_content_deletecontent",
+      "src_actions_content_getlistcontent",
+      "src_actions_content_getsinglecontent",
+      "src_actions_content_revalidate",
+      "src_actions_content_togglepublished",
+      "src_actions_content_updatecontent",
+      "src_app_sitemap",
+      "src_app_sitemap_locales",
+      "src_app_sitemap_sitemap",
+      "src_lib_markdown",
+      "src_lib_markdown_buildmarkdownfile",
+      "src_lib_markdown_contentdir",
+      "src_lib_markdown_createcontentfile",
+      "src_lib_markdown_deletecontentfile",
+      "src_lib_markdown_ensuredir",
+      "src_lib_markdown_generateuniqueslug",
+      "src_lib_markdown_getallcontent",
+      "src_lib_markdown_getallslugs",
+      "src_lib_markdown_getcontentfile",
+      "src_lib_markdown_getcontentfiles",
+      "src_lib_markdown_getcontentsections",
+      "src_lib_markdown_getcontentstats",
+      "src_lib_markdown_getfilepath",
+      "src_lib_markdown_sanitizeslug",
+      "src_lib_markdown_slugexists",
+      "src_lib_markdown_togglepublishstatus",
+      "src_lib_markdown_updatecontentfile",
+      "src_lib_types",
+      "src_lib_types_actionresult",
+      "src_lib_types_blogfrontmatter",
+      "src_lib_types_contentfile",
+      "src_lib_types_contentsection",
+      "src_lib_types_createcontentinput",
+      "src_lib_types_dashboardstats",
+      "src_lib_types_deletecontentinput",
+      "src_lib_types_frontmatter",
+      "src_lib_types_locale",
+      "src_lib_types_projectfrontmatter",
+      "src_lib_types_resultsfrontmatter",
+      "src_lib_types_seometadata",
+      "src_lib_types_updatecontentinput"
+    ],
+    "7": [
+      "src_components_ui_sheet",
+      "src_components_ui_sheet_sheet",
+      "src_components_ui_sheet_sheetclose",
+      "src_components_ui_sheet_sheetcontent",
+      "src_components_ui_sheet_sheetdescription",
+      "src_components_ui_sheet_sheetfooter",
+      "src_components_ui_sheet_sheetheader",
+      "src_components_ui_sheet_sheetoverlay",
+      "src_components_ui_sheet_sheetportal",
+      "src_components_ui_sheet_sheettitle",
+      "src_components_ui_sheet_sheettrigger",
+      "src_components_ui_sidebar",
+      "src_components_ui_sidebar_sidebar",
+      "src_components_ui_sidebar_sidebarcontent",
+      "src_components_ui_sidebar_sidebarcontext",
+      "src_components_ui_sidebar_sidebarcontextprops",
+      "src_components_ui_sidebar_sidebarfooter",
+      "src_components_ui_sidebar_sidebargroup",
+      "src_components_ui_sidebar_sidebargroupaction",
+      "src_components_ui_sidebar_sidebargroupcontent",
+      "src_components_ui_sidebar_sidebargrouplabel",
+      "src_components_ui_sidebar_sidebarheader",
+      "src_components_ui_sidebar_sidebarinput",
+      "src_components_ui_sidebar_sidebarinset",
+      "src_components_ui_sidebar_sidebarmenu",
+      "src_components_ui_sidebar_sidebarmenuaction",
+      "src_components_ui_sidebar_sidebarmenubadge",
+      "src_components_ui_sidebar_sidebarmenubutton",
+      "src_components_ui_sidebar_sidebarmenubuttonvariants",
+      "src_components_ui_sidebar_sidebarmenuitem",
+      "src_components_ui_sidebar_sidebarmenuskeleton",
+      "src_components_ui_sidebar_sidebarmenusub",
+      "src_components_ui_sidebar_sidebarmenusubbutton",
+      "src_components_ui_sidebar_sidebarmenusubitem",
+      "src_components_ui_sidebar_sidebarprovider",
+      "src_components_ui_sidebar_sidebarrail",
+      "src_components_ui_sidebar_sidebarseparator",
+      "src_components_ui_sidebar_sidebartrigger",
+      "src_components_ui_sidebar_usesidebar",
+      "src_components_ui_tooltip",
+      "src_components_ui_tooltip_tooltip",
+      "src_components_ui_tooltip_tooltipcontent",
+      "src_components_ui_tooltip_tooltipprovider",
+      "src_components_ui_tooltip_tooltiptrigger",
+      "src_hooks_use_mobile",
+      "src_hooks_use_mobile_useismobile"
+    ],
+    "8": [
+      "mdx_components",
+      "mdx_components_usemdxcomponents",
+      "ref_react_dom",
+      "src_components_mdx_code_copy",
+      "src_components_mdx_code_copy_codecopybutton",
+      "src_components_mdx_mdx_components",
+      "src_components_mdx_mdx_components_mdxcomponents",
+      "src_components_ui_post_actions",
+      "src_components_ui_post_actions_actionbutton",
+      "src_components_ui_post_actions_grabposttext",
+      "src_components_ui_post_actions_postactions",
+      "src_components_ui_toast_provider",
+      "src_components_ui_toast_provider_toastcontext",
+      "src_components_ui_toast_provider_toastcontextvalue",
+      "src_components_ui_toast_provider_toastitem",
+      "src_components_ui_toast_provider_toastoptions",
+      "src_components_ui_toast_provider_toastprovider",
+      "src_components_ui_toast_provider_toastvariant",
+      "src_components_ui_toast_provider_usetoast",
+      "src_hooks_use_click_outside",
+      "src_hooks_use_click_outside_useclickoutside",
+      "src_hooks_use_click_outside_useclickoutside_handler",
+      "src_hooks_use_copy_toast",
+      "src_hooks_use_copy_toast_usecopytoast",
+      "src_hooks_use_share",
+      "src_hooks_use_share_platform",
+      "src_hooks_use_share_useshare",
+      "src_hooks_use_toast",
+      "src_lib_strings",
+      "src_lib_strings_escapehtml",
+      "src_lib_strings_slugify"
+    ],
+    "9": [
+      "ref_bcrypt",
+      "ref_jose",
+      "src_lib_auth",
+      "src_lib_auth_clearsession",
+      "src_lib_auth_createsession",
+      "src_lib_auth_getsession",
+      "src_lib_auth_hashpassword",
+      "src_lib_auth_requireadmin",
+      "src_lib_auth_session_secret",
+      "src_lib_auth_sessionpayload",
+      "src_lib_auth_setsessioncookie",
+      "src_lib_auth_verifycredentials",
+      "src_lib_auth_verifysession",
+      "src_proxy",
+      "src_proxy_clearsessioncookie",
+      "src_proxy_config",
+      "src_proxy_createcallbackpath",
+      "src_proxy_createlocalizedpath",
+      "src_proxy_getpathnamelocale",
+      "src_proxy_getvalidsession",
+      "src_proxy_guestonlyroutes",
+      "src_proxy_intlmiddleware",
+      "src_proxy_issupportedlocale",
+      "src_proxy_locale",
+      "src_proxy_matchesroute",
+      "src_proxy_protectedroutes",
+      "src_proxy_proxy",
+      "src_proxy_redirecttodashboard",
+      "src_proxy_redirecttologin",
+      "src_proxy_removelocaleprefix"
+    ],
+    "10": [
+      "ref_radix_ui",
+      "ref_tailwind_merge",
+      "src_components_errors_form_error",
+      "src_components_errors_form_error_formerror",
+      "src_components_errors_form_error_formerrorprops",
+      "src_components_ui_hover_card",
+      "src_components_ui_hover_card_hovercard",
+      "src_components_ui_hover_card_hovercardcontent",
+      "src_components_ui_hover_card_hovercardtrigger",
+      "src_components_ui_label",
+      "src_components_ui_label_label",
+      "src_components_ui_popover",
+      "src_components_ui_popover_popover",
+      "src_components_ui_popover_popoveranchor",
+      "src_components_ui_popover_popovercontent",
+      "src_components_ui_popover_popoverdescription",
+      "src_components_ui_popover_popoverheader",
+      "src_components_ui_popover_popovertitle",
+      "src_components_ui_popover_popovertrigger",
+      "src_components_ui_progress",
+      "src_components_ui_progress_progress",
+      "src_components_ui_scroll_area",
+      "src_components_ui_scroll_area_scrollarea",
+      "src_components_ui_scroll_area_scrollbar",
+      "src_components_ui_separator",
+      "src_components_ui_separator_separator",
+      "src_components_ui_switch",
+      "src_components_ui_switch_switch",
+      "src_lib_utils"
+    ],
+    "11": [
+      "src_features_portfolio_portfolio_brain",
+      "src_features_portfolio_portfolio_brain_answerforintent",
+      "src_features_portfolio_portfolio_brain_askportfoliobrain",
+      "src_features_portfolio_portfolio_brain_brainintent",
+      "src_features_portfolio_portfolio_brain_brainlanguage",
+      "src_features_portfolio_portfolio_brain_brainsource",
+      "src_features_portfolio_portfolio_brain_buildknowledge",
+      "src_features_portfolio_portfolio_brain_buildsuggestions",
+      "src_features_portfolio_portfolio_brain_common_persian_words",
+      "src_features_portfolio_portfolio_brain_compactlist",
+      "src_features_portfolio_portfolio_brain_detectintent",
+      "src_features_portfolio_portfolio_brain_detectlanguage",
+      "src_features_portfolio_portfolio_brain_expandedtokens",
+      "src_features_portfolio_portfolio_brain_findspecificjob",
+      "src_features_portfolio_portfolio_brain_findspecificproject",
+      "src_features_portfolio_portfolio_brain_hasany",
+      "src_features_portfolio_portfolio_brain_isfareply",
+      "src_features_portfolio_portfolio_brain_knowledgeunit",
+      "src_features_portfolio_portfolio_brain_normalize",
+      "src_features_portfolio_portfolio_brain_rankedunit",
+      "src_features_portfolio_portfolio_brain_rankknowledge",
+      "src_features_portfolio_portfolio_brain_scoreunit",
+      "src_features_portfolio_portfolio_brain_sectionsource",
+      "src_features_portfolio_portfolio_brain_skillsbyarea",
+      "src_features_portfolio_portfolio_brain_stop_words",
+      "src_features_portfolio_portfolio_brain_synonyms",
+      "src_features_portfolio_portfolio_brain_tokens",
+      "src_features_portfolio_portfolio_brain_unique",
+      "src_features_portfolio_portfolio_brain_uniquesources"
+    ],
+    "12": [
+      "ref_cmdk",
+      "src_components_ui_command",
+      "src_components_ui_command_command",
+      "src_components_ui_command_commanddialog",
+      "src_components_ui_command_commandempty",
+      "src_components_ui_command_commandgroup",
+      "src_components_ui_command_commandinput",
+      "src_components_ui_command_commanditem",
+      "src_components_ui_command_commandlist",
+      "src_components_ui_command_commandseparator",
+      "src_components_ui_command_commandshortcut",
+      "src_components_ui_dialog",
+      "src_components_ui_dialog_dialog",
+      "src_components_ui_dialog_dialogclose",
+      "src_components_ui_dialog_dialogcontent",
+      "src_components_ui_dialog_dialogdescription",
+      "src_components_ui_dialog_dialogfooter",
+      "src_components_ui_dialog_dialogheader",
+      "src_components_ui_dialog_dialogoverlay",
+      "src_components_ui_dialog_dialogportal",
+      "src_components_ui_dialog_dialogtitle",
+      "src_components_ui_dialog_dialogtrigger",
+      "src_features_projects_imagelightbox",
+      "src_features_projects_imagelightbox_imagelightbox",
+      "src_features_projects_imagelightbox_props"
+    ],
+    "13": [
+      "src_app_locale_page",
+      "src_app_locale_page_homepage",
+      "src_features_home_components_bg_board_hero",
+      "src_features_home_components_bg_board_hero_bgboardhero",
+      "src_features_home_components_details_of_hero",
+      "src_features_home_components_details_of_hero_accesslinkbuttons",
+      "src_features_home_components_details_of_hero_detailsofhero",
+      "src_features_home_components_details_of_hero_socialmediabuttons",
+      "src_features_home_components_details_of_hero_textcontent",
+      "src_features_home_components_details_of_hero_tfunction",
+      "src_features_home_components_hero_image_me",
+      "src_features_home_components_hero_image_me_heroimageme",
+      "src_features_home_constants_tech_logos",
+      "src_features_home_constants_tech_logos_size",
+      "src_features_home_constants_tech_logos_tech_logos",
+      "src_features_home_constants_tech_logos_techlogo",
+      "src_features_home_hero_section",
+      "src_features_home_hero_section_herosection",
+      "src_features_home_hero_section_rtl_locales",
+      "src_features_home_home_client",
+      "src_features_home_home_client_homeclient",
+      "src_features_home_lib_helper",
+      "src_features_home_lib_helper_highlightedtext",
+      "src_features_home_lib_helper_iconifyurl"
+    ],
+    "14": [
+      "src_app_locale_error",
+      "src_app_locale_error_routeerror",
+      "src_app_locale_error_routeerrorprops",
+      "src_components_errors_api_error_state",
+      "src_components_errors_api_error_state_apierrorstate",
+      "src_components_errors_api_error_state_apierrorstateprops",
+      "src_hooks_use_api_error_handler",
+      "src_hooks_use_api_error_handler_handleapierroroptions",
+      "src_hooks_use_api_error_handler_useapierrorhandler",
+      "src_lib_errors_error_navigation",
+      "src_lib_errors_error_navigation_geterrorpath",
+      "src_lib_errors_error_types",
+      "src_lib_errors_error_types_apierrorpayload",
+      "src_lib_errors_error_types_normalizedapperror",
+      "src_lib_errors_normalize_error",
+      "src_lib_errors_normalize_error_axioslikeerror",
+      "src_lib_errors_normalize_error_geterrortype",
+      "src_lib_errors_normalize_error_isaxioslikeerror",
+      "src_lib_errors_normalize_error_normalizeerror",
+      "src_lib_errors_normalize_error_normalizemessage",
+      "src_lib_errors_report_error",
+      "src_lib_errors_report_error_reporterror",
+      "src_lib_errors_report_error_reporterroroptions"
+    ],
+    "15": [
+      "components",
+      "components_aliases",
+      "components_aliases_components",
+      "components_aliases_hooks",
+      "components_aliases_lib",
+      "components_aliases_ui",
+      "components_aliases_utils",
+      "components_iconlibrary",
+      "components_menuaccent",
+      "components_menucolor",
+      "components_registries",
+      "components_rsc",
+      "components_rtl",
+      "components_schema",
+      "components_style",
+      "components_tailwind",
+      "components_tailwind_basecolor",
+      "components_tailwind_config",
+      "components_tailwind_css",
+      "components_tailwind_cssvariables",
+      "components_tailwind_prefix",
+      "components_tsx"
+    ],
+    "16": [
+      "src_components_ui_button",
+      "src_components_ui_button_button",
+      "src_components_ui_button_buttonvariants",
+      "src_components_ui_input",
+      "src_components_ui_input_group",
+      "src_components_ui_input_group_inputgroup",
+      "src_components_ui_input_group_inputgroupaddon",
+      "src_components_ui_input_group_inputgroupaddonvariants",
+      "src_components_ui_input_group_inputgroupbutton",
+      "src_components_ui_input_group_inputgroupbuttonvariants",
+      "src_components_ui_input_group_inputgroupinput",
+      "src_components_ui_input_group_inputgrouptext",
+      "src_components_ui_input_group_inputgrouptextarea",
+      "src_components_ui_input_input",
+      "src_components_ui_textarea",
+      "src_components_ui_textarea_textarea",
+      "src_lib_errors_error_actions",
+      "src_lib_errors_error_actions_erroractionsprops",
+      "src_lib_errors_error_details",
+      "src_lib_errors_error_details_errordetails",
+      "src_lib_errors_error_details_errordetails_handlecopy",
+      "src_lib_errors_error_details_errordetailsprops"
+    ],
+    "17": [
+      "ref_framer_motion",
+      "src_components_toasthost",
+      "src_components_toasthost_toast",
+      "src_components_toasthost_toasthost",
+      "src_features_notification_notifcationtype",
+      "src_features_notification_notifcationtype_notification",
+      "src_features_notification_notifcationtype_notificationtype",
+      "src_features_notification_notificationcontext",
+      "src_features_notification_notificationcontext_ctx",
+      "src_features_notification_notificationcontext_notificationcontext",
+      "src_features_notification_notificationcontext_notificationprovider",
+      "src_features_notification_notificationcontext_usenotification",
+      "src_features_notification_ui_notificationitem",
+      "src_features_notification_ui_notificationitem_notificationitem",
+      "src_features_notification_ui_notificationviewport",
+      "src_features_notification_ui_notificationviewport_notificationviewport",
+      "src_lib_appeventbus",
+      "src_lib_appeventbus_appeventbus",
+      "src_lib_appeventbus_appeventbus_emit",
+      "src_lib_appeventbus_appeventbus_subscribe",
+      "src_lib_appeventbus_listener"
+    ],
+    "18": [
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowjs",
+      "tsconfig_compileroptions_baseurl",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_incremental",
+      "tsconfig_compileroptions_isolatedmodules",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_paths",
+      "tsconfig_compileroptions_plugins",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_exclude",
+      "tsconfig_include",
+      "tsconfig_paths_content"
+    ],
+    "19": [
+      "ref_clsx",
+      "src_components_home_announcement_banner",
+      "src_components_home_announcement_banner_announcementbanner",
+      "src_components_home_announcement_banner_props",
+      "src_components_home_announcement_banner_slide",
+      "src_components_ui_lazy_section",
+      "src_components_ui_lazy_section_lazysection",
+      "src_components_ui_lazy_section_props",
+      "src_components_ui_primitives_card",
+      "src_components_ui_primitives_card_card",
+      "src_components_ui_primitives_index",
+      "src_components_ui_primitives_pill",
+      "src_components_ui_primitives_pill_pill",
+      "src_components_ui_primitives_pill_variant",
+      "src_components_ui_section_back_link",
+      "src_components_ui_section_back_link_props",
+      "src_components_ui_section_back_link_sectionbacklink",
+      "src_components_ui_section_heading",
+      "src_components_ui_section_heading_props",
+      "src_components_ui_section_heading_sectionheading"
+    ],
+    "20": [
+      "ref_next_themes",
+      "ref_sonner",
+      "src_app_locale_layout",
+      "src_app_locale_layout_generatemetadata",
+      "src_app_locale_layout_generatestaticparams",
+      "src_app_locale_layout_localelayout",
+      "src_app_locale_layout_localelayoutprops",
+      "src_components_errors_offline_listener",
+      "src_components_errors_offline_listener_offlinelistener",
+      "src_components_layout_footer_site_footer",
+      "src_components_layout_footer_site_footer_sitefooter",
+      "src_components_providers_theme_provider",
+      "src_components_providers_theme_provider_themeprovider",
+      "src_components_ui_sonner",
+      "src_components_ui_sonner_toaster",
+      "src_hooks_use_online_status",
+      "src_hooks_use_online_status_useonlinestatus",
+      "src_hooks_use_online_status_useonlinestatus_handleoffline",
+      "src_hooks_use_online_status_useonlinestatus_handleonline"
+    ],
+    "21": [
+      "src_app_locale_blog_category_slug_page",
+      "src_app_locale_blog_category_slug_page_blogpostpage",
+      "src_app_locale_blog_category_slug_page_dynamicparams",
+      "src_app_locale_blog_category_slug_page_generatestaticparams",
+      "src_app_locale_blog_category_slug_page_revalidate",
+      "src_components_ui_article_meta",
+      "src_components_ui_article_meta_articlemeta",
+      "src_components_ui_article_meta_props",
+      "src_components_ui_cover_image",
+      "src_components_ui_cover_image_coverimage",
+      "src_components_ui_cover_image_props",
+      "src_lib_blog_getallslugcategories",
+      "src_lib_blog_getpostbyslug",
+      "src_lib_blog_getrelatedposts",
+      "src_lib_blog_ispostnew",
+      "src_lib_seo",
+      "src_lib_seo_absoluteurl",
+      "src_lib_seo_articleld",
+      "src_lib_seo_siteurl"
+    ],
+    "22": [
+      "src_components_layout_header_flag_langauge",
+      "src_components_layout_header_flag_langauge_countryflagcomponent",
+      "src_components_layout_header_flag_langauge_flaglanguage",
+      "src_components_layout_header_flag_langauge_islocale",
+      "src_components_layout_header_flag_langauge_locale",
+      "src_components_layout_header_flag_langauge_localeoption",
+      "src_components_layout_header_flag_langauge_locales",
+      "src_components_layout_header_flag_langauge_localevalues",
+      "src_components_layout_header_install_button",
+      "src_components_layout_header_install_button_beforeinstallpromptevent",
+      "src_components_layout_header_install_button_installbutton",
+      "src_components_layout_header_site_header",
+      "src_components_layout_header_site_header_locales",
+      "src_components_layout_header_site_header_mobileitemvariants",
+      "src_components_layout_header_site_header_mobilemenuvariants",
+      "src_components_layout_header_site_header_siteheader",
+      "src_components_layout_header_site_header_siteheader_getlocalepath",
+      "src_components_layout_header_site_header_siteheader_isactiveroute",
+      "src_components_layout_header_site_header_siteheader_toggletheme"
+    ],
+    "23": [
+      "src_lib_blog",
+      "src_lib_blog_blogcategory",
+      "src_lib_blog_categorizepost",
+      "src_lib_blog_getallslugs",
+      "src_lib_blog_getauthor",
+      "src_lib_blog_getuniqueblogtags",
+      "src_lib_blog_islammatcher",
+      "src_lib_blog_loadindex",
+      "src_lib_blog_locales",
+      "src_lib_blog_revalidate",
+      "src_lib_github_content",
+      "src_lib_github_content_decodecontent",
+      "src_lib_github_content_getauthorfile",
+      "src_lib_github_content_getcategoriesfile",
+      "src_lib_github_content_getpostfile",
+      "src_lib_github_content_githubfetch",
+      "src_lib_github_content_listpostfiles",
+      "src_lib_github_content_remotepostfile"
+    ],
+    "24": [
+      "src_lib_github",
+      "src_lib_github_getgithubhighlights",
+      "src_lib_github_getkoonjissues",
+      "src_lib_github_getorgprofile",
+      "src_lib_github_getorgrepos",
+      "src_lib_github_getpinnedrepo",
+      "src_lib_github_getpinnedrepos",
+      "src_lib_github_getuserprofile",
+      "src_lib_github_getuserrepos",
+      "src_lib_github_headers",
+      "src_lib_github_pinnednode",
+      "src_lib_github_pinnedrepofullnames",
+      "src_lib_github_profile",
+      "src_lib_github_repo",
+      "src_lib_github_repopick",
+      "src_lib_github_safefetch",
+      "src_lib_github_trackerissue"
+    ],
+    "25": [
+      "ref_next_intl",
+      "src_app_locale_not_found",
+      "src_app_locale_not_found_notfoundpage",
+      "src_app_locale_system_page_forbidden_page",
+      "src_app_locale_system_page_forbidden_page_forbiddenpage",
+      "src_app_locale_system_page_maintenance_page",
+      "src_app_locale_system_page_maintenance_page_maintenancepage",
+      "src_app_locale_system_page_server_error_page",
+      "src_app_locale_system_page_server_error_page_servererrorpage",
+      "src_app_locale_system_page_to_many_request_page",
+      "src_app_locale_system_page_to_many_request_page_toomanyrequestspage",
+      "src_components_layout_header_top_banner",
+      "src_components_layout_header_top_banner_topbanner",
+      "src_i18n_request",
+      "src_i18n_routing_routing",
+      "src_lib_errors_error_page_errorpage"
+    ],
+    "26": [
+      "ref_zod",
+      "src_archived_products_page",
+      "src_archived_products_page_productspage",
+      "src_archived_products_page_productspage_handleselect",
+      "src_components_contactform",
+      "src_components_contactform_contactform",
+      "src_components_contactform_contactform_handlesubmit",
+      "src_components_contactform_contactform_validate",
+      "src_components_contactform_formdata",
+      "src_components_contactform_input",
+      "src_components_contactform_props",
+      "src_components_contactform_schema",
+      "src_components_contactform_selecteditem",
+      "src_components_productcard",
+      "src_components_productcard_productcard",
+      "src_components_productcard_productcard_toggleflip"
+    ],
+    "27": [
+      "src_components_ui_context_menu",
+      "src_components_ui_context_menu_contextmenu",
+      "src_components_ui_context_menu_contextmenucheckboxitem",
+      "src_components_ui_context_menu_contextmenucontent",
+      "src_components_ui_context_menu_contextmenugroup",
+      "src_components_ui_context_menu_contextmenuitem",
+      "src_components_ui_context_menu_contextmenulabel",
+      "src_components_ui_context_menu_contextmenuportal",
+      "src_components_ui_context_menu_contextmenuradiogroup",
+      "src_components_ui_context_menu_contextmenuradioitem",
+      "src_components_ui_context_menu_contextmenuseparator",
+      "src_components_ui_context_menu_contextmenushortcut",
+      "src_components_ui_context_menu_contextmenusub",
+      "src_components_ui_context_menu_contextmenusubcontent",
+      "src_components_ui_context_menu_contextmenusubtrigger",
+      "src_components_ui_context_menu_contextmenutrigger"
+    ],
+    "28": [
+      "src_features_portfolio_portfolio_brain_brainreply",
+      "src_features_portfolio_portfolio_chat",
+      "src_features_portfolio_portfolio_chat_assistantavatar",
+      "src_features_portfolio_portfolio_chat_chatmessage",
+      "src_features_portfolio_portfolio_chat_composer",
+      "src_features_portfolio_portfolio_chat_composerprops",
+      "src_features_portfolio_portfolio_chat_makeid",
+      "src_features_portfolio_portfolio_chat_portfoliochat",
+      "src_features_portfolio_portfolio_chat_portfoliochat_ask",
+      "src_features_portfolio_portfolio_chat_portfoliochat_clearchat",
+      "src_features_portfolio_portfolio_chat_portfoliochat_handlekeydown",
+      "src_features_portfolio_portfolio_chat_portfoliochat_stopthinking",
+      "src_features_portfolio_portfolio_chat_portfoliochat_submit",
+      "src_features_portfolio_portfolio_chat_scrolltosection",
+      "src_features_portfolio_portfolio_chat_stagelabel",
+      "src_features_portfolio_portfolio_chat_thinkingstage"
+    ],
+    "29": [
+      "src_components_blog_blog_hero",
+      "src_components_blog_blog_hero_bloghero",
+      "src_components_blog_blog_hero_isnew",
+      "src_components_blog_blog_hero_props",
+      "src_components_blog_blog_list",
+      "src_components_blog_blog_list_bloglist",
+      "src_components_blog_blog_list_isnew",
+      "src_components_blog_blog_list_props",
+      "src_lib_github_content_asseturl",
+      "src_lib_mdx_server",
+      "src_lib_mdx_server_compilepost",
+      "src_lib_mdx_server_sanitizenumerictags",
+      "src_types_post",
+      "src_types_post_post",
+      "src_types_post_postfrontmatter"
+    ],
+    "30": [
+      "package_devdependencies",
+      "package_devdependencies_eslint",
+      "package_devdependencies_eslint_config_next",
+      "package_devdependencies_eslint_plugin_import",
+      "package_devdependencies_eslint_plugin_security",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_postcss",
+      "package_devdependencies_types_bcrypt",
+      "package_devdependencies_types_cookie",
+      "package_devdependencies_types_node",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_types_uuid",
+      "package_devdependencies_typescript"
+    ],
+    "31": [
+      "src_components_ui_cookie_banner",
+      "src_components_ui_cookie_banner_cookiebanner",
+      "src_components_ui_notification_bar_notificationbar",
+      "src_components_ui_theme_toggle",
+      "src_components_ui_theme_toggle_themetoggle",
+      "src_hooks_use_user_prefs",
+      "src_hooks_use_user_prefs_useuserprefs",
+      "src_lib_prefs",
+      "src_lib_prefs_defaultprefs",
+      "src_lib_prefs_parsecookie",
+      "src_lib_prefs_readprefs",
+      "src_lib_prefs_updateprefs",
+      "src_lib_prefs_userprefs",
+      "src_lib_prefs_writeprefs"
+    ],
+    "32": [
+      "src_data_home_content",
+      "src_data_home_content_contactlink",
+      "src_data_home_content_experiencejob",
+      "src_data_home_content_faqitem",
+      "src_data_home_content_homecontent",
+      "src_data_home_content_homelocale",
+      "src_data_home_content_journeystep",
+      "src_data_home_content_portfoliostory",
+      "src_data_home_content_projectitem",
+      "src_data_home_content_resultmetric",
+      "src_data_home_content_skillitem",
+      "src_data_home_content_softskillitem",
+      "src_data_home_content_storysectionguide",
+      "src_data_home_content_testimonialitem"
+    ],
+    "33": [
+      "src_app_layout",
+      "src_app_layout_rootlayout",
+      "src_app_layout_rootlayoutprops",
+      "src_app_layout_vazirmatn",
+      "src_components_ui_back_to_top",
+      "src_components_ui_back_to_top_backtotop",
+      "src_components_ui_back_to_top_backtotopprops",
+      "src_components_ui_smooth_cursor",
+      "src_components_ui_smooth_cursor_cursorvariant",
+      "src_components_ui_smooth_cursor_followerarrow",
+      "src_components_ui_smooth_cursor_followerspring",
+      "src_components_ui_smooth_cursor_interactive_selector",
+      "src_components_ui_smooth_cursor_smoothcursor"
+    ],
+    "34": [
+      "src_components_layout_site_footer",
+      "src_components_layout_site_footer_sitefooter",
+      "src_components_ui_primitives_button",
+      "src_components_ui_primitives_button_button",
+      "src_components_ui_primitives_button_props",
+      "src_components_ui_primitives_button_size",
+      "src_components_ui_primitives_button_sizes",
+      "src_components_ui_primitives_button_variant",
+      "src_components_ui_primitives_button_variants",
+      "src_hooks_use_client_device",
+      "src_hooks_use_client_device_device",
+      "src_hooks_use_client_device_parseua",
+      "src_hooks_use_client_device_useclientdevice"
+    ],
+    "35": [
+      "src_lib_errors_error_actions_erroractions",
+      "src_lib_errors_error_actions_erroractions_retry",
+      "src_lib_errors_error_code",
+      "src_lib_errors_error_code_errorcode",
+      "src_lib_errors_error_code_errorcodeprops",
+      "src_lib_errors_error_icon",
+      "src_lib_errors_error_icon_erroricon",
+      "src_lib_errors_error_icon_erroriconprops",
+      "src_lib_errors_error_icon_icons",
+      "src_lib_errors_error_page",
+      "src_lib_errors_error_page_errorpageprops",
+      "src_lib_errors_error_types_apperrortype",
+      "src_lib_errors_index"
+    ],
+    "36": [
+      "src_app_locale_loading",
+      "src_app_locale_loading_homeloading",
+      "src_app_locale_projects_loading",
+      "src_app_locale_projects_loading_projectsloading",
+      "src_archived_about_loading",
+      "src_archived_about_loading_aboutloading",
+      "src_archived_products_loading",
+      "src_archived_products_loading_productsloading",
+      "src_components_ui_preferences_panel",
+      "src_components_ui_preferences_panel_preferencespanel",
+      "src_components_ui_skeleton",
+      "src_components_ui_skeleton_skeleton"
+    ],
+    "37": [
+      "src_components_home_scroll_reveal",
+      "src_components_home_scroll_reveal_revealdirection",
+      "src_components_home_scroll_reveal_scrollreveal",
+      "src_components_home_scroll_reveal_scrollrevealprops",
+      "src_components_home_scroll_scene",
+      "src_components_home_scroll_scene_scrollscene",
+      "src_components_home_scroll_scene_scrollscenecontext",
+      "src_components_home_scroll_scene_scrollscenecontextvalue",
+      "src_components_home_scroll_scene_scrollsceneprops",
+      "src_components_home_scroll_scene_usesceneprogress",
+      "src_components_home_use_mobile_story",
+      "src_components_home_use_mobile_story_usemobilestory"
+    ],
+    "38": [
+      "src_components_ui_select",
+      "src_components_ui_select_select",
+      "src_components_ui_select_selectcontent",
+      "src_components_ui_select_selectgroup",
+      "src_components_ui_select_selectitem",
+      "src_components_ui_select_selectlabel",
+      "src_components_ui_select_selectscrolldownbutton",
+      "src_components_ui_select_selectscrollupbutton",
+      "src_components_ui_select_selectseparator",
+      "src_components_ui_select_selecttrigger",
+      "src_components_ui_select_selectvalue"
+    ],
+    "39": [
+      "github_ai_toolkit_scripts_validate_project_deps_available",
+      "github_ai_toolkit_scripts_validate_project_files",
+      "github_ai_toolkit_scripts_validate_project_have",
+      "github_ai_toolkit_scripts_validate_project_ignored",
+      "github_ai_toolkit_scripts_validate_project_main",
+      "github_ai_toolkit_scripts_validate_project_nearest_pm",
+      "github_ai_toolkit_scripts_validate_project_node_validate",
+      "github_ai_toolkit_scripts_validate_project_py_github_ai_toolkit_scripts_validate_project",
+      "github_ai_toolkit_scripts_validate_project_run",
+      "github_ai_toolkit_scripts_validate_project_unique_dirs"
+    ],
+    "40": [
+      "ref_class_variance_authority",
+      "src_components_ui_badge",
+      "src_components_ui_badge_badge",
+      "src_components_ui_badge_badgevariants",
+      "src_components_ui_tabs",
+      "src_components_ui_tabs_tabs",
+      "src_components_ui_tabs_tabscontent",
+      "src_components_ui_tabs_tabslist",
+      "src_components_ui_tabs_tabslistvariants",
+      "src_components_ui_tabs_tabstrigger"
+    ],
+    "41": [
+      "src_app_locale_blog_category_page",
+      "src_app_locale_blog_category_page_blogcategorypage",
+      "src_app_locale_blog_category_page_dynamicparams",
+      "src_app_locale_blog_category_page_generatestaticparams",
+      "src_app_locale_blog_category_page_revalidate",
+      "src_lib_blog_filterbycategory",
+      "src_lib_categories",
+      "src_lib_categories_category",
+      "src_lib_categories_fetchcategoriesfile",
+      "src_lib_categories_getcategories"
+    ],
+    "42": [
+      "src_components_home_section_guide",
+      "src_components_home_section_guide_sectionguide",
+      "src_components_home_section_guide_sectionguideprops",
+      "src_components_home_section_heading",
+      "src_components_home_section_heading_renderhighlightedtext",
+      "src_components_home_section_heading_sectionheading",
+      "src_components_home_section_heading_sectionheadingprops",
+      "src_data_home_content_gethomecontent",
+      "src_features_home_contact_section",
+      "src_features_home_contact_section_contactsection"
+    ],
+    "43": [
+      "src_components_layout_site_header",
+      "src_components_layout_site_header_navitems",
+      "src_components_layout_site_header_siteheader",
+      "src_components_ui_install_button",
+      "src_components_ui_install_button_beforeinstallpromptevent",
+      "src_components_ui_install_button_installbutton",
+      "src_components_ui_scroll_progress",
+      "src_components_ui_scroll_progress_scrollprogress",
+      "src_components_ui_status_dot",
+      "src_components_ui_status_dot_statusdot"
+    ],
+    "44": [
+      "src_components_ui_navigation_menu",
+      "src_components_ui_navigation_menu_navigationmenu",
+      "src_components_ui_navigation_menu_navigationmenucontent",
+      "src_components_ui_navigation_menu_navigationmenuindicator",
+      "src_components_ui_navigation_menu_navigationmenuitem",
+      "src_components_ui_navigation_menu_navigationmenulink",
+      "src_components_ui_navigation_menu_navigationmenulist",
+      "src_components_ui_navigation_menu_navigationmenutrigger",
+      "src_components_ui_navigation_menu_navigationmenutriggerstyle",
+      "src_components_ui_navigation_menu_navigationmenuviewport"
+    ],
+    "45": [
+      "github_ai_toolkit_scripts_detect_project_classify",
+      "github_ai_toolkit_scripts_detect_project_load_config",
+      "github_ai_toolkit_scripts_detect_project_main",
+      "github_ai_toolkit_scripts_detect_project_package_info",
+      "github_ai_toolkit_scripts_detect_project_py_github_ai_toolkit_scripts_detect_project",
+      "github_ai_toolkit_scripts_detect_project_rel",
+      "github_ai_toolkit_scripts_detect_project_run",
+      "github_ai_toolkit_scripts_detect_project_text_detect",
+      "path"
+    ],
+    "46": [
+      "ref_rehype_autolink_headings",
+      "ref_rehype_slug",
+      "ref_remark",
+      "ref_remark_gfm",
+      "ref_remark_html",
+      "src_features_blog_components_mdxcontent",
+      "src_features_blog_components_mdxcontent_components",
+      "src_features_blog_components_mdxcontent_mdxcontent",
+      "src_lib_markdown_markdowntohtml"
+    ],
+    "47": [
+      "mdx_d",
+      "mdx_d_mdx",
+      "ref_react",
+      "src_components_portfoliointro",
+      "src_components_portfoliointro_portfoliointro",
+      "src_components_ui_countdown_badge",
+      "src_components_ui_countdown_badge_countdownbadge",
+      "src_components_ui_notification_bar"
+    ],
+    "48": [
+      "src_components_layout_app_shell",
+      "src_components_layout_app_shell_appshell",
+      "src_components_layout_app_shell_props",
+      "src_components_layout_mobile_nav",
+      "src_components_layout_mobile_nav_items",
+      "src_components_layout_mobile_nav_mobilenav",
+      "src_components_ui_location_bar",
+      "src_components_ui_location_bar_locationbar"
+    ],
+    "49": [
+      "src_components_ui_roadmap_svg",
+      "src_components_ui_roadmap_svg_legenddot",
+      "src_components_ui_roadmap_svg_point",
+      "src_components_ui_roadmap_svg_roadmapsvg",
+      "src_components_ui_roadmap_svg_statuscolor",
+      "src_data_tracker",
+      "src_data_tracker_koonjtracker",
+      "src_data_tracker_trackeritem"
+    ],
+    "50": [
+      "src_data_home_content_storysectionkey",
+      "src_features_portfolio_portfolio_assistant",
+      "src_features_portfolio_portfolio_assistant_findtarget",
+      "src_features_portfolio_portfolio_assistant_portfolioassistant",
+      "src_features_portfolio_portfolio_assistant_portfolioassistant_navigate",
+      "src_features_portfolio_portfolio_assistant_portfolioassistant_submit",
+      "src_features_portfolio_portfolio_assistant_scrolltosection",
+      "src_features_portfolio_portfolio_assistant_section_words"
+    ],
+    "51": [
+      "src_lib_bale_balerequest",
+      "src_lib_bale_balerequest_balerequest",
+      "src_lib_bale_balerequest_channel",
+      "src_lib_bale_balerequest_token",
+      "src_lib_bale_utils_photosender",
+      "src_lib_bale_utils_photosender_sendphototobale",
+      "src_lib_bale_utils_videosender",
+      "src_lib_bale_utils_videosender_sendvideotobale"
+    ],
+    "52": [
+      "src_lib_bale_client",
+      "src_lib_bale_client_balerequest",
+      "src_lib_bale_config",
+      "src_lib_bale_media",
+      "src_lib_bale_media_sendphoto",
+      "src_lib_bale_media_sendvideo",
+      "src_lib_bale_payment",
+      "src_lib_bale_payment_sendinvoice"
+    ],
+    "53": [
+      "_github_ai_toolkit_legacy_examples_moshaver_version_update_incremental_modularization",
+      "_github_ai_toolkit_legacy_examples_moshaver_version_update_v14_modernization",
+      "_github_copilot_instructions_moshaver_repository_contract",
+      "_github_instructions_cmb_backend_composable_modular_backend_architecture",
+      "_github_instructions_graphify_graphify_discovery_instructions",
+      "_github_repository_settings_graphify_policy"
+    ],
+    "54": [
+      "src_archived_products_slug_page",
+      "src_archived_products_slug_page_generatemetadata",
+      "src_archived_products_slug_page_productpage",
+      "src_archived_products_slug_productclient",
+      "src_archived_products_slug_productclient_productclient",
+      "src_archived_products_slug_productclient_productclient_copylink"
+    ],
+    "55": [
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_lint",
+      "package_scripts_start"
+    ],
+    "56": [
+      "ref_react_resizable_panels",
+      "src_components_ui_resizable",
+      "src_components_ui_resizable_resizablehandle",
+      "src_components_ui_resizable_resizablepanel",
+      "src_components_ui_resizable_resizablepanelgroup"
+    ],
+    "57": [
+      "src_components_layout_header_header",
+      "src_components_layout_header_header_header",
+      "src_components_layout_header_header_navitems",
+      "src_components_pageshell",
+      "src_components_pageshell_pageshell"
+    ],
+    "58": [
+      "_agents_readme_agent_integration",
+      "_agents_readme_canonical_instructions",
+      "_agents_readme_graphify",
+      "_agents_skills_graphify_skill_graphify_first_discovery"
+    ],
+    "59": [
+      "agent_agent_entrypoint",
+      "agents_ai_engineering_guide",
+      "claude_claude_code_repository_instructions"
+    ],
+    "60": [
+      "github_ai_toolkit_scripts_detect_project_ai_toolkit_root",
+      "github_ai_toolkit_scripts_detect_project_sh__entry",
+      "github_ai_toolkit_scripts_detect_project_sh_github_ai_toolkit_scripts_detect_project"
+    ],
+    "61": [
+      "github_ai_toolkit_scripts_session_start_ai_toolkit_root",
+      "github_ai_toolkit_scripts_session_start_sh__entry",
+      "github_ai_toolkit_scripts_session_start_sh_github_ai_toolkit_scripts_session_start"
+    ],
+    "62": [
+      "github_ai_toolkit_scripts_validate_project_ai_toolkit_root",
+      "github_ai_toolkit_scripts_validate_project_sh__entry",
+      "github_ai_toolkit_scripts_validate_project_sh_github_ai_toolkit_scripts_validate_project"
+    ],
+    "63": [
+      "public_covers_day_14_auth_navigation_build_log",
+      "public_covers_day_21_navigation_redesign_build_log",
+      "public_covers_navigation_architecture_navigation_architecture"
+    ],
+    "64": [
+      "ref_axios",
+      "src_lib_api_client",
+      "src_lib_api_client_apiclient"
+    ],
+    "65": [
+      "src_components_block",
+      "src_components_block_block",
+      "src_components_block_blockprops"
+    ],
+    "66": [
+      "src_components_blog_category_picker",
+      "src_components_blog_category_picker_categorypicker",
+      "src_components_blog_category_picker_props"
+    ],
+    "67": [
+      "src_data_reading",
+      "src_data_reading_readingitem",
+      "src_data_reading_readinglist"
+    ],
+    "68": [
+      "src_data_stack",
+      "src_data_stack_stackreason",
+      "src_data_stack_stackreasons"
+    ],
+    "69": [
+      "src_data_tech_evolution",
+      "src_data_tech_evolution_techevolution",
+      "src_data_tech_evolution_techevolutionentry"
+    ],
+    "70": [
+      "src_data_timeline",
+      "src_data_timeline_timeline",
+      "src_data_timeline_timelineitem"
+    ],
+    "71": [
+      "_github_agents_backend_engineer_agent_backend_engineer",
+      "_github_instructions_backend_api_guidance"
+    ],
+    "72": [
+      "_github_agents_database_engineer_agent_database_engineer",
+      "_github_instructions_database_database_guidance"
+    ],
+    "73": [
+      "_github_agents_devops_engineer_agent_devops_engineer",
+      "_github_instructions_infrastructure_infrastructure_devops_guidance"
+    ],
+    "74": [
+      "_github_agents_documentation_engineer_agent_documentation_engineer",
+      "_github_instructions_documentation_documentation_rules"
+    ],
+    "75": [
+      "_github_agents_frontend_engineer_agent_frontend_engineer",
+      "_github_instructions_frontend_frontend_ui_guidance"
+    ],
+    "76": [
+      "_github_ai_toolkit_migration_manifest_based_discovery",
+      "_github_ai_toolkit_universal_ai_engineering_toolkit"
+    ],
+    "77": [
+      "_github_pull_request_template_pull_request_validation",
+      "_github_repository_settings_branch_protection"
+    ],
+    "78": [
+      "content_projects_gulify_en_gulify",
+      "content_projects_gulify_fa_gulify"
+    ],
+    "79": [
+      "eslint_config",
+      "eslint_config_eslintconfig"
+    ],
+    "80": [
+      "github_ai_toolkit_scripts_safety_guard",
+      "github_ai_toolkit_scripts_safety_guard_strings"
+    ],
+    "81": [
+      "github_ai_toolkit_scripts_session_summary",
+      "github_ai_toolkit_scripts_session_summary_run"
+    ],
+    "82": [
+      "public_fonts_vazirmatn_ofl_sil_open_font_license",
+      "public_fonts_vazirmatn_readme_vazirmatn_variable_font"
+    ],
+    "83": [
+      "ref_tailwindcss",
+      "tailwindcss_config"
+    ],
+    "84": [
+      "src_app_locale_rest_page",
+      "src_app_locale_rest_page_catchallpage"
+    ],
+    "85": [
+      "src_app_page",
+      "src_app_page_rootpage"
+    ],
+    "86": [
+      "src_archived_about_page",
+      "src_archived_about_page_aboutme"
+    ],
+    "87": [
+      "src_components_sections_github_section_github_section_skeleton",
+      "src_components_sections_github_section_github_section_skeleton_githubsectionskeleton"
+    ],
+    "88": [
+      "src_lib_bale_context",
+      "src_lib_bale_context_createsessionid"
+    ],
+    "89": [
+      "src_lib_bale_session",
+      "src_lib_bale_session_createsessionid"
+    ],
+    "90": [
+      "_github_agents_architecture_auditor_agent_architecture_auditor"
+    ],
+    "91": [
+      "_github_agents_code_reviewer_agent_code_reviewer"
+    ],
+    "92": [
+      "_github_agents_debugger_agent_debugger"
+    ],
+    "93": [
+      "_github_agents_implementer_agent_implementer"
+    ],
+    "94": [
+      "_github_agents_mobile_engineer_agent_mobile_engineer"
+    ],
+    "95": [
+      "_github_agents_orchestrator_agent_orchestrator"
+    ],
+    "96": [
+      "_github_agents_performance_engineer_agent_performance_engineer"
+    ],
+    "97": [
+      "_github_agents_planner_agent_planner"
+    ],
+    "98": [
+      "_github_agents_release_engineer_agent_release_engineer"
+    ],
+    "99": [
+      "_github_agents_researcher_agent_researcher"
+    ],
+    "100": [
+      "_github_agents_security_auditor_agent_security_auditor"
+    ],
+    "101": [
+      "_github_agents_test_engineer_agent_test_engineer"
+    ],
+    "102": [
+      "_github_ai_toolkit_changelog_universal_toolkit_upgrade"
+    ],
+    "103": [
+      "_github_dependabot_dependency_updates"
+    ],
+    "104": [
+      "_github_instructions_engineering_universal_engineering_rules"
+    ],
+    "105": [
+      "_github_instructions_javascript_typescript_javascript_typescript_guidance"
+    ],
+    "106": [
+      "_github_instructions_python_python_guidance"
+    ],
+    "107": [
+      "_github_issue_template_bug_bug_report"
+    ],
+    "108": [
+      "_github_issue_template_feature_feature_request"
+    ],
+    "109": [
+      "_github_repository_settings_release_policy"
+    ],
+    "110": [
+      "_github_security_vulnerability_reporting"
+    ],
+    "111": [
+      "content_home_hero_fa_portfolio_hero"
+    ],
+    "112": [
+      "github_ai_toolkit_scripts_changed_file_check"
+    ],
+    "113": [
+      "github_ai_toolkit_scripts_detect_project_ps1_github_ai_toolkit_scripts_detect_project"
+    ],
+    "114": [
+      "github_ai_toolkit_scripts_session_start_ps1_github_ai_toolkit_scripts_session_start"
+    ],
+    "115": [
+      "github_ai_toolkit_scripts_session_start_py_github_ai_toolkit_scripts_session_start"
+    ],
+    "116": [
+      "github_ai_toolkit_scripts_validate_project_ps1_github_ai_toolkit_scripts_validate_project"
+    ],
+    "117": [
+      "github_instructions_rust_instructions"
+    ],
+    "118": [
+      "github_instructions_security_instructions"
+    ],
+    "119": [
+      "github_instructions_testing_instructions"
+    ],
+    "120": [
+      "github_prompts_audit_project_prompt"
+    ],
+    "121": [
+      "github_prompts_create_tests_prompt"
+    ],
+    "122": [
+      "github_prompts_explain_codebase_prompt"
+    ],
+    "123": [
+      "github_prompts_fix_bug_prompt"
+    ],
+    "124": [
+      "github_prompts_generate_project_config_prompt"
+    ],
+    "125": [
+      "github_prompts_implement_feature_prompt"
+    ],
+    "126": [
+      "github_prompts_moshaver_cmb_module_prompt"
+    ],
+    "127": [
+      "github_prompts_moshaver_graph_impact_prompt"
+    ],
+    "128": [
+      "github_prompts_moshaver_release_readiness_prompt"
+    ],
+    "129": [
+      "github_prompts_moshaver_repository_audit_prompt"
+    ],
+    "130": [
+      "github_prompts_performance_review_prompt"
+    ],
+    "131": [
+      "github_prompts_prepare_release_prompt"
+    ],
+    "132": [
+      "github_prompts_refactor_prompt"
+    ],
+    "133": [
+      "github_prompts_review_code_prompt"
+    ],
+    "134": [
+      "github_prompts_security_review_prompt"
+    ],
+    "135": [
+      "github_repository_management_readme"
+    ],
+    "136": [
+      "github_skills_api_contract_validation_skill"
+    ],
+    "137": [
+      "github_skills_architecture_analysis_skill"
+    ],
+    "138": [
+      "github_skills_code_review_skill"
+    ],
+    "139": [
+      "github_skills_database_analysis_skill"
+    ],
+    "140": [
+      "github_skills_debugging_skill"
+    ],
+    "141": [
+      "github_skills_dependency_analysis_skill"
+    ],
+    "142": [
+      "github_skills_documentation_generation_skill"
+    ],
+    "143": [
+      "github_skills_feature_implementation_skill"
+    ],
+    "144": [
+      "github_skills_git_workflow_skill"
+    ],
+    "145": [
+      "github_skills_migration_planning_skill"
+    ],
+    "146": [
+      "github_skills_performance_analysis_skill"
+    ],
+    "147": [
+      "github_skills_refactoring_skill"
+    ],
+    "148": [
+      "github_skills_release_management_skill"
+    ],
+    "149": [
+      "github_skills_repository_discovery_skill"
+    ],
+    "150": [
+      "github_skills_security_analysis_skill"
+    ],
+    "151": [
+      "github_skills_test_generation_skill"
+    ],
+    "152": [
+      "github_workflows_admin_v2_quality"
+    ],
+    "153": [
+      "github_workflows_ai_toolkit_check"
+    ],
+    "154": [
+      "github_workflows_architecture_boundaries"
+    ],
+    "155": [
+      "github_workflows_backend_v2_quality"
+    ],
+    "156": [
+      "github_workflows_cmb_packages_quality"
+    ],
+    "157": [
+      "github_workflows_deployment_readiness"
+    ],
+    "158": [
+      "github_workflows_graphify_tooling"
+    ],
+    "159": [
+      "github_workflows_liara"
+    ],
+    "160": [
+      "github_workflows_phase1_graph_bootstrap"
+    ],
+    "161": [
+      "github_workflows_phase3_bootstrap"
+    ],
+    "162": [
+      "github_workflows_repository_safety_repository_safety"
+    ],
+    "163": [
+      "github_workflows_student_core_quality_student_core_quality"
+    ],
+    "164": [
+      "github_workflows_student_v2_quality_student_v2_quality"
+    ],
+    "165": [
+      "github_workflows_workspace_foundation_workspace_foundation"
+    ],
+    "166": [
+      "mdx_d_meta"
+    ],
+    "167": [
+      "postcss_config"
+    ],
+    "168": [
+      "public_banners_build_engineer_hub"
+    ],
+    "169": [
+      "public_banners_koonj_koonj_roadmap"
+    ],
+    "170": [
+      "public_banners_lab_engineering_lab"
+    ],
+    "171": [
+      "public_banners_profile_profile"
+    ],
+    "172": [
+      "public_banners_rss_rss_feed"
+    ],
+    "173": [
+      "public_covers_fieldkit_field_ops_dashboard"
+    ],
+    "174": [
+      "public_covers_state_models_state_models_orchestration"
+    ],
+    "175": [
+      "public_resume_mobin_karam_fa_resume"
+    ],
+    "176": [
+      "public_resume_mobinkaram_en_resume"
+    ],
+    "177": [
+      "readme_contact_form_system"
+    ]
+  },
+  "cohesion": {
+    "0": 0.05489171023151606,
+    "1": 0.06060606060606061,
+    "2": 0.031746031746031744,
+    "3": 0.05875706214689266,
+    "4": 0.03636363636363636,
+    "5": 0.07227891156462585,
+    "6": 0.09485815602836879,
+    "7": 0.057971014492753624,
+    "8": 0.1032258064516129,
+    "9": 0.10574712643678161,
+    "10": 0.08374384236453201,
+    "11": 0.15024630541871922,
+    "12": 0.10666666666666667,
+    "13": 0.12318840579710146,
+    "14": 0.16996047430830039,
+    "15": 0.09090909090909091,
+    "16": 0.12554112554112554,
+    "17": 0.17142857142857143,
+    "18": 0.09523809523809523,
+    "19": 0.14736842105263157,
+    "20": 0.14035087719298245,
+    "21": 0.1695906432748538,
+    "22": 0.12280701754385964,
+    "23": 0.21568627450980393,
+    "24": 0.19852941176470587,
+    "25": 0.15833333333333333,
+    "26": 0.15,
+    "27": 0.125,
+    "28": 0.16666666666666666,
+    "29": 0.20952380952380953,
+    "30": 0.14285714285714285,
+    "31": 0.2857142857142857,
+    "32": 0.14285714285714285,
+    "33": 0.1794871794871795,
+    "34": 0.19230769230769232,
+    "35": 0.24358974358974358,
+    "36": 0.24242424242424243,
+    "37": 0.22727272727272727,
+    "38": 0.18181818181818182,
+    "39": 0.4444444444444444,
+    "40": 0.24444444444444444,
+    "41": 0.3111111111111111,
+    "42": 0.3333333333333333,
+    "43": 0.26666666666666666,
+    "44": 0.2222222222222222,
+    "45": 0.4444444444444444,
+    "46": 0.2222222222222222,
+    "47": 0.32142857142857145,
+    "48": 0.32142857142857145,
+    "49": 0.2857142857142857,
+    "50": 0.35714285714285715,
+    "51": 0.32142857142857145,
+    "52": 0.25,
+    "53": 0.3333333333333333,
+    "54": 0.4,
+    "55": 0.4,
+    "56": 0.4,
+    "57": 0.5,
+    "58": 0.5,
+    "59": 0.6666666666666666,
+    "60": 0.6666666666666666,
+    "61": 0.6666666666666666,
+    "62": 0.6666666666666666,
+    "63": 0.6666666666666666,
+    "64": 0.6666666666666666,
+    "65": 0.6666666666666666,
+    "66": 0.6666666666666666,
+    "67": 0.6666666666666666,
+    "68": 0.6666666666666666,
+    "69": 0.6666666666666666,
+    "70": 0.6666666666666666,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 2.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_lib_utils_cn",
+      "label": "cn()",
+      "degree": 175
+    },
+    {
+      "id": "ref_react",
+      "label": "react",
+      "degree": 86
+    },
+    {
+      "id": "ref_lucide_react",
+      "label": "lucide-react",
+      "degree": 61
+    },
+    {
+      "id": "src_lib_blog_content_getallposts",
+      "label": "getAllPosts()",
+      "degree": 37
+    },
+    {
+      "id": "ref_next_intl",
+      "label": "next-intl",
+      "degree": 28
+    },
+    {
+      "id": "ref_framer_motion",
+      "label": "framer-motion",
+      "degree": 23
+    },
+    {
+      "id": "ref_radix_ui",
+      "label": "radix-ui",
+      "degree": 21
+    },
+    {
+      "id": "src_lib_blog_content_isbloglocale",
+      "label": "isBlogLocale()",
+      "degree": 21
+    },
+    {
+      "id": "ref_clsx",
+      "label": "clsx",
+      "degree": 17
+    },
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 17
+    }
+  ],
+  "surprises": [
+    {
+      "source": "FormError()",
+      "target": "cn()",
+      "source_files": [
+        "src/components/errors/form-error.tsx",
+        "src/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `FormError()` unexpectedly reaches hub `cn()`"
+    },
+    {
+      "source": "Command()",
+      "target": "cn()",
+      "source_files": [
+        "src/components/ui/command.tsx",
+        "src/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `Command()` unexpectedly reaches hub `cn()`"
+    },
+    {
+      "source": "CommandDialog()",
+      "target": "cn()",
+      "source_files": [
+        "src/components/ui/command.tsx",
+        "src/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `CommandDialog()` unexpectedly reaches hub `cn()`"
+    },
+    {
+      "source": "CommandInput()",
+      "target": "cn()",
+      "source_files": [
+        "src/components/ui/command.tsx",
+        "src/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `CommandInput()` unexpectedly reaches hub `cn()`"
+    },
+    {
+      "source": "CommandList()",
+      "target": "cn()",
+      "source_files": [
+        "src/components/ui/command.tsx",
+        "src/lib/utils.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities; peripheral node `CommandList()` unexpectedly reaches hub `cn()`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `react` connect `Community 47` to `Community 1`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 8`, `Community 10`, `Community 12`, `Community 13`, `Community 14`, `Community 16`, `Community 17`, `Community 19`, `Community 20`, `Community 22`, `Community 23`, `Community 25`, `Community 26`, `Community 27`, `Community 28`, `Community 29`, `Community 31`, `Community 33`, `Community 34`, `Community 37`, `Community 38`, `Community 40`, `Community 42`, `Community 43`, `Community 44`, `Community 46`, `Community 48`, `Community 50`, `Community 54`?",
+      "why": "High betweenness centrality (0.254) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `lucide-react` connect `Community 3` to `Community 0`, `Community 1`, `Community 4`, `Community 5`, `Community 7`, `Community 8`, `Community 10`, `Community 12`, `Community 13`, `Community 14`, `Community 16`, `Community 19`, `Community 20`, `Community 21`, `Community 22`, `Community 25`, `Community 27`, `Community 28`, `Community 29`, `Community 31`, `Community 33`, `Community 34`, `Community 35`, `Community 38`, `Community 42`, `Community 43`, `Community 44`, `Community 47`, `Community 48`, `Community 50`?",
+      "why": "High betweenness centrality (0.147) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `dependencies` connect `Community 2` to `Community 4`?",
+      "why": "High betweenness centrality (0.081) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `detect-project.sh script`, `AI_TOOLKIT_ROOT`, `session-start.sh script` to the rest of the system?",
+      "why": "444 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.05489171023151606 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06060606060606061 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.031746031746031744 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

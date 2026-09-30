@@ -1,0 +1,58 @@
+name: Workspace Foundation
+
+on:
+  pull_request:
+    branches: [develop]
+    paths:
+      - package.json
+      - tooling/workspace/**
+      - apps/api/package.json
+      - apps/api/package-lock.json
+      - apps/admin/package.json
+      - apps/admin/package-lock.json
+      - student-core/package.json
+      - student-core/package-lock.json
+      - apps/student/package.json
+      - apps/student/package-lock.json
+      - packages/api-contract/package.json
+      - packages/cmb/**
+      - .github/workflows/workspace-foundation.yml
+  push:
+    branches: [develop]
+    paths:
+      - package.json
+      - tooling/workspace/**
+      - apps/api/package.json
+      - apps/api/package-lock.json
+      - apps/admin/package.json
+      - apps/admin/package-lock.json
+      - student-core/package.json
+      - student-core/package-lock.json
+      - apps/student/package.json
+      - apps/student/package-lock.json
+      - packages/api-contract/package.json
+      - packages/cmb/**
+      - .github/workflows/workspace-foundation.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate-workspace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+      - name: Validate workspace graph
+        run: npm run workspace:check
+      - name: Show workspace order
+        run: npm run workspace:list
+      - name: Validate build plan
+        run: npm run workspace:plan -- build
+      - name: Dry-run repository verification
+        run: node tooling/workspace/run.mjs verify --dry-run
+      - name: Dry-run affected verification
+        run: node tooling/workspace/run.mjs verify --affected --base=${{ github.event.pull_request.base.sha || github.event.before || 'HEAD~1' }} --head=HEAD --dry-run

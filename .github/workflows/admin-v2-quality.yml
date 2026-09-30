@@ -1,0 +1,41 @@
+name: Admin v2 Quality
+
+on:
+  pull_request:
+    paths:
+      - "apps/admin/**"
+      - "packages/api-contract/**"
+      - ".github/workflows/admin-v2-quality.yml"
+  push:
+    paths:
+      - "apps/admin/**"
+      - "packages/api-contract/**"
+      - ".github/workflows/admin-v2-quality.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/admin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+          cache: npm
+          cache-dependency-path: apps/admin/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm test
+      - run: npm run test:a11y
+      - run: npm run test:coverage
+      - run: npm run build
+      - run: npm run audit:parity
+      - run: npm run test:e2e -- --list
+      - run: npm audit --omit=dev --audit-level=high

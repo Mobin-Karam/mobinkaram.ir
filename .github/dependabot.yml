@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels: [dependencies, github-actions]
+
+  - package-ecosystem: npm
+    directory: /apps/api
+    schedule:
+      interval: weekly
+    labels: [dependencies, backend]
+
+  - package-ecosystem: npm
+    directory: /apps/admin
+    schedule:
+      interval: weekly
+    labels: [dependencies, admin]
+
+  - package-ecosystem: npm
+    directory: /student-core
+    schedule:
+      interval: weekly
+    labels: [dependencies, student]
+
+  - package-ecosystem: npm
+    directory: /apps/student
+    schedule:
+      interval: weekly
+    labels: [dependencies, student]
+
+  - package-ecosystem: cargo
+    directory: /apps/student/src-tauri
+    schedule:
+      interval: weekly
+    labels: [dependencies, student, tauri]

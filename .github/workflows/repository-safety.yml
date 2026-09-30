@@ -1,0 +1,56 @@
+name: Repository Safety
+
+on:
+  pull_request:
+  push:
+    branches: [develop, main]
+
+permissions:
+  contents: read
+
+jobs:
+  repository-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify required repository operating files
+        shell: bash
+        run: |
+          set -euo pipefail
+          required=(
+            AGENTS.md
+            .github/copilot-instructions.md
+            .github/CODEOWNERS
+            .github/dependabot.yml
+            .agents/skills/graphify/SKILL.md
+            docs/architecture/graphify.md
+          )
+          for path in "${required[@]}"; do
+            test -f "$path" || { echo "Missing required file: $path"; exit 1; }
+          done
+
+      - name: Validate repository JSON
+        run: |
+          python -m json.tool .mcp.json >/dev/null
+          python -m json.tool .github/repository-profile.json >/dev/null
+
+      - name: Reject unresolved merge markers
+        shell: bash
+        run: |
+          if git grep -n -E '^(<<<<<<<|=======|>>>>>>>)' -- ':!package-lock.json'; then
+            echo 'Unresolved merge markers found.'
+            exit 1
+          fi
+
+      - name: Detect accidentally tracked environment files
+        shell: bash
+        run: |
+          bad=$(git ls-files | grep -E '(^|/)\.env($|\.)' | grep -v -E '\.env\.example$' || true)
+          if [ -n "$bad" ]; then
+            echo 'Tracked environment files detected:'
+            echo "$bad"
+            exit 1
+          fi

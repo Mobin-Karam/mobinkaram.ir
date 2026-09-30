@@ -1,0 +1,90 @@
+name: Phase 3 Bootstrap
+
+on:
+  pull_request:
+    branches: [develop]
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap-phase-3:
+    if: github.actor != 'github-actions[bot]' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'architecture/phase-3-cmb-foundation-w1'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Phase 3 branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.1'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate leaf lockfiles without running lifecycle scripts
+        shell: bash
+        run: |
+          for dir in packages/cmb/kernel packages/cmb/health packages/cmb/realtime apps/api; do
+            echo "==> $dir"
+            (cd "$dir" && npm install --package-lock-only --ignore-scripts --no-audit --no-fund)
+          done
+
+      - name: Install and test CMB packages
+        shell: bash
+        run: |
+          for dir in packages/cmb/kernel packages/cmb/health packages/cmb/realtime; do
+            echo "==> $dir"
+            (cd "$dir" && npm ci --ignore-scripts --no-audit --no-fund && npm test)
+          done
+
+      - name: Install and validate backend adapters
+        working-directory: apps/api
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run lint
+          npm test
+          npm run build
+
+      - name: Validate repository boundaries and contracts
+        run: |
+          node tooling/workspace/check.mjs
+          node tooling/architecture/check-boundaries.mjs
+          node tooling/contracts/check-api-contract.mjs
+
+      - name: Install pinned Graphify
+        run: python -m pip install --disable-pip-version-check 'graphifyy==0.9.58'
+
+      - name: Refresh Graphify for extracted packages
+        shell: bash
+        run: |
+          rm -rf graphify-out
+          graphify extract . --code-only --no-viz
+          graphify cluster-only . --no-viz --no-label
+          node tooling/graphify/fingerprint.mjs --write=graphify-out/code-fingerprint.json
+          {
+            echo '# Graphify generation metadata'
+            echo
+            echo "- Graphify: $(graphify --version)"
+            echo "- Source commit before generated evidence: $(git rev-parse HEAD)"
+            echo '- Mode: code-only clean rebuild after Phase 3 W1 extraction'
+            echo '- Purpose: keep committed architecture graph current with CMB package boundaries'
+          } > graphify-out/GENERATION.md
+
+      - name: Commit generated lockfiles and graph evidence
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add packages/cmb/kernel/package-lock.json packages/cmb/health/package-lock.json packages/cmb/realtime/package-lock.json apps/api/package-lock.json
+          git add -f graphify-out/graph.json graphify-out/GRAPH_REPORT.md graphify-out/code-fingerprint.json graphify-out/GENERATION.md
+          if git diff --cached --quiet; then
+            echo 'Generated Phase 3 evidence is already current.'
+            exit 0
+          fi
+          git commit -m 'chore: generate Phase 3 lockfiles and graph evidence'
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}

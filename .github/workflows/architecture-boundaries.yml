@@ -1,0 +1,34 @@
+name: Architecture Boundaries
+
+on:
+  pull_request:
+    branches: [develop]
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  architecture-boundaries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.1'
+      - name: Install reusable package dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dir in packages/cmb/*; do
+            test -f "$dir/package.json" || continue
+            (cd "$dir" && npm ci --ignore-scripts --no-audit --no-fund)
+          done
+      - name: Validate workspace graph
+        run: node tooling/workspace/check.mjs
+      - name: Enforce architecture boundaries
+        run: npm run architecture:check
+      - name: Validate API contract authority
+        run: node tooling/contracts/check-api-contract.mjs

@@ -1,0 +1,40 @@
+name: AI Toolkit Check
+
+on:
+  pull_request:
+    paths:
+      - '.github/**'
+      - 'AGENTS.md'
+  push:
+    paths:
+      - '.github/**'
+      - 'AGENTS.md'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-toolkit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON configuration
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for p in Path('.github').rglob('*.json'):
+              json.loads(p.read_text())
+              print('OK', p)
+          PY
+      - name: Validate shell syntax
+        run: |
+          find .github/ai-toolkit/scripts -name '*.sh' -print0 | xargs -0 -r -n1 bash -n
+      - name: Run repository discovery
+        run: .github/ai-toolkit/scripts/detect-project.sh >/dev/null
+      - name: Check required toolkit files
+        run: |
+          test -f AGENTS.md
+          test -f .github/copilot-instructions.md
+          test -f .github/ai-toolkit/config.json
+          test -f .agent-state/project.json

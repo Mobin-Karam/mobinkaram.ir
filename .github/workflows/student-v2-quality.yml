@@ -1,0 +1,55 @@
+name: Student v2 Quality
+
+on:
+  pull_request:
+    paths:
+      - 'apps/student/**'
+      - 'student-core/**'
+      - 'packages/api-contract/**'
+      - '.github/workflows/student-v2-quality.yml'
+  push:
+    branches: [develop, main]
+    paths:
+      - 'apps/student/**'
+      - 'student-core/**'
+      - 'packages/api-contract/**'
+      - '.github/workflows/student-v2-quality.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  student-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+          cache: npm
+          cache-dependency-path: |
+            student-core/package-lock.json
+            apps/student/package-lock.json
+
+      - name: Install student-core dependencies
+        working-directory: student-core
+        run: npm ci
+      - name: Build student-core
+        working-directory: student-core
+        run: npm run build
+
+      - name: Install student app dependencies
+        working-directory: apps/student
+        run: npm ci
+      - name: Typecheck student app
+        working-directory: apps/student
+        run: npm run typecheck
+      - name: Test student app
+        working-directory: apps/student
+        run: npm test
+      - name: Accessibility tests
+        working-directory: apps/student
+        run: npm run test:a11y
+      - name: Build student app
+        working-directory: apps/student
+        run: npm run build
