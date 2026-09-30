@@ -12,6 +12,7 @@ import {
   isBlogLocale,
 } from "@/lib/blog/content";
 import { normalizeDateSegment } from "@/lib/blog/date";
+import { generatePostMetadata } from "@/lib/blog/metadata";
 import { BlogLocale } from "@/types/blog";
 
 type Params = {
@@ -21,28 +22,6 @@ type Params = {
   day: string;
   slug: string;
 };
-
-export async function generateStaticParams() {
-  const locales = ["en", "fa"] as const;
-
-  const all = await Promise.all(
-    locales.map(async (locale) => ({
-      locale,
-      posts: await getAllPosts(locale),
-    })),
-  );
-
-  return all.flatMap(({ locale, posts }) =>
-    posts.map((post) => ({
-      locale,
-      year: post.dateParts.year,
-      month: post.dateParts.month,
-      day: post.dateParts.day,
-      slug: encodeURIComponent(post.routeSlug),
-    })),
-  );
-}
-
 
 export async function findPostByRoute(
   locale: BlogLocale,
@@ -143,28 +122,7 @@ export async function generateMetadata({
   const otherLocale = route.locale === "fa" ? "en" : "fa";
   const translation = await findTranslation(post, otherLocale);
 
-  return {
-    title: post.title,
-    description: post.description,
-    keywords: post.tags,
-    alternates: {
-      canonical: post.href,
-      languages: {
-        [route.locale]: post.href,
-        ...(translation ? { [otherLocale]: translation.href } : {}),
-      },
-    },
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.description,
-      publishedTime: post.date,
-      modifiedTime: post.updatedAt || post.date,
-      tags: post.tags,
-      url: post.href,
-      images: post.coverUrl ? [{ url: post.coverUrl }] : undefined,
-    },
-  };
+  return generatePostMetadata(post, translation);
 }
 
 export default async function BlogPostPage({

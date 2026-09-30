@@ -9,22 +9,6 @@ import {
   isBlogLocale,
 } from "@/lib/blog/content";
 
-export async function generateStaticParams() {
-  const locales = ["en", "fa"] as const;
-  const all = await Promise.all(
-    locales.map(async (locale) => ({
-      locale,
-      posts: await getAllPosts(locale),
-    })),
-  );
-  return all.flatMap(({ locale, posts }) =>
-    [...new Set(posts.map((post) => post.dateParts.year))].map((year) => ({
-      locale,
-      year,
-    })),
-  );
-}
-
 export default async function YearArchivePage({
   params,
 }: {

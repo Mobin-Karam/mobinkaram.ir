@@ -5,11 +5,11 @@ import { mdxComponents } from "@/components/mdx/mdx-components";
 import type { Post, PostFrontmatter } from "@/types/post";
 import { assetUrl } from "./github-content";
 
-// Some MDX content uses expressions like "<400 lines" which MDX parses as
+// Some MDX content uses comparisons such as "< 400 lines", which MDX parses as
 // invalid JSX (tag names cannot start with a digit). To keep authoring simple,
-// we sanitise any "<digit" (including Persian digits) into a literal "&lt;digit".
+// preserve those comparisons as literal text, including whitespace after "<".
 function sanitizeNumericTags(source: string) {
-  return source.replace(/<([0-9\u06f0-\u06f9])/g, "&lt;$1");
+  return source.replace(/<(?=\s*\/?\s*[0-9\u06f0-\u06f9])/g, "&lt;");
 }
 
 export async function compilePost(locale: "en" | "fa", source: string) {

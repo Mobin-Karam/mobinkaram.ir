@@ -19,7 +19,7 @@ export default async function BlogCard({
   const t = await getTranslations({ locale, namespace: "blog" });
 
   return (
-    <article className="min-w-0">
+    <article className="min-w-0 border border-border bg-card p-5 font-mono shadow-[6px_6px_0_color-mix(in_srgb,var(--color-border)_70%,transparent)] sm:p-7">
       <div className="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground">
         <Link
           href={`/${locale}/blog/category/${encodeURIComponent(post.category)}`}
@@ -47,13 +47,13 @@ export default async function BlogCard({
 
       <div className={featured ? "grid gap-7 lg:grid-cols-[minmax(0,1.45fr)_minmax(220px,0.55fr)] lg:gap-10" : ""}>
         <div className="min-w-0">
-          <p className="mb-3 font-serif text-xs italic text-muted-foreground">
-            {t("storyNumber", { number: String(index + 1).padStart(3, "0") })}
+          <p className="mb-3 text-xs text-primary">
+            $ cat dispatch-{String(index + 1).padStart(3, "0")}.mdx
           </p>
 
           <h2
             className={[
-              "max-w-4xl text-pretty font-serif font-black leading-[1.04] tracking-[-0.035em]",
+              "max-w-4xl text-pretty font-bold leading-[1.12] tracking-tight",
               featured ? "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl" : "text-2xl sm:text-3xl lg:text-4xl",
             ].join(" ")}
           >
@@ -85,7 +85,7 @@ export default async function BlogCard({
 
           <Link
             href={post.href}
-            className="mt-6 inline-flex min-h-10 items-center gap-2 border-b border-foreground pb-1 text-[10px] font-bold uppercase tracking-[0.16em] sm:mt-7 sm:text-xs"
+            className="mt-6 inline-flex min-h-10 items-center gap-2 border border-primary bg-primary px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-primary-foreground transition hover:bg-background hover:text-primary sm:mt-7 sm:text-xs"
           >
             {t("readMore")}
             <ArrowUpRight className="size-3.5 rtl:-scale-x-100" />
@@ -105,7 +105,7 @@ export default async function BlogCard({
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
               {t("fromJournal")}
             </p>
-            <blockquote className="mt-4 font-serif text-lg font-bold leading-7 sm:text-xl">
+            <blockquote className="mt-4 text-lg font-bold leading-7 sm:text-xl">
               “{t("journalQuote")}”
             </blockquote>
           </aside>

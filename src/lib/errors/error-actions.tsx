@@ -83,7 +83,7 @@ export function ErrorActions({
         <Button
           type="button"
           variant="outline"
-          onClick={() => router.push(`/${locale}/login`)}
+          onClick={() => router.push(`/${locale}`)}
           className="gap-2"
         >
           <LogIn className="size-4" />

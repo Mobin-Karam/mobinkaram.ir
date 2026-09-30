@@ -1,28 +1,21 @@
-# GitHub blog CMS
+# Blog publishing
 
-The portfolio reads published MDX from `Mobin-Karam/mobinkaram-content`; the application never writes to its deployed filesystem. The protected admin screen at `/{locale}/admin/blog` sends writes to the GitHub Contents API, where each commit triggers the existing `push` deployment workflow.
+The portfolio reads published MDX from `Mobin-Karam/mobinkaram-content`. Publishing is intentionally repository-first: edit or add a post in a branch, review it, then merge it. There is no public browser admin panel or production write API.
 
 ## Required server environment
 
 ```env
-# GitHub fine-grained token: Contents read/write for Mobin-Karam/mobinkaram-content only
-GITHUB_CONTENT_TOKEN=
 BLOG_CONTENT_OWNER=Mobin-Karam
 BLOG_CONTENT_REPO=mobinkaram-content
 BLOG_CONTENT_BRANCH=main
-
-# Existing password-based admin session
-SESSION_SECRET=
-ADMIN_USERNAME=Mobin-Karam
-ADMIN_PASSWORD_HASH=
 NEXT_PUBLIC_SITE_URL=https://mobinkaram.ir
 ```
 
-Keep every variable server-side. The GitHub token must never use a `NEXT_PUBLIC_` name. Give it the smallest possible scope and rotate it if it is exposed.
+Keep content configuration server-side. A token is optional for private-source reads and must never use a `NEXT_PUBLIC_` name.
 
 ## Content layout and publishing
 
-Posts live at `posts/{fa|en}/{category}/{slug}.mdx`. The admin form writes frontmatter for title, SEO description, locale, category, tags, cover path, date, `updatedAt`, author, and publish status. Images are committed to the content repository under `assets/images/`; enter their repository-relative path in the cover field.
+Posts live at `posts/{fa|en}/{category}/{slug}.mdx`. Each post needs `title`, `description`, `date`, and `category`; optional frontmatter includes `slug`, `tags`, `cover`, `author`, `updatedAt`, `translationKey`, and `published`. Images are committed to the content repository under `assets/images/` and referenced by their repository-relative path.
 
 The reader generates server-rendered pages at `/{locale}/blog/{year}/{month}/{day}/{slug}`. English uses Gregorian dates and Persian uses Jalali dates. `sitemap.xml`, RSS, canonical metadata, Open Graph metadata, and BlogPosting JSON-LD are generated from the same post source.
 
@@ -40,4 +33,4 @@ The migration deliberately refuses to overwrite a destination file. Review gener
 
 ## Deployment
 
-The existing GitHub Actions workflow builds and deploys on each push to `main`. Configure the environment variables above in Vercel, Coolify, or the deployment provider; all support the same server-side GitHub API flow. A deployment must have outbound access to GitHub's API and raw-content host.
+The existing GitHub Actions workflow builds and deploys on each push to `main`. A deployment needs outbound access to GitHub's API and raw-content host.

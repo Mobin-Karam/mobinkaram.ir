@@ -1,14 +1,16 @@
 import Link from "next/link";
-import Script from "next/script";
 import { ArrowLeft, CalendarDays, Clock3 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { formatBlogDate } from "@/lib/blog/date";
 import { generateBlogPostingJsonLd } from "@/lib/blog/seo";
+import { extractTableOfContents } from "@/lib/blog/toc";
 import type { BlogAuthor, BlogLocale, BlogPost, BlogPostMeta } from "@/types/blog";
 import BlogArticleNavigation from "./BlogArticleNavigation";
 import MdxContent from "./MdxContent";
 import RelatedPosts from "./RelatedPosts";
+import BlogTableOfContents from "./BlogTableOfContents";
+import ArticleReadingControls from "./ArticleReadingControls";
 
 export default async function BlogArticle({
   post,
@@ -29,19 +31,31 @@ export default async function BlogArticle({
 }) {
   const t = await getTranslations({ locale, namespace: "blog" });
   const jsonLd = generateBlogPostingJsonLd(post, author);
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: locale === "fa" ? "خانه" : "Home", item: `https://mobinkaram.ir/${locale}` },
+      { "@type": "ListItem", position: 2, name: locale === "fa" ? "بلاگ" : "Blog", item: `https://mobinkaram.ir/${locale}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `https://mobinkaram.ir${post.href}` },
+    ],
+  };
+  const tableOfContents = extractTableOfContents(post.body);
 
   return (
     <main dir={locale === "fa" ? "rtl" : "ltr"} className="min-h-screen bg-background text-foreground">
-      <Script id={`blog-post-${post.path}`} type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script id={`blog-post-${post.path}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script id={`blog-breadcrumb-${post.path}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <header className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 lg:px-8 lg:pb-16 lg:pt-32">
+        <div className="mx-auto max-w-7xl px-5 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 lg:px-8 lg:pb-16 lg:pt-32">
+          <div className="mb-8 overflow-x-auto border border-border bg-card px-4 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">post@mobinkaram:~/{post.category}/{post.routeSlug}.mdx</div>
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <Link href={`/${locale}/blog`} className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">
+            <Link href={`/${locale}/blog`} className="inline-flex min-h-11 items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground hover:text-primary">
               <ArrowLeft className="size-4 rtl:-scale-x-100" />
               {t("backToJournal")}
             </Link>
             {translation ? (
-              <Link href={translation.href} className="text-xs font-semibold text-primary hover:underline">
+              <Link href={translation.href} className="inline-flex min-h-11 items-center text-xs font-semibold text-primary hover:underline">
                 {locale === "fa" ? "English" : "فارسی"}
               </Link>
             ) : null}
@@ -49,28 +63,29 @@ export default async function BlogArticle({
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_240px] lg:items-end lg:gap-14">
             <div>
-              <div className="mb-5 flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground sm:text-xs">
+              <div className="mb-5 flex flex-wrap items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground sm:text-xs">
                 <Link href={`/${locale}/blog/category/${encodeURIComponent(post.category)}`} className="text-primary hover:underline">
                   {post.categoryInfo?.title?.[locale] || post.category}
                 </Link>
                 <span>/</span>
                 <span className="inline-flex items-center gap-1.5"><Clock3 className="size-3" />{t("readingTime", { minutes: post.readingTime || 1 })}</span>
               </div>
-              <h1 className="max-w-5xl text-pretty font-serif text-[2.55rem] font-black leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="max-w-5xl text-pretty text-[2.1rem] font-bold leading-[1.18] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
                 {post.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">{post.description}</p>
+              <p className="mt-6 max-w-3xl text-[1rem] leading-8 text-muted-foreground sm:text-lg">{post.description}</p>
+              <ArticleReadingControls locale={locale} />
             </div>
 
             <div className="border-t border-border pt-5 lg:border-s lg:border-t-0 lg:ps-6 lg:pt-0">
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{t("published")}</p>
-              <time className="mt-2 flex items-center gap-2 font-serif text-lg font-bold">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{t("published")}</p>
+              <time className="mt-2 flex items-center gap-2 text-lg font-bold">
                 <CalendarDays className="size-4" />
                 {formatBlogDate(post.date, locale)}
               </time>
               {post.updatedAt ? (
                 <div className="mt-5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{t("lastUpdated")}</p>
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{t("lastUpdated")}</p>
                   <time className="mt-1 block text-sm text-muted-foreground">{formatBlogDate(post.updatedAt, locale)}</time>
                 </div>
               ) : null}
@@ -79,13 +94,14 @@ export default async function BlogArticle({
 
           {post.coverUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={post.coverUrl} alt="" className="mt-10 max-h-[560px] w-full rounded-2xl border border-border bg-muted object-cover" />
+            <img src={post.coverUrl} alt={post.title} decoding="async" fetchPriority="high" className="mx-auto mt-10 max-h-64 w-full max-w-3xl border border-border bg-muted object-cover sm:max-h-96" />
           ) : null}
         </div>
       </header>
 
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-16 lg:px-8 lg:py-20">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 py-10 sm:px-6 sm:py-14 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-16 lg:px-8 lg:py-20">
         <article className="min-w-0">
+          <BlogTableOfContents items={tableOfContents} locale={locale} mobile />
           <div className="mx-auto max-w-3xl">
             <MdxContent source={post.body} />
           </div>
@@ -95,7 +111,7 @@ export default async function BlogArticle({
               <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">{t("filedUnder")}</p>
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
-                  <Link key={tag} href={`/${locale}/blog/tag/${encodeURIComponent(tag)}`} className="rounded-full border border-border bg-muted/30 px-3 py-1.5 text-xs text-muted-foreground hover:border-primary/50">
+                  <Link key={tag} href={`/${locale}/blog/tag/${encodeURIComponent(tag)}`} className="inline-flex min-h-11 items-center border border-border bg-muted/30 px-3 text-xs text-muted-foreground hover:border-primary">
                     #{tag}
                   </Link>
                 ))}
@@ -114,9 +130,9 @@ export default async function BlogArticle({
               <div className="mt-5 border-b border-border pb-5">
                 {author.avatar ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={author.avatar} alt="" className="mb-3 size-12 rounded-full border border-border object-cover" />
+                  <img src={author.avatar} alt={author.name} className="mb-3 size-12 rounded-full border border-border object-cover" />
                 ) : null}
-                <p className="font-serif text-lg font-black">{author.name}</p>
+                <p className="text-lg font-bold">{author.name}</p>
                 {author.title ? <p className="mt-1 text-xs text-muted-foreground">{author.title}</p> : null}
               </div>
             ) : null}
@@ -125,6 +141,7 @@ export default async function BlogArticle({
               <p>{t("readingTime", { minutes: post.readingTime || 1 })}</p>
               <p>{formatBlogDate(post.date, locale)}</p>
             </div>
+            <BlogTableOfContents items={tableOfContents} locale={locale} />
           </div>
         </aside>
       </div>

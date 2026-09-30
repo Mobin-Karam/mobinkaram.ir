@@ -6,12 +6,6 @@ import BlogTimeline from "@/features/blog/components/BlogTimeline";
 import { filterPostsByArchive, getAllPosts, isBlogLocale } from "@/lib/blog/content";
 import { normalizeDateSegment } from "@/lib/blog/date";
 
-export async function generateStaticParams() {
-  const locales = ["en", "fa"] as const;
-  const all = await Promise.all(locales.map(async (locale) => ({ locale, posts: await getAllPosts(locale) })));
-  return all.flatMap(({ locale, posts }) => posts.map((post) => ({ locale, ...post.dateParts })));
-}
-
 export default async function DayArchivePage({ params }: { params: Promise<{ locale: string; year: string; month: string; day: string }> }) {
   const { locale, year, month, day } = await params;
   if (!isBlogLocale(locale) || !/^\d{4}$/.test(year)) return notFound();

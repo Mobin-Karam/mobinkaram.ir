@@ -6,11 +6,6 @@ import ArchiveHeader from "@/features/blog/components/ArchiveHeader";
 import BlogTimeline from "@/features/blog/components/BlogTimeline";
 import { getAllPosts, getCategories, isBlogLocale } from "@/lib/blog/content";
 
-export async function generateStaticParams() {
-  const categories = await getCategories();
-  return ["en", "fa"].flatMap((locale) => categories.map((category) => ({ locale, category: category.slug })));
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; category: string }> }): Promise<Metadata> {
   const { locale, category } = await params;
   if (!isBlogLocale(locale)) return {};

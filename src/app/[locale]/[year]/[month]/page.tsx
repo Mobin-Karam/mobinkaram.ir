@@ -10,32 +10,6 @@ import {
 } from "@/lib/blog/content";
 import { normalizeDateSegment } from "@/lib/blog/date";
 
-export async function generateStaticParams() {
-  const locales = ["en", "fa"] as const;
-  const all = await Promise.all(
-    locales.map(async (locale) => ({
-      locale,
-      posts: await getAllPosts(locale),
-    })),
-  );
-  const result: Array<{ locale: string; year: string; month: string }> = [];
-  for (const { locale, posts } of all) {
-    const seen = new Set<string>();
-    for (const post of posts) {
-      const key = `${post.dateParts.year}/${post.dateParts.month}`;
-      if (!seen.has(key)) {
-        seen.add(key);
-        result.push({
-          locale,
-          year: post.dateParts.year,
-          month: post.dateParts.month,
-        });
-      }
-    }
-  }
-  return result;
-}
-
 export default async function MonthArchivePage({
   params,
 }: {

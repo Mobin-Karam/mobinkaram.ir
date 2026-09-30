@@ -113,15 +113,15 @@ const islamMatcher = (tag: string) =>
 
 export type BlogCategory = string;
 
-export function categorizePost(post: Post) {
-  if ((post as any).category) return (post as any).category as BlogCategory;
+export function categorizePost(post: Pick<Post, "category" | "tags">) {
+  if (post.category) return post.category;
   const hasIslam = (post.tags ?? []).some(islamMatcher);
   return hasIslam ? "islam" : "general";
 }
 
 export function filterByCategory(posts: Post[], category: BlogCategory) {
   return posts.filter((p) =>
-    (p as any).category ? (p as any).category === category : categorizePost(p) === category,
+    p.category ? p.category === category : categorizePost(p) === category,
   );
 }
 

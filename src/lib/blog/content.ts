@@ -25,6 +25,15 @@ type GitTreeResponse = {
   truncated?: boolean;
 };
 
+type PostCacheEntry = {
+  expiresAt: number;
+  value: Promise<BlogPostMeta[]>;
+};
+
+// Next's fetch cache handles production. This small in-process cache prevents
+// Turbopack development requests from repeatedly downloading every MDX file.
+const postCache = new Map<string, PostCacheEntry>();
+
 function requestInit(): RequestInit & { next?: { revalidate: number; tags: string[] } } {
   const token = process.env.GITHUB_CONTENT_TOKEN;
   return {
@@ -128,7 +137,7 @@ function fileStem(path: string) {
   return path.split("/").pop()?.replace(/\.mdx?$/i, "") || path;
 }
 
-export async function getAllPosts(
+async function loadAllPosts(
   locale: BlogLocale,
   options: { includeDrafts?: boolean } = {},
 ): Promise<BlogPostMeta[]> {
@@ -188,6 +197,41 @@ export async function getAllPosts(
   return posts
     .filter((post) => options.includeDrafts || post.published !== false)
     .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
+}
+
+export async function getAllPosts(
+  locale: BlogLocale,
+  options: { includeDrafts?: boolean } = {},
+): Promise<BlogPostMeta[]> {
+  const result = await getPostsResult(locale, options);
+  return result.posts;
+}
+
+export async function getPostsResult(
+  locale: BlogLocale,
+  options: { includeDrafts?: boolean } = {},
+): Promise<{ posts: BlogPostMeta[]; unavailable: boolean }> {
+  try {
+    const key = `${locale}:${options.includeDrafts ? "all" : "published"}`;
+    const now = Date.now();
+    const cached = postCache.get(key);
+    const value = cached && cached.expiresAt > now
+      ? cached.value
+      : loadAllPosts(locale, options);
+
+    if (!cached || cached.expiresAt <= now) {
+      postCache.set(key, {
+        value,
+        expiresAt: now + BLOG_CONTENT.revalidateSeconds * 1000,
+      });
+    }
+
+    return { posts: await value, unavailable: false };
+  } catch (error) {
+    postCache.delete(`${locale}:${options.includeDrafts ? "all" : "published"}`);
+    console.error("[blog] unable to load remote content:", error);
+    return { posts: [], unavailable: true };
+  }
 }
 
 export async function getPostByPath(meta: BlogPostMeta): Promise<BlogPost> {

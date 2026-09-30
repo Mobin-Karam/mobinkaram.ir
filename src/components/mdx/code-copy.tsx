@@ -23,7 +23,7 @@ export function CodeCopyButton() {
     <button
       type="button"
       onClick={onClick}
-      className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full border border-[color:var(--border)] bg-[color:var(--background)] px-2 py-1 text-[11px] font-semibold text-[color:var(--muted)] opacity-0 shadow-sm transition hover:-translate-y-0.5 hover:text-[color:var(--foreground)] group-hover:opacity-100"
+      className="absolute right-3 top-3 inline-flex min-h-9 items-center gap-1 rounded-full border border-white/20 bg-slate-950/90 px-2.5 py-1 text-[11px] font-semibold text-slate-200 shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
       aria-label="Copy code"
     >
       {copied ? <Check size={12} /> : <Copy size={12} />}

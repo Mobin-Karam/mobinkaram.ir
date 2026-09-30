@@ -19,7 +19,7 @@ export default async function BlogTimeline({
 
   if (!posts.length) {
     return (
-      <section className="border-y border-border py-12 text-center">
+      <section className="border-y border-border py-12 text-center font-mono">
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
           {t("empty.eyebrow")}
         </p>
@@ -36,7 +36,7 @@ export default async function BlogTimeline({
   }
 
   return (
-    <section className="relative border-t border-border">
+    <section className="relative border-t border-border font-mono">
       <div
         aria-hidden="true"
         className="absolute bottom-0 start-[5px] top-0 w-px bg-border"
@@ -54,13 +54,13 @@ export default async function BlogTimeline({
                 grid-cols-[12px_minmax(0,1fr)]
                 gap-x-3
                 border-b border-border
-                py-3
+                py-4
                 sm:py-3.5
               "
             >
               {/* Timeline */}
               <div className="relative flex justify-start">
-                <span className="relative z-10 mt-[7px] block size-2 rounded-full bg-primary ring-4 ring-background" />
+                <span className="relative z-10 mt-[7px] block size-2 bg-primary ring-4 ring-background" />
               </div>
 
               {/* Content */}
@@ -87,9 +87,9 @@ export default async function BlogTimeline({
                 {/* Main information */}
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                    <Link
+                    <span className="text-primary">&gt;</span><Link
                       href={href}
-                      className="truncate font-serif text-base font-bold leading-6 hover:underline hover:decoration-primary hover:underline-offset-4 sm:text-[17px]"
+                      className="truncate text-base font-bold leading-6 hover:text-primary hover:underline sm:text-[17px]"
                     >
                       {post.title}
                     </Link>
@@ -97,14 +97,14 @@ export default async function BlogTimeline({
                     <span className="hidden text-border sm:inline">/</span>
 
                     <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-primary">
-                      {post.category}
+                      [{post.category}]
                     </span>
                   </div>
 
                   <div className="mt-1 flex flex-wrap items-center gap-x-2 text-[10px] text-muted-foreground">
                     <span>
                       {t("readingTime", {
-                        minutes: post.readingTime,
+                        minutes: post.readingTime ?? 0,
                       })}
                     </span>
 
