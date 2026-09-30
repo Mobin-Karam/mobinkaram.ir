@@ -1,19 +1,11 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { ProjectsClient } from "./ProjectsClient";
-import { projects } from "@/features/projects/projects";
-import { Vazirmatn } from "next/font/google";
+import { ProjectsClient, projects } from "@/features/projects";
 import { routing } from "@/i18n/routing";
 
 // ============================================================================
 // Metadata
 // ============================================================================
-
-const vazirmatn = Vazirmatn({
-  variable: "--font-vazirmatn",
-  subsets: ["arabic", "latin"],
-  display: "swap",
-});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -132,19 +124,20 @@ export async function generateMetadata({
 // ============================================================================
 
 interface Props {
-  searchParams?: {
+  searchParams: Promise<{
     search?: string;
     filter?: string;
-  };
+  }>;
 }
 
-export default function ProjectsPage({ searchParams }: Props) {
+export default async function ProjectsPage({ searchParams }: Props) {
+  const query = await searchParams;
   const allStacks = Array.from(new Set(projects.flatMap((p) => p.stack))).sort(
     (a, b) => a.localeCompare(b),
   );
 
-  const initialSearch = searchParams?.search ?? "";
-  const initialFilter = searchParams?.filter ?? "all";
+  const initialSearch = query.search ?? "";
+  const initialFilter = query.filter ?? "all";
 
   const structuredData = {
     "@context": "https://schema.org",

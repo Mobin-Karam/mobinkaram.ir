@@ -38,6 +38,7 @@
     "description": "به طراحی و توسعه وب‌اپلیکیشن‌های مدرن علاقه‌مندم و در کنار آن، امنیت سایبری و زیرساخت‌های امن را به‌صورت تخصصی دنبال می‌کنم.",
     "viewProjects": "پروژه‌ها",
     "contactMe": "ارتباط با من",
+    "blog": "دست نوشته خودم",
     "followMe": "دنبال کنید",
     "portraitAlt": "تصویر مبین کرم",
     "skillsLabel": "مهارت‌ها",
@@ -233,5 +234,33 @@
   "banner": {
     "text": "به کانال تکنولوژی من در تلگرام بپیوندید",
     "joinButton": "عضویت در کانال"
+  },
+  "projectsPage": {
+    "filtersAriaLabel": "فیلترهای پروژه‌ها",
+    "hideFilters": "پنهان کردن فیلترها",
+    "showFilters": "نمایش فیلترها",
+    "clearFilters": "پاک کردن فیلترها",
+    "clear": "پاک کردن",
+    "projectsAriaLabel": "پروژه‌ها",
+    "title": "پروژه‌ها",
+    "description": "فهرست قابل جست‌وجوی پروژه‌ها، آزمایش‌ها و سیستم‌هایی که پشت آن‌ها ساخته شده‌اند.",
+    "showingResults": "نمایش {count} پروژه",
+    "searchPlaceholder": "جستجوی پروژه‌ها",
+    "searchWithFilter": "{count} پروژه برای {query} در {filter}",
+    "search": "{count} پروژه برای {query}",
+    "filter": "{count} پروژه در {filter}",
+    "reset": "بازنشانی فیلترها"
+  },
+  "projects": {
+    "card": {
+      "projectNumber": "پروژه {number}",
+      "technologyStack": "فناوری‌ها",
+      "stackAriaLabel": "فناوری‌های {project}",
+      "moreTechnologies": "{count} فناوری دیگر",
+      "openProjectAriaLabel": "باز کردن {project}",
+      "viewProject": "مشاهده پروژه",
+      "openSourceAriaLabel": "باز کردن کد منبع {project}",
+      "sourceCode": "کد منبع"
+    }
   }
 }

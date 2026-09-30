@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Check, Layers3 } from "lucide-react";
 
 interface ProjectFiltersProps {
@@ -42,7 +41,7 @@ export function ProjectFilters({
             className={[
               "relative isolate inline-flex h-9",
               "shrink-0 items-center gap-1.5",
-              "rounded-full px-3",
+              "border px-3",
               "text-xs font-medium",
               "outline-none transition-colors",
               "focus-visible:ring-2 focus-visible:ring-ring",
@@ -56,18 +55,12 @@ export function ProjectFilters({
             ].join(" ")}
           >
             {selected && (
-              <motion.span
-                layoutId="active-project-filter"
+              <span
                 className={[
                   "absolute inset-0 -z-10",
-                  "rounded-full border border-border/70",
+                  "border border-primary bg-primary/10",
                   "bg-background shadow-sm",
                 ].join(" ")}
-                transition={{
-                  type: "spring",
-                  stiffness: 420,
-                  damping: 34,
-                }}
               />
             )}
 

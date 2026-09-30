@@ -1,12 +1,10 @@
 "use client";
 
-import { useCallback, useRef, type MouseEvent } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight, Code2, ExternalLink, Layers3 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { FaGithub } from "react-icons/fa6";
 
-import type { Project } from "./projects";
+import type { Project } from "../data/projects";
 
 interface ProjectCardProps {
   project: Project;
@@ -94,21 +92,6 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const t = useTranslations("projects.card");
 
-  const cardRef = useRef<HTMLElement>(null);
-
-  const pointerX = useMotionValue(50);
-  const pointerY = useMotionValue(50);
-
-  const smoothX = useSpring(pointerX, {
-    stiffness: 180,
-    damping: 28,
-  });
-
-  const smoothY = useSpring(pointerY, {
-    stiffness: 180,
-    damping: 28,
-  });
-
   const theme = PROJECT_THEMES[getThemeIndex(project.name)];
 
   const visibleStack = featured
@@ -119,70 +102,18 @@ export default function ProjectCard({
 
   const projectNumber = String(index + 1).padStart(2, "0");
 
-  const handlePointerMove = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      const card = cardRef.current;
-
-      if (!card) return;
-
-      const bounds = card.getBoundingClientRect();
-
-      const x = ((event.clientX - bounds.left) / bounds.width) * 100;
-
-      const y = ((event.clientY - bounds.top) / bounds.height) * 100;
-
-      pointerX.set(x);
-      pointerY.set(y);
-    },
-    [pointerX, pointerY],
-  );
-
-  const resetPointer = useCallback(() => {
-    pointerX.set(50);
-    pointerY.set(50);
-  }, [pointerX, pointerY]);
-
   return (
-    <motion.article
-      ref={cardRef}
-      onMouseMove={handlePointerMove}
-      onMouseLeave={resetPointer}
-      initial={{
-        opacity: 0,
-        y: 24,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.2,
-      }}
-      whileHover={{
-        y: -7,
-      }}
-      transition={{
-        opacity: {
-          duration: 0.45,
-          delay: Math.min(index * 0.06, 0.3),
-        },
-        y: {
-          type: "spring",
-          stiffness: 280,
-          damping: 24,
-        },
-      }}
+    <article
       className={[
-        "group relative isolate flex h-full",
-        "min-h-[23rem] flex-col overflow-hidden",
-        "rounded-[1.65rem] border border-border/70",
-        "bg-card/80 backdrop-blur-xl",
+        "group relative isolate flex h-full [content-visibility:auto] [contain-intrinsic-size:auto_420px]",
+        "min-h-[23rem] flex-col overflow-hidden font-mono",
+        "border border-border",
+        "bg-card",
         theme.hover,
-        "shadow-[0_18px_55px_-40px_rgba(0,0,0,0.55)]",
+        "shadow-[6px_6px_0_color-mix(in_srgb,var(--color-border)_75%,transparent)]",
         "transition-[border-color,box-shadow]",
         "duration-300",
-        "hover:shadow-[0_30px_80px_-42px_rgba(0,0,0,0.65)]",
+        "hover:shadow-[8px_8px_0_color-mix(in_srgb,var(--color-primary)_40%,transparent)]",
         featured ? "md:min-h-[25rem]" : "",
       ].join(" ")}
     >
@@ -195,28 +126,10 @@ export default function ProjectCard({
         ].join(" ")}
       />
 
-      <motion.div
-        aria-hidden="true"
-        className={[
-          "pointer-events-none absolute -z-20",
-          "size-72 rounded-full",
-          "bg-foreground/[0.055]",
-          "opacity-0 blur-3xl",
-          "transition-opacity duration-300",
-          "group-hover:opacity-100",
-        ].join(" ")}
-        style={{
-          left: smoothX,
-          top: smoothY,
-          x: "-50%",
-          y: "-50%",
-        }}
-      />
-
       <div
         aria-hidden="true"
         className={[
-          "pointer-events-none absolute",
+          "pointer-events-none absolute hidden sm:block",
           "-end-24 -top-24 -z-20",
           "size-64 rounded-full blur-3xl",
           theme.orb,
@@ -247,16 +160,7 @@ export default function ProjectCard({
 
       <div className="flex h-full flex-col p-5 sm:p-6 lg:p-7">
         <div className="flex items-start justify-between gap-4">
-          <motion.div
-            whileHover={{
-              rotate: -5,
-              scale: 1.05,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 350,
-              damping: 20,
-            }}
+          <div
             className={[
               "flex size-11 shrink-0 items-center",
               "justify-center rounded-[0.9rem] border",
@@ -265,7 +169,7 @@ export default function ProjectCard({
             ].join(" ")}
           >
             <Code2 aria-hidden="true" className="size-[18px]" />
-          </motion.div>
+          </div>
 
           <div
             className={[
@@ -342,11 +246,8 @@ export default function ProjectCard({
             className="flex flex-wrap gap-1.5"
           >
             {visibleStack.map((technology) => (
-              <motion.li
+              <li
                 key={technology}
-                whileHover={{
-                  y: -2,
-                }}
                 className={[
                   "rounded-full border px-2.5 py-1",
                   "font-mono text-[10px] font-medium",
@@ -355,7 +256,7 @@ export default function ProjectCard({
                 ].join(" ")}
               >
                 {technology}
-              </motion.li>
+              </li>
             ))}
 
             {remainingStack > 0 && (
@@ -459,6 +360,6 @@ export default function ProjectCard({
           </div>
         )}
       </div>
-    </motion.article>
+    </article>
   );
 }

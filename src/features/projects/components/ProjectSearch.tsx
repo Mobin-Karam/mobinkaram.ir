@@ -38,16 +38,16 @@ export function ProjectSearch({
       placeholder={t("searchPlaceholder")}
         aria-label="Search projects"
         className={[
-          "h-11 w-full rounded-xl",
-          "border border-transparent",
-          "bg-muted/50",
+          "h-11 w-full",
+          "border border-border",
+          "bg-background",
           "pl-10 pr-20",
           "text-sm text-foreground",
           "outline-none transition-all",
           "placeholder:text-muted-foreground",
           "hover:bg-muted/70",
-          "focus:border-border",
-          "focus:bg-background",
+          "focus:border-primary",
+          "focus:bg-card",
           "focus:ring-2 focus:ring-ring/40",
           "[&::-webkit-search-cancel-button]:hidden",
         ].join(" ")}

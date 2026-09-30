@@ -3,7 +3,6 @@
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { AnimatePresence, motion, type Variants } from "framer-motion";
 import {
   FolderKanban,
   Search,
@@ -13,11 +12,11 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ProjectGrid } from "@/features/projects/ProjectGrid";
-import { ProjectSearch } from "@/features/projects/ProjectSearch";
-import { ProjectFilters } from "@/features/projects/ProjectFilters";
+import { ProjectGrid } from "./ProjectGrid";
+import { ProjectSearch } from "./ProjectSearch";
+import { ProjectFilters } from "./ProjectFilters";
 
-import type { Project } from "@/features/projects/projects";
+import type { Project } from "../data/projects";
 
 interface ProjectsClientProps {
   projects: Project[];
@@ -25,56 +24,6 @@ interface ProjectsClientProps {
   initialSearch?: string;
   initialFilter?: string;
 }
-
-const pageVariants: Variants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.06,
-    },
-  },
-};
-
-const sectionVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 18,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.55,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
-const resultVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 12,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.35,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: 8,
-    transition: {
-      duration: 0.2,
-    },
-  },
-};
 
 export function ProjectsClient({
   projects,
@@ -161,14 +110,11 @@ export function ProjectsClient({
   }
 
   return (
-    <motion.main
-      variants={pageVariants}
-      initial="hidden"
-      animate="visible"
+    <main
       className={[
         "relative min-h-screen overflow-x-clip",
         "bg-background",
-        "pb-16 pt-10",
+        "pb-16 pt-24 sm:pt-28",
       ].join(" ")}
     >
       {/* Main background */}
@@ -193,7 +139,7 @@ export function ProjectsClient({
       <div
         aria-hidden="true"
         className={[
-          "pointer-events-none absolute -end-48 top-0 -z-10",
+          "pointer-events-none absolute -end-48 top-0 -z-10 hidden sm:block",
           "size-[28rem] rounded-full",
           "bg-primary/10 blur-[130px]",
         ].join(" ")}
@@ -202,18 +148,20 @@ export function ProjectsClient({
       <div
         aria-hidden="true"
         className={[
-          "pointer-events-none absolute -start-52 top-[30rem] -z-10",
+          "pointer-events-none absolute -start-52 top-[30rem] -z-10 hidden sm:block",
           "size-[25rem] rounded-full",
           "bg-blue-500/10 blur-[130px]",
         ].join(" ")}
       />
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Page header */}
+        <header className="mb-8 border border-border bg-card font-mono shadow-[7px_7px_0_color-mix(in_srgb,var(--color-border)_75%,transparent)]">
+          <div className="flex items-center gap-2 border-b border-border bg-muted px-4 py-2 text-[10px] uppercase tracking-[0.16em] text-muted-foreground"><span className="size-2 rounded-full bg-destructive" /><span className="size-2 rounded-full bg-warning" /><span className="size-2 rounded-full bg-success" /><span className="ms-2">portfolio@mobinkaram:~/projects</span></div>
+          <div className="p-5 sm:p-7"><p className="text-xs text-primary">$ ls --interactive --stack</p><div className="mt-3 flex flex-wrap items-end justify-between gap-4"><div><h1 className="text-3xl font-bold tracking-tight sm:text-5xl">{t("title")}</h1><p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">{t("description")}</p></div><div className="flex items-center gap-2 text-xs text-muted-foreground"><FolderKanban className="size-4 text-primary" />{projects.length} repositories <Sparkles className="ms-2 size-4 text-primary" /> live index</div></div></div>
+        </header>
 
         {/* Search and filters */}
-        <motion.section
-          variants={sectionVariants}
+        <section
           aria-label={t("filtersAriaLabel")}
           className={[
             "sticky z-40",
@@ -225,12 +173,10 @@ export function ProjectsClient({
           <div
             className={[
               "relative",
-              "rounded-2xl border border-border/70",
+              "border border-border bg-card",
               "bg-background/90 p-2",
               "shadow-[0_16px_50px_-30px_rgba(0,0,0,0.5)]",
-              "backdrop-blur-2xl",
-              "supports-[backdrop-filter]:bg-background/80",
-              "sm:rounded-[1.35rem]",
+              "font-mono",
             ].join(" ")}
           >
             <div className="flex items-center gap-2">
@@ -290,27 +236,8 @@ export function ProjectsClient({
             </div>
 
             {/* Mobile filters */}
-            <AnimatePresence initial={false}>
-              {mobileFiltersOpen && (
-                <motion.div
-                  initial={{
-                    height: 0,
-                    opacity: 0,
-                  }}
-                  animate={{
-                    height: "auto",
-                    opacity: 1,
-                  }}
-                  exit={{
-                    height: 0,
-                    opacity: 0,
-                  }}
-                  transition={{
-                    duration: 0.28,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="overflow-hidden md:hidden"
-                >
+            {mobileFiltersOpen && (
+                <div className="overflow-hidden md:hidden">
                   <div className="mt-2 border-t border-border/60 pt-2">
                     <ProjectFilters
                       stacks={allStacks}
@@ -321,16 +248,14 @@ export function ProjectsClient({
                       }}
                     />
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                </div>
+            )}
           </div>
-        </motion.section>
+        </section>
         {/* Results information */}
-        <motion.div
-          variants={sectionVariants}
+        <div
           className={[
-            "mb-5 mt-6 flex min-h-9",
+            "mb-5 mt-6 flex min-h-9 font-mono",
             "items-center justify-between gap-3",
             "sm:mt-8",
           ].join(" ")}
@@ -349,22 +274,9 @@ export function ProjectsClient({
             })}
           </p>
 
-          <AnimatePresence initial={false}>
-            {hasActiveFilters && (
-              <motion.button
+          {hasActiveFilters && (
+              <button
                 type="button"
-                initial={{
-                  opacity: 0,
-                  scale: 0.92,
-                }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                exit={{
-                  opacity: 0,
-                  scale: 0.92,
-                }}
                 onClick={clearAllFilters}
                 className={[
                   "inline-flex shrink-0 items-center gap-1.5",
@@ -380,35 +292,20 @@ export function ProjectsClient({
                 <X aria-hidden="true" className="size-3.5" />
                 <span className="hidden sm:inline">{t("clearFilters")}</span>
                 <span className="sm:hidden">{t("clear")}</span>
-              </motion.button>
-            )}
-          </AnimatePresence>
-        </motion.div>
+              </button>
+          )}
+        </div>
 
         {/* Project results */}
-        <AnimatePresence mode="wait">
-          {filteredProjects.length > 0 ? (
-            <motion.section
-              key={`${filter}-${normalizedSearch || "all"}`}
-              variants={resultVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              aria-label={t("projectsAriaLabel")}
-            >
+        {filteredProjects.length > 0 ? (
+            <section aria-label={t("projectsAriaLabel")}>
               <ProjectGrid projects={filteredProjects} />
-            </motion.section>
+            </section>
           ) : (
-            <EmptyProjects
-              key="empty-projects"
-              search={search}
-              filter={filter}
-              onClear={clearAllFilters}
-            />
+            <EmptyProjects search={search} filter={filter} onClear={clearAllFilters} />
           )}
-        </AnimatePresence>
       </div>
-    </motion.main>
+    </main>
   );
 }
 
@@ -424,11 +321,7 @@ function EmptyProjects({ search, filter, onClear }: EmptyProjectsProps) {
   const trimmedSearch = search.trim();
 
   return (
-    <motion.section
-      variants={resultVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
+    <section
       className={[
         "relative flex min-h-[22rem] overflow-hidden",
         "flex-col items-center justify-center",
@@ -500,6 +393,6 @@ function EmptyProjects({ search, filter, onClear }: EmptyProjectsProps) {
       >
         {t("reset")}
       </Button>
-    </motion.section>
+    </section>
   );
 }

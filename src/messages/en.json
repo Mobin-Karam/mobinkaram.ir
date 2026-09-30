@@ -38,6 +38,7 @@
     "description": "I build fast, scalable web applications while expanding my expertise in $cybersecurity and secure systems.$",
     "viewProjects": "View Projects",
     "contactMe": "Contact Me",
+    "blog": "My Personal Writings",
     "followMe": "Follow Me",
     "portraitAlt": "Portrait of Mobin Karam",
     "skillsLabel": "Skills",
@@ -120,6 +121,116 @@
     "empty": {
       "eyebrow": "The Archive Is Being Prepared",
       "title": "No stories published yet"
+    }
+  },
+  "errors": {
+    "actions": {
+      "tryAgain": "Try again",
+      "reload": "Reload page",
+      "home": "Go to home",
+      "back": "Go back",
+      "login": "Sign in",
+      "contact": "Contact support"
+    },
+    "details": {
+      "title": "Technical details",
+      "copy": "Copy details",
+      "copied": "Copied"
+    },
+    "notFound": {
+      "eyebrow": "Page not found",
+      "title": "We could not find this page",
+      "description": "The page may have moved or been removed, or the address may be incorrect. Check the link or return home."
+    },
+    "unauthorized": {
+      "eyebrow": "Sign-in required",
+      "title": "Sign in to continue",
+      "description": "Your session may have expired, or you may need to sign in before accessing this page."
+    },
+    "forbidden": {
+      "eyebrow": "Access denied",
+      "title": "You do not have permission to access this",
+      "description": "Your account does not have the required permission to view this page or perform this action."
+    },
+    "rateLimit": {
+      "eyebrow": "Too many requests",
+      "title": "Please wait a moment",
+      "description": "Too many requests were made in a short time. Wait a moment and try again."
+    },
+    "server": {
+      "eyebrow": "Server error",
+      "title": "Part of the system did not work correctly",
+      "description": "An unexpected error occurred while processing your request. Please try again, and contact support if it continues."
+    },
+    "maintenance": {
+      "eyebrow": "System maintenance",
+      "title": "We will be back soon",
+      "description": "The site is temporarily unavailable while technical improvements are being made. Please try again shortly."
+    },
+    "offline": {
+      "eyebrow": "No internet connection",
+      "title": "It looks like you are offline",
+      "description": "Check your internet connection and try again. Some previously loaded content may still be available."
+    },
+    "connection": {
+      "offlineTitle": "Internet connection lost",
+      "offlineDescription": "Some actions may not work until your connection is restored.",
+      "online": "Internet connection restored"
+    },
+    "api": {
+      "retry": "Try again",
+      "default": {
+        "title": "Unable to load content",
+        "description": "There was a problem retrieving the requested information."
+      },
+      "offline": {
+        "title": "You are offline",
+        "description": "Connect to the internet and try loading this content again."
+      },
+      "network": {
+        "title": "Connection problem",
+        "description": "Unable to connect to the server. Check your internet connection and try again."
+      },
+      "timeout": {
+        "title": "Request timed out",
+        "description": "The server did not respond in time. Please try again."
+      },
+      "unauthorized": {
+        "title": "Your session has expired",
+        "description": "Sign in again to continue."
+      },
+      "forbidden": {
+        "title": "Access denied",
+        "description": "You do not have permission to view this content."
+      }
+    }
+  },
+  "projectsPage": {
+    "filtersAriaLabel": "Project filters",
+    "hideFilters": "Hide filters",
+    "showFilters": "Show filters",
+    "clearFilters": "Clear filters",
+    "clear": "Clear",
+    "projectsAriaLabel": "Projects",
+    "title": "Projects",
+    "description": "A searchable terminal index of product work, experiments, and the systems behind them.",
+    "showingResults": "Showing {count} projects",
+    "searchPlaceholder": "Search projects",
+    "searchWithFilter": "{count} projects matching {query} in {filter}",
+    "search": "{count} projects matching {query}",
+    "filter": "{count} projects in {filter}",
+    "reset": "Reset filters"
+  },
+  "projects": {
+    "card": {
+      "projectNumber": "Project {number}",
+      "technologyStack": "Technology stack",
+      "stackAriaLabel": "Technology stack for {project}",
+      "moreTechnologies": "{count} more technologies",
+      "openProjectAriaLabel": "Open {project}",
+      "viewProject": "View project",
+      "openSourceAriaLabel": "Open source code for {project}",
+      "sourceCode": "Source code"
     }
   }
 }
