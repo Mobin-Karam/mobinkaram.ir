@@ -14,7 +14,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 
-import { useMobileStory } from "@/components/home/use-mobile-story";
+import { useMobileStory } from "../hooks/use-mobile-story";
 
 type ScrollSceneContextValue = {
   progress: MotionValue<number>;

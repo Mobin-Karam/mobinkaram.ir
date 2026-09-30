@@ -4,15 +4,15 @@ import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import { useLocale } from "next-intl";
 
 import { getHomeContent } from "@/data/home-content";
-import { SectionGuide } from "@/components/home/section-guide";
-import { SectionHeading } from "@/components/home/section-heading";
+import { SectionGuide } from "./section-guide";
+import { SectionHeading } from "./section-heading";
 
 export function ContactSection() {
   const locale = useLocale();
   const content = getHomeContent(locale).contact;
 
   return (
-    <div className="story-shell">
+    <section id="contact" className="story-shell scroll-mt-28" aria-labelledby="contact-heading">
       <div className="story-grid">
         <div className="story-main">
           <SectionHeading
@@ -72,6 +72,6 @@ export function ContactSection() {
 
         <SectionGuide section="contact" />
       </div>
-    </div>
+    </section>
   );
 }

@@ -30,7 +30,7 @@ import { getHomeContent, type StorySectionKey } from "@/data/home-content";
 import {
   askPortfolioBrain,
   type BrainReply,
-} from "@/components/home/portfolio-brain";
+} from "../lib/portfolio-brain";
 
 type ChatMessage = {
   id: string;

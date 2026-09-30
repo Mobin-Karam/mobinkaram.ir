@@ -1,4 +1,4 @@
-import { NotificationType } from "@/features/notification/notifcationType";
+import type { NotificationType } from "@/features/notification";
 
 
 type Listener = (message: string, type?: NotificationType) => void;

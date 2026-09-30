@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { m, useTransform } from "framer-motion";
 
-import { useSceneProgress } from "@/components/home/scroll-scene";
+import { useSceneProgress } from "./scroll-scene";
 
 type RevealDirection =
   | "up"

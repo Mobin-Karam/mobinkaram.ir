@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import NotificationItem from "./NotificationItem";
 import { useState } from "react";
-import { useNotification } from "../NotificationContext";
+import { useNotification } from "../context/notification-context";
 
 export default function NotificationViewport() {
   const { notifications } = useNotification();

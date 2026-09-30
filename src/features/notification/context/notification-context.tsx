@@ -9,7 +9,7 @@ import {
   useEffect,
 } from "react";
 
-import { Notification, NotificationType } from "./notifcationType";
+import { Notification, NotificationType } from "../types/notification";
 import { appEventBus } from "@/lib/appEventBus";
 
 type Ctx = {

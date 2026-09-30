@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Notification } from "../notifcationType";
-import { useNotification } from "../NotificationContext";
+import { Notification } from "../types/notification";
+import { useNotification } from "../context/notification-context";
 
 
 export default function NotificationItem({
