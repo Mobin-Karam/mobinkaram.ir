@@ -23,41 +23,38 @@
   }
 }
 
-/* =========================================================
-    IRANIAN-INSPIRED UI
-    Lapis blue, Persian turquoise, warm ivory and brick red
-  ========================================================= */
+/* Terminal system: deliberately neutral in light mode, phosphor green in dark mode. */
 
 @theme {
   /* ================= SURFACE ================= */
 
-  --color-background: #f8f6f0;
-  --color-foreground: #172a32;
+  --color-background: #f4f7f2;
+  --color-foreground: #142119;
 
-  --color-card: #fffdf8;
-  --color-card-foreground: #172a32;
+  --color-card: #fbfdf9;
+  --color-card-foreground: #142119;
 
-  --color-popover: #fffdf8;
-  --color-popover-foreground: #172a32;
+  --color-popover: #fbfdf9;
+  --color-popover-foreground: #142119;
 
   /* ================= BRAND ================= */
 
   /* Persian lapis blue */
-  --color-primary: #174a5c;
-  --color-primary-foreground: #ffffff;
+  --color-primary: #176b42;
+  --color-primary-foreground: #f4fff7;
 
   /* Warm Persian ivory */
-  --color-secondary: #eee9dd;
-  --color-secondary-foreground: #24383f;
+  --color-secondary: #e7eee7;
+  --color-secondary-foreground: #1d3023;
 
   /* Persian turquoise */
-  --color-accent: #dceee9;
-  --color-accent-foreground: #145e5a;
+  --color-accent: #dcefe2;
+  --color-accent-foreground: #14522f;
 
   /* ================= MUTED ================= */
 
-  --color-muted: #f1eee6;
-  --color-muted-foreground: #68777a;
+  --color-muted: #eaf0ea;
+  --color-muted-foreground: #58705e;
 
   /* ================= STATUS ================= */
 
@@ -70,19 +67,19 @@
 
   /* ================= BORDER ================= */
 
-  --color-border: #ddd8cc;
-  --color-input: #d7d2c6;
+  --color-border: #bed0c1;
+  --color-input: #b4c8b9;
 
   /* Turquoise focus ring */
-  --color-ring: rgb(31 122 116 / 0.35);
+  --color-ring: rgb(23 107 66 / 0.38);
 
   /* ================= OPTIONAL BRAND COLORS ================= */
 
-  --color-lapis: #174a5c;
-  --color-turquoise: #1f7a74;
-  --color-terracotta: #b85c45;
-  --color-saffron: #d79a32;
-  --color-ivory: #f8f6f0;
+  --color-lapis: #176b42;
+  --color-turquoise: #218a50;
+  --color-terracotta: #9f432f;
+  --color-saffron: #a97420;
+  --color-ivory: #f4f7f2;
 
   /* ================= RADIUS ================= */
 
@@ -99,30 +96,30 @@
 .dark {
   /* ================= SURFACE ================= */
 
-  --color-background: #10191c;
-  --color-foreground: #f5f2e9;
+  --color-background: #08100b;
+  --color-foreground: #d7f7df;
 
-  --color-card: #172327;
-  --color-card-foreground: #f5f2e9;
+  --color-card: #0d1a11;
+  --color-card-foreground: #d7f7df;
 
-  --color-popover: #172327;
-  --color-popover-foreground: #f5f2e9;
+  --color-popover: #0d1a11;
+  --color-popover-foreground: #d7f7df;
 
   /* ================= BRAND ================= */
 
-  --color-primary: #54aaa2;
-  --color-primary-foreground: #071514;
+  --color-primary: #62e58e;
+  --color-primary-foreground: #061008;
 
-  --color-secondary: #223237;
-  --color-secondary-foreground: #f4eee3;
+  --color-secondary: #13261a;
+  --color-secondary-foreground: #dbf5e0;
 
-  --color-accent: #193d3c;
-  --color-accent-foreground: #8ed4cc;
+  --color-accent: #123d20;
+  --color-accent-foreground: #91f2ad;
 
   /* ================= MUTED ================= */
 
-  --color-muted: #1b292d;
-  --color-muted-foreground: #9aacab;
+  --color-muted: #112015;
+  --color-muted-foreground: #91ae98;
 
   /* ================= STATUS ================= */
 
@@ -133,17 +130,75 @@
 
   /* ================= BORDER ================= */
 
-  --color-border: #2d3d40;
-  --color-input: #344649;
-  --color-ring: rgb(84 170 162 / 0.45);
+  --color-border: #285336;
+  --color-input: #316540;
+  --color-ring: rgb(98 229 142 / 0.48);
 
   /* ================= OPTIONAL BRAND COLORS ================= */
 
-  --color-lapis: #43859a;
-  --color-turquoise: #54aaa2;
-  --color-terracotta: #d47a62;
-  --color-saffron: #dfa94b;
-  --color-ivory: #f5f2e9;
+  --color-lapis: #62e58e;
+  --color-turquoise: #68f0a0;
+  --color-terracotta: #ef8c75;
+  --color-saffron: #ebbd63;
+  --color-ivory: #d7f7df;
+}
+
+body {
+  background-image: linear-gradient(color-mix(in srgb, var(--color-foreground) 3%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--color-foreground) 3%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+::selection { background: var(--color-primary); color: var(--color-primary-foreground); }
+
+@keyframes route-loader-hop {
+  0%, 100% { transform: translateY(0); opacity: 0.35; }
+  50% { transform: translateY(-0.7rem); opacity: 1; }
+}
+
+.route-loader-square {
+  animation: route-loader-hop 700ms ease-in-out infinite;
+}
+
+html[data-reading-size="large"] .article-reading-content p,
+html[data-reading-size="large"] .article-reading-content li {
+  font-size: 1.125rem;
+  line-height: 2.1rem;
+}
+
+.article-reading-content {
+  font-family: var(--font-vazirmatn), Tahoma, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* Server-highlighted MDX code blocks. The colors follow highlight.js token classes. */
+.article-reading-content pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  background: transparent;
+  color: #dbeafe;
+}
+
+.article-reading-content .hljs-comment,
+.article-reading-content .hljs-quote { color: #94a3b8; font-style: italic; }
+.article-reading-content .hljs-keyword,
+.article-reading-content .hljs-selector-tag,
+.article-reading-content .hljs-literal { color: #c4b5fd; }
+.article-reading-content .hljs-string,
+.article-reading-content .hljs-doctag { color: #86efac; }
+.article-reading-content .hljs-number,
+.article-reading-content .hljs-attr,
+.article-reading-content .hljs-attribute { color: #fbbf24; }
+.article-reading-content .hljs-title,
+.article-reading-content .hljs-title.function_ { color: #67e8f9; }
+.article-reading-content .hljs-params,
+.article-reading-content .hljs-variable,
+.article-reading-content .hljs-template-variable { color: #fda4af; }
+.article-reading-content .hljs-built_in,
+.article-reading-content .hljs-type { color: #fdba74; }
+
+@media (prefers-reduced-motion: reduce) {
+  .route-loader-square { animation: none; opacity: 0.75; }
 }
 
 /* =========================================================
@@ -278,6 +333,23 @@ body {
     position: relative !important;
     height: auto !important;
     overflow: visible !important;
+  }
+}
+
+/* Preserve content and controls on constrained devices; remove GPU-expensive polish. */
+@media (max-width: 767px), (prefers-reduced-data: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+  }
+
+  [class*="backdrop-blur"], [class*="blur-"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+  }
+
+  [class*="group-hover"], [class*="hover:-translate"] {
+    transition-duration: 0ms !important;
   }
 }
 

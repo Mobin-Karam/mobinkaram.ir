@@ -12,10 +12,6 @@ export function CountdownBadge({
   const [remaining, setRemaining] = useState(seconds);
 
   useEffect(() => {
-    setRemaining(seconds);
-  }, [seconds]);
-
-  useEffect(() => {
     if (remaining <= 0) {
       onComplete?.();
       return;

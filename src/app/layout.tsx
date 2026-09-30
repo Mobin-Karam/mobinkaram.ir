@@ -1,15 +1,15 @@
 import type { ReactNode } from "react";
-import { Vazirmatn } from "next/font/google";
+import localFont from "next/font/local";
 
 import "./globals.css";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import { BackToTop } from "@/components/ui/back-to-top";
-import { Metadata } from "next";
 
-const vazirmatn = Vazirmatn({
+const vazirmatn = localFont({
+  src: "../../public/fonts/Vazirmatn/Vazirmatn-VariableFont_wght.ttf",
   variable: "--font-vazirmatn",
-  subsets: ["arabic", "latin"],
   display: "swap",
+  preload: true,
+  fallback: ["Tahoma", "Arial", "sans-serif"],
 });
 
 interface RootLayoutProps {
@@ -24,6 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       dir="rtl"
       suppressHydrationWarning
       className="scroll-smooth"
+      data-scroll-behavior="smooth"
     >
       <body
         suppressHydrationWarning
@@ -36,8 +37,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         ].join(" ")}
       >
         {children}
-        <SmoothCursor />
-
         <BackToTop />
       </body>
     </html>

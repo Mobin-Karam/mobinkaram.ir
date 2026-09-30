@@ -1,9 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { BellDot, XCircle } from "lucide-react";
 import { useUserPrefs } from "@/hooks/use-user-prefs";
-import clsx from "clsx";
 import { CountdownBadge } from "@/components/ui/countdown-badge";
 
 export function NotificationBar({
@@ -18,34 +16,9 @@ export function NotificationBar({
   countdownSeconds?: number;
 }) {
   const { prefs, setPrefs, ready } = useUserPrefs();
-  const [open, setOpen] = useState(false);
-  const [secondsLeft, setSecondsLeft] = useState(countdownSeconds);
-
-  useEffect(() => {
-    if (!ready) return;
-    const allowed = prefs.cookieConsent === "accepted";
-    setOpen(allowed && !prefs.noticeDismissed);
-  }, [prefs.noticeDismissed, prefs.cookieConsent, ready]);
-
-  useEffect(() => {
-    if (!open || !countdownSeconds) return;
-    setSecondsLeft(countdownSeconds);
-    const id = window.setInterval(() => {
-      setSecondsLeft((s) => {
-        if (s === undefined) return s;
-        if (s <= 1) {
-          dismiss();
-          return 0;
-        }
-        return s - 1;
-      });
-    }, 1000);
-    return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, countdownSeconds]);
+  const open = ready && prefs.cookieConsent === "accepted" && !prefs.noticeDismissed;
 
   const dismiss = () => {
-    setOpen(false);
     setPrefs({ noticeDismissed: true });
   };
 
@@ -71,9 +44,9 @@ export function NotificationBar({
         <span>{message}</span>
       </div>
       {cta ? <div className="flex items-center gap-2 text-sm">{cta}</div> : null}
-      {countdownSeconds && secondsLeft !== undefined ? (
+      {countdownSeconds ? (
         <CountdownBadge
-          seconds={secondsLeft}
+          seconds={countdownSeconds}
           onComplete={() => dismiss()}
         />
       ) : null}

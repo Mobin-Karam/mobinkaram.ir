@@ -40,11 +40,6 @@ export function SiteFooter() {
                   {locale === "fa" ? "وبلاگ" : "Blog"}
                 </Link>
               </li>
-              <li>
-                <Link href={`/${locale}/products`} className="transition hover:text-primary">
-                  {locale === "fa" ? "خدمات" : "Services"}
-                </Link>
-              </li>
             </ul>
           </div>
 

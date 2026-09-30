@@ -3,20 +3,13 @@
 import { ShieldCheck, XCircle } from "lucide-react";
 import { useUserPrefs } from "@/hooks/use-user-prefs";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
 
 export function CookieBanner() {
   const { prefs, setPrefs, ready } = useUserPrefs();
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (!ready) return;
-    setOpen(prefs.cookieConsent === "unset");
-  }, [prefs.cookieConsent, ready]);
+  const open = ready && prefs.cookieConsent === "unset";
 
   const handleChoice = (choice: "accepted" | "declined") => {
     setPrefs({ cookieConsent: choice });
-    setOpen(false);
   };
 
   if (!open) return null;
