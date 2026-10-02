@@ -83,6 +83,24 @@ export function SiteFooter() {
           </div>
         </div>
 
+        {/* Support */}
+        <div className="mt-12 flex justify-center">
+          <a
+            href="https://coffeebede.com/mobinkaram"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full max-w-[468px]"
+          >
+            <img
+              src="https://coffeebede.com/banner.svg?u=mobinkaram&bg=1a120b&fg=f5ebdd&sub=c8b49a&mbg=c8763e&mfg=1a120b&cbg=f5ebdd&bd=f5ebdd"
+              width={468}
+              height={100}
+              alt="برام یه قهوه بخر"
+              className="h-auto w-full"
+            />
+          </a>
+        </div>
+
         {/* Copyright */}
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <span>© {year} — {locale === "fa" ? "تمامی حقوق معنوی محفوظ است" : "All rights reserved"}</span>
